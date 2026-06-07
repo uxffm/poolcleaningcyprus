@@ -4,3 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+[[redirects]]
+  from = "https://shimmering-meerkat-1a2136.netlify.app/*"
+  to = "https://poolcleaningcyprus.com/:splat"
+  status = 301
+  force = true
