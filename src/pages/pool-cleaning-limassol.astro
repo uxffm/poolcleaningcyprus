@@ -1,0 +1,211 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { MapPin, Droplets, Phone } from '@lucide/astro';
+
+const siteTitle = "Pool Cleaning Limassol | Swimming Pool Maintenance Limassol Cyprus";
+const siteDescription = "Professional pool cleaning and maintenance in Limassol, Cyprus. Weekly and bi-weekly service for villas, apartments, and complexes. Reliable local pool technicians.";
+const siteUrl = "https://poolcleaning-cyprus.com";
+const siteName = "Pool Cleaning Cyprus";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{siteTitle}</title>
+		<meta name="description" content={siteDescription} />
+		<meta name="keywords" content="pool cleaning limassol, swimming pool maintenance limassol, pool service limassol cyprus, pool technician limassol" />
+		<meta name="author" content={siteName} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={`${siteUrl}/pool-cleaning-limassol`} />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={siteDescription} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<script type="application/ld+json" is:inline>
+		{
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": "Pool Cleaning Cyprus - Limassol",
+			"description": "Professional pool cleaning and maintenance services in Limassol, Cyprus.",
+			"url": "https://poolcleaning-cyprus.com/pool-cleaning-limassol",
+			"areaServed": { "@type": "City", "name": "Limassol" },
+			"address": { "@type": "PostalAddress", "addressLocality": "Limassol", "addressCountry": "CY" }
+		}
+		</script>
+
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			html { scroll-behavior: smooth; }
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+				background: #f0f9ff;
+				color: #0c1a2e;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+			:global(html.dark) body { background: #071829; color: #e0f2fe; }
+
+			.page-wrapper {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 140px 24px 80px;
+			}
+
+			.location-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				font-size: 0.8rem;
+				font-weight: 600;
+				color: #0ea5e9;
+				background: rgba(14,165,233,0.08);
+				border: 1px solid rgba(14,165,233,0.2);
+				padding: 6px 14px;
+				border-radius: 20px;
+				margin-bottom: 20px;
+			}
+			:global(html.dark) .location-badge {
+				color: #38bdf8;
+				background: rgba(56,189,248,0.08);
+				border-color: rgba(56,189,248,0.2);
+			}
+
+			h1 {
+				font-size: clamp(2rem, 5vw, 3rem);
+				font-weight: 700;
+				letter-spacing: -0.03em;
+				color: #0c1a2e;
+				margin-bottom: 20px;
+			}
+			:global(html.dark) h1 { color: #e0f2fe; }
+
+			.body-text {
+				font-size: 1rem;
+				line-height: 1.75;
+				color: #475569;
+				margin-bottom: 20px;
+			}
+			:global(html.dark) .body-text { color: #94a3b8; }
+
+			h2 {
+				font-size: 1.3rem;
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				color: #0c1a2e;
+				margin: 40px 0 16px;
+			}
+			:global(html.dark) h2 { color: #e0f2fe; }
+
+			.services-list {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				margin-bottom: 32px;
+			}
+
+			.services-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 10px;
+				font-size: 0.9rem;
+				color: #475569;
+				padding: 14px 18px;
+				background: rgba(255,255,255,0.7);
+				border: 1px solid rgba(14,165,233,0.1);
+				border-radius: 10px;
+			}
+			:global(html.dark) .services-list li {
+				color: #94a3b8;
+				background: rgba(14,42,71,0.4);
+				border-color: rgba(56,189,248,0.1);
+			}
+
+			.services-list li :global(svg) {
+				color: #0ea5e9;
+				flex-shrink: 0;
+				margin-top: 1px;
+			}
+			:global(html.dark) .services-list li :global(svg) { color: #38bdf8; }
+
+			.cta-button {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 28px;
+				border-radius: 12px;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				background: #0ea5e9;
+				color: #fff;
+				box-shadow: 0 4px 20px rgba(14,165,233,0.35);
+				transition: all 0.2s ease;
+				margin-top: 16px;
+			}
+			.cta-button:hover {
+				background: #0284c7;
+				transform: translateY(-1px);
+			}
+
+			footer {
+				text-align: center;
+				padding: 32px 24px;
+				font-size: 0.82rem;
+				color: #94a3b8;
+				border-top: 1px solid rgba(14,165,233,0.1);
+				margin-top: 40px;
+			}
+			:global(html.dark) footer { border-color: rgba(56,189,248,0.08); }
+		</style>
+	</head>
+	<body>
+		<Navbar />
+		<div class="page-wrapper">
+			<div class="location-badge">
+				<MapPin size={14} />
+				Limassol, Cyprus
+			</div>
+
+			<h1>Pool Cleaning in Limassol</h1>
+
+			<p class="body-text">
+				We provide regular swimming pool cleaning and maintenance services throughout Limassol — from Germasogeia and Agios Tychonas to the city centre and Mouttagiaka. Whether you own a private villa, a holiday rental, or manage a residential complex, we keep your pool in pristine condition year-round.
+			</p>
+			<p class="body-text">
+				Limassol's warm climate means pools get heavy use and require consistent, professional care. Our local technicians are on the road every week, so we can fit your pool into a regular schedule that suits you.
+			</p>
+
+			<h2>Our Limassol Pool Services</h2>
+			<ul class="services-list">
+				<li><Droplets size={16} />Weekly and bi-weekly pool cleaning visits</li>
+				<li><Droplets size={16} />Water chemistry testing and chemical dosing</li>
+				<li><Droplets size={16} />Vacuuming, skimming, and brushing</li>
+				<li><Droplets size={16} />Filter and pump inspection</li>
+				<li><Droplets size={16} />Algae treatment and shock chlorination</li>
+				<li><Droplets size={16} />Seasonal opening and winter closing</li>
+			</ul>
+
+			<p class="body-text">
+				All our Limassol clients receive a written service report after each visit — so you always know the condition of your pool and what was done. No surprises, no guesswork.
+			</p>
+
+			<a href="tel:+35700000000" class="cta-button">
+				<Phone size={16} />
+				Get a Quote in Limassol
+			</a>
+		</div>
+
+		<footer>
+			&copy; {new Date().getFullYear()} Pool Cleaning Cyprus &mdash; Serving Limassol, Paphos, Nicosia, Larnaca & beyond.
+		</footer>
+	</body>
+</html>

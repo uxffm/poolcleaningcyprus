@@ -1,0 +1,292 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { Check, Phone } from '@lucide/astro';
+
+const siteTitle = "Pool Cleaning Prices Cyprus | Transparent Pool Service Packages";
+const siteDescription = "Clear, affordable pool cleaning and maintenance pricing in Cyprus. Weekly and bi-weekly packages for residential and commercial pools in Limassol, Paphos, Nicosia, and Larnaca.";
+const siteUrl = "https://poolcleaning-cyprus.com";
+const siteName = "Pool Cleaning Cyprus";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{siteTitle}</title>
+		<meta name="description" content={siteDescription} />
+		<meta name="author" content={siteName} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={`${siteUrl}/prices`} />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={siteDescription} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			html { scroll-behavior: smooth; }
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+				background: #f0f9ff;
+				color: #0c1a2e;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+			:global(html.dark) body { background: #071829; color: #e0f2fe; }
+
+			.page-wrapper {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 140px 24px 80px;
+			}
+
+			.page-eyebrow {
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: #0ea5e9;
+				margin-bottom: 12px;
+			}
+			:global(html.dark) .page-eyebrow { color: #38bdf8; }
+
+			h1 {
+				font-size: clamp(2rem, 5vw, 3rem);
+				font-weight: 700;
+				letter-spacing: -0.03em;
+				color: #0c1a2e;
+				margin-bottom: 16px;
+			}
+			:global(html.dark) h1 { color: #e0f2fe; }
+
+			.intro {
+				font-size: 1rem;
+				line-height: 1.7;
+				color: #475569;
+				margin-bottom: 56px;
+			}
+			:global(html.dark) .intro { color: #94a3b8; }
+
+			.plans {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 16px;
+				margin-bottom: 56px;
+			}
+
+			.plan {
+				background: rgba(255,255,255,0.75);
+				border: 1px solid rgba(14,165,233,0.12);
+				border-radius: 20px;
+				padding: 28px 24px;
+				position: relative;
+			}
+			:global(html.dark) .plan {
+				background: rgba(14,42,71,0.5);
+				border-color: rgba(56,189,248,0.12);
+			}
+
+			.plan.featured {
+				border-color: #0ea5e9;
+				box-shadow: 0 0 0 1px #0ea5e9, 0 8px 32px rgba(14,165,233,0.2);
+			}
+			:global(html.dark) .plan.featured {
+				border-color: #38bdf8;
+				box-shadow: 0 0 0 1px #38bdf8, 0 8px 32px rgba(56,189,248,0.15);
+			}
+
+			.plan-badge {
+				position: absolute;
+				top: -12px;
+				left: 50%;
+				transform: translateX(-50%);
+				background: #0ea5e9;
+				color: #fff;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+				padding: 4px 14px;
+				border-radius: 20px;
+				white-space: nowrap;
+			}
+
+			.plan-name {
+				font-size: 0.8rem;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: #0ea5e9;
+				margin-bottom: 8px;
+			}
+			:global(html.dark) .plan-name { color: #38bdf8; }
+
+			.plan-price {
+				font-size: 2rem;
+				font-weight: 700;
+				letter-spacing: -0.03em;
+				color: #0c1a2e;
+				margin-bottom: 4px;
+			}
+			:global(html.dark) .plan-price { color: #e0f2fe; }
+
+			.plan-period {
+				font-size: 0.8rem;
+				color: #94a3b8;
+				margin-bottom: 20px;
+			}
+
+			.plan-features {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+
+			.plan-features li {
+				display: flex;
+				align-items: flex-start;
+				gap: 8px;
+				font-size: 0.85rem;
+				color: #475569;
+				line-height: 1.4;
+			}
+			:global(html.dark) .plan-features li { color: #94a3b8; }
+
+			.plan-features li :global(svg) {
+				color: #0ea5e9;
+				flex-shrink: 0;
+				margin-top: 1px;
+			}
+			:global(html.dark) .plan-features li :global(svg) { color: #38bdf8; }
+
+			.note {
+				font-size: 0.875rem;
+				color: #64748b;
+				line-height: 1.7;
+				padding: 20px;
+				background: rgba(14,165,233,0.05);
+				border-left: 3px solid #0ea5e9;
+				border-radius: 0 8px 8px 0;
+				margin-bottom: 48px;
+			}
+			:global(html.dark) .note {
+				color: #94a3b8;
+				background: rgba(56,189,248,0.05);
+				border-color: #38bdf8;
+			}
+
+			.cta-center {
+				text-align: center;
+			}
+			.cta-center p {
+				font-size: 1rem;
+				color: #475569;
+				margin-bottom: 20px;
+			}
+			:global(html.dark) .cta-center p { color: #94a3b8; }
+
+			.cta-button {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 28px;
+				border-radius: 12px;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				background: #0ea5e9;
+				color: #fff;
+				box-shadow: 0 4px 20px rgba(14,165,233,0.35);
+				transition: all 0.2s ease;
+			}
+			.cta-button:hover {
+				background: #0284c7;
+				transform: translateY(-1px);
+			}
+
+			footer {
+				text-align: center;
+				padding: 32px 24px;
+				font-size: 0.82rem;
+				color: #94a3b8;
+				border-top: 1px solid rgba(14,165,233,0.1);
+				margin-top: 40px;
+			}
+			:global(html.dark) footer { border-color: rgba(56,189,248,0.08); }
+
+			@media (max-width: 640px) {
+				.plans { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<Navbar />
+		<div class="page-wrapper">
+			<p class="page-eyebrow">Pricing</p>
+			<h1>Simple, Honest Pricing</h1>
+			<p class="intro">No hidden fees. Choose a plan that fits your pool and your budget. All prices are starting rates — contact us for a precise quote based on your pool size and location.</p>
+
+			<div class="plans">
+				<div class="plan">
+					<div class="plan-name">Basic</div>
+					<div class="plan-price">€60</div>
+					<div class="plan-period">per visit (bi-weekly)</div>
+					<ul class="plan-features">
+						<li><Check size={14} />Skimming &amp; vacuuming</li>
+						<li><Check size={14} />Brush walls &amp; floor</li>
+						<li><Check size={14} />Empty pump baskets</li>
+						<li><Check size={14} />Water chemistry check</li>
+					</ul>
+				</div>
+				<div class="plan featured">
+					<div class="plan-badge">Most Popular</div>
+					<div class="plan-name">Standard</div>
+					<div class="plan-price">€80</div>
+					<div class="plan-period">per visit (weekly)</div>
+					<ul class="plan-features">
+						<li><Check size={14} />Everything in Basic</li>
+						<li><Check size={14} />Chemical dosing included</li>
+						<li><Check size={14} />Filter backwash check</li>
+						<li><Check size={14} />Equipment inspection</li>
+						<li><Check size={14} />Written visit report</li>
+					</ul>
+				</div>
+				<div class="plan">
+					<div class="plan-name">Premium</div>
+					<div class="plan-price">€120</div>
+					<div class="plan-period">per visit (weekly)</div>
+					<ul class="plan-features">
+						<li><Check size={14} />Everything in Standard</li>
+						<li><Check size={14} />Tile &amp; waterline scrub</li>
+						<li><Check size={14} />Full equipment service</li>
+						<li><Check size={14} />Priority scheduling</li>
+						<li><Check size={14} />24h response guarantee</li>
+					</ul>
+				</div>
+			</div>
+
+			<p class="note">
+				Prices are starting rates for pools up to 50m². Larger pools, commercial properties, or pools requiring remedial work (e.g. algae treatment) will be quoted individually. All prices exclude VAT where applicable.
+			</p>
+
+			<div class="cta-center">
+				<p>Not sure which plan is right for you? Give us a call — we're happy to advise.</p>
+				<a href="tel:+35700000000" class="cta-button">
+					<Phone size={16} />
+					Get a Free Quote
+				</a>
+			</div>
+		</div>
+
+		<footer>
+			&copy; {new Date().getFullYear()} Pool Cleaning Cyprus &mdash; Serving Limassol, Paphos, Nicosia, Larnaca & beyond.
+		</footer>
+	</body>
+</html>

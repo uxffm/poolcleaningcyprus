@@ -1,0 +1,215 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { Droplets, Shield, Clock, Phone } from '@lucide/astro';
+
+const siteTitle = "About Us | Pool Cleaning Cyprus";
+const siteDescription = "Learn about Pool Cleaning Cyprus — a local team of certified pool technicians serving Limassol, Paphos, Nicosia, and Larnaca. Reliable, professional, and passionate about clean pools.";
+const siteUrl = "https://poolcleaning-cyprus.com";
+const siteName = "Pool Cleaning Cyprus";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{siteTitle}</title>
+		<meta name="description" content={siteDescription} />
+		<meta name="author" content={siteName} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={`${siteUrl}/about`} />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={siteDescription} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			html { scroll-behavior: smooth; }
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+				background: #f0f9ff;
+				color: #0c1a2e;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+			:global(html.dark) body { background: #071829; color: #e0f2fe; }
+
+			.page-wrapper {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 140px 24px 80px;
+			}
+
+			.page-eyebrow {
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: #0ea5e9;
+				margin-bottom: 12px;
+			}
+			:global(html.dark) .page-eyebrow { color: #38bdf8; }
+
+			h1 {
+				font-size: clamp(2rem, 5vw, 3rem);
+				font-weight: 700;
+				letter-spacing: -0.03em;
+				color: #0c1a2e;
+				margin-bottom: 24px;
+			}
+			:global(html.dark) h1 { color: #e0f2fe; }
+
+			.body-text {
+				font-size: 1rem;
+				line-height: 1.75;
+				color: #475569;
+				margin-bottom: 20px;
+			}
+			:global(html.dark) .body-text { color: #94a3b8; }
+
+			.divider {
+				border: none;
+				border-top: 1px solid rgba(14,165,233,0.12);
+				margin: 48px 0;
+			}
+			:global(html.dark) .divider { border-color: rgba(56,189,248,0.08); }
+
+			h2 {
+				font-size: 1.4rem;
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				color: #0c1a2e;
+				margin-bottom: 24px;
+			}
+			:global(html.dark) h2 { color: #e0f2fe; }
+
+			.values-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 16px;
+				margin-bottom: 48px;
+			}
+
+			.value-card {
+				padding: 24px 20px;
+				background: rgba(255,255,255,0.7);
+				border: 1px solid rgba(14,165,233,0.1);
+				border-radius: 16px;
+			}
+			:global(html.dark) .value-card {
+				background: rgba(14,42,71,0.4);
+				border-color: rgba(56,189,248,0.1);
+			}
+
+			.value-icon {
+				color: #0ea5e9;
+				margin-bottom: 12px;
+			}
+			:global(html.dark) .value-icon { color: #38bdf8; }
+
+			.value-title {
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: #0c1a2e;
+				margin-bottom: 6px;
+			}
+			:global(html.dark) .value-title { color: #e0f2fe; }
+
+			.value-desc {
+				font-size: 0.82rem;
+				color: #64748b;
+				line-height: 1.5;
+			}
+
+			.cta-button {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 28px;
+				border-radius: 12px;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				background: #0ea5e9;
+				color: #fff;
+				box-shadow: 0 4px 20px rgba(14,165,233,0.35);
+				transition: all 0.2s ease;
+			}
+			.cta-button:hover {
+				background: #0284c7;
+				transform: translateY(-1px);
+			}
+
+			footer {
+				text-align: center;
+				padding: 32px 24px;
+				font-size: 0.82rem;
+				color: #94a3b8;
+				border-top: 1px solid rgba(14,165,233,0.1);
+				margin-top: 40px;
+			}
+			:global(html.dark) footer { border-color: rgba(56,189,248,0.08); }
+
+			@media (max-width: 640px) {
+				.values-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<Navbar />
+		<div class="page-wrapper">
+			<p class="page-eyebrow">About Us</p>
+			<h1>We Keep Cyprus<br/>Pools Sparkling</h1>
+
+			<p class="body-text">
+				Pool Cleaning Cyprus is a local team of certified pool technicians with years of hands-on experience across the island. We started because we saw too many beautiful pools going cloudy, green, or chemically unbalanced — often because owners didn't have the time or know-how to maintain them properly.
+			</p>
+			<p class="body-text">
+				We take care of all of that for you. From weekly visits to one-off deep cleans, equipment checks, and algae treatments — we treat every pool like it's our own.
+			</p>
+
+			<hr class="divider" />
+
+			<h2>Our Values</h2>
+			<div class="values-grid">
+				<div class="value-card">
+					<div class="value-icon"><Droplets size={24} /></div>
+					<div class="value-title">Quality First</div>
+					<div class="value-desc">We never cut corners. Every visit follows the same thorough checklist — no matter the pool size or location.</div>
+				</div>
+				<div class="value-card">
+					<div class="value-icon"><Clock size={24} /></div>
+					<div class="value-title">Reliability</div>
+					<div class="value-desc">We show up when we say we will. Consistent scheduling you can count on, every week.</div>
+				</div>
+				<div class="value-card">
+					<div class="value-icon"><Shield size={24} /></div>
+					<div class="value-title">Transparency</div>
+					<div class="value-desc">Clear pricing, honest advice, and written reports after every visit so you always know what's been done.</div>
+				</div>
+			</div>
+
+			<p class="body-text">
+				We're proud to serve homeowners, villa rentals, hotels, and residential complexes across Cyprus. Whether you have a small private pool or a large commercial one, we have the equipment and expertise to keep it in perfect condition.
+			</p>
+			<p class="body-text">
+				Get in touch — we're always happy to talk through what your pool needs and give you an honest, no-pressure quote.
+			</p>
+
+			<a href="tel:+35700000000" class="cta-button" style="margin-top: 16px;">
+				<Phone size={16} />
+				Call Us Today
+			</a>
+		</div>
+
+		<footer>
+			&copy; {new Date().getFullYear()} Pool Cleaning Cyprus &mdash; Serving Limassol, Paphos, Nicosia, Larnaca & beyond.
+		</footer>
+	</body>
+</html>

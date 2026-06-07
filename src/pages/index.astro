@@ -1,0 +1,759 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { Droplets, Shield, Clock, MapPin, Phone, Mail, Star } from '@lucide/astro';
+import { ClientRouter } from 'astro:transitions';
+
+const siteTitle = "Pool Cleaning Cyprus | Professional Swimming Pool Services";
+const siteDescription = "Professional pool cleaning and maintenance services across Cyprus. Crystal clear pools in Limassol, Nicosia, Paphos, and Larnaca. Reliable, affordable, and thorough.";
+const siteUrl = "https://poolcleaning-cyprus.com";
+const siteName = "Pool Cleaning Cyprus";
+const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, pool service limassol, pool cleaning paphos, pool maintenance nicosia, larnaca pool cleaning, pool chemicals cyprus, pool repair cyprus";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>{siteTitle}</title>
+		<meta name="title" content={siteTitle} />
+		<meta name="description" content={siteDescription} />
+		<meta name="keywords" content={siteKeywords} />
+		<meta name="author" content={siteName} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={siteUrl} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={siteDescription} />
+		<meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:locale" content="en_CY" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={siteTitle} />
+		<meta name="twitter:description" content={siteDescription} />
+		<meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
+
+		<meta name="geo.region" content="CY" />
+		<meta name="geo.placename" content="Cyprus" />
+		<meta name="geo.position" content="35.1264;33.4299" />
+		<meta name="ICBM" content="35.1264, 33.4299" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<script type="application/ld+json" is:inline>
+		{
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": "Pool Cleaning Cyprus",
+			"description": "Professional swimming pool cleaning and maintenance services across Cyprus.",
+			"url": "https://poolcleaning-cyprus.com",
+			"telephone": "+357-00-000000",
+			"email": "hello@poolcleaning-cyprus.com",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Limassol",
+				"addressCountry": "CY"
+			},
+			"areaServed": ["Limassol", "Nicosia", "Paphos", "Larnaca", "Famagusta"],
+			"serviceType": "Pool Cleaning and Maintenance"
+		}
+		</script>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+				background: #f0f9ff;
+				color: #0c1a2e;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+
+			:global(html.dark) body {
+				background: #071829;
+				color: #e0f2fe;
+			}
+
+			/* Hero */
+			.hero-wrapper {
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hero-wrapper::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background:
+					radial-gradient(ellipse 80% 60% at 50% -10%, rgba(14, 165, 233, 0.18) 0%, transparent 70%),
+					radial-gradient(ellipse 50% 40% at 80% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 60%);
+				pointer-events: none;
+			}
+
+			:global(html.dark) .hero-wrapper::before {
+				background:
+					radial-gradient(ellipse 80% 60% at 50% -10%, rgba(14, 165, 233, 0.25) 0%, transparent 70%),
+					radial-gradient(ellipse 50% 40% at 80% 80%, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+			}
+
+			.pool-bg {
+				position: absolute;
+				right: -60px;
+				top: 50%;
+				transform: translateY(-50%) rotate(-8deg);
+				width: 560px;
+				height: auto;
+				color: rgba(14, 165, 233, 0.12);
+				pointer-events: none;
+				z-index: 0;
+			}
+
+			:global(html.dark) .pool-bg {
+				color: rgba(56, 189, 248, 0.1);
+			}
+
+			@media (max-width: 900px) {
+				.pool-bg {
+					width: 400px;
+					right: -80px;
+					opacity: 0.7;
+				}
+			}
+
+			@media (max-width: 600px) {
+				.pool-bg {
+					display: none;
+				}
+			}
+
+			.main-content {
+				flex: 1;
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 160px 24px 80px;
+				position: relative;
+				z-index: 1;
+				width: 100%;
+			}
+
+			.hero-eyebrow {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				font-size: 0.8rem;
+				font-weight: 600;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #0ea5e9;
+				margin-bottom: 20px;
+			}
+
+			:global(html.dark) .hero-eyebrow {
+				color: #38bdf8;
+			}
+
+			h1.headline {
+				font-size: clamp(2.4rem, 6vw, 3.8rem);
+				font-weight: 700;
+				line-height: 1.1;
+				letter-spacing: -0.03em;
+				color: #0c1a2e;
+				margin-bottom: 24px;
+			}
+
+			:global(html.dark) h1.headline {
+				color: #e0f2fe;
+			}
+
+			h1.headline .accent {
+				color: #0ea5e9;
+			}
+
+			:global(html.dark) h1.headline .accent {
+				color: #38bdf8;
+			}
+
+			.hero-desc {
+				font-size: 1.1rem;
+				line-height: 1.7;
+				color: #334155;
+				margin-bottom: 40px;
+				max-width: 560px;
+			}
+
+			:global(html.dark) .hero-desc {
+				color: #94a3b8;
+			}
+
+			.cta-group {
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+				margin-bottom: 64px;
+			}
+
+			.cta-button {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 28px;
+				border-radius: 12px;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				transition: all 0.2s ease;
+				cursor: pointer;
+			}
+
+			.cta-button.primary {
+				background: #0ea5e9;
+				color: #fff;
+				box-shadow: 0 4px 20px rgba(14, 165, 233, 0.35);
+			}
+
+			.cta-button.primary:hover {
+				background: #0284c7;
+				transform: translateY(-1px);
+				box-shadow: 0 6px 24px rgba(14, 165, 233, 0.45);
+			}
+
+			.cta-button.secondary {
+				background: rgba(14, 165, 233, 0.08);
+				color: #0ea5e9;
+				border: 1px solid rgba(14, 165, 233, 0.25);
+			}
+
+			.cta-button.secondary:hover {
+				background: rgba(14, 165, 233, 0.14);
+				transform: translateY(-1px);
+			}
+
+			:global(html.dark) .cta-button.secondary {
+				background: rgba(56, 189, 248, 0.1);
+				color: #38bdf8;
+				border-color: rgba(56, 189, 248, 0.2);
+			}
+
+			/* Feature cards */
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 16px;
+				margin-bottom: 80px;
+			}
+
+			.feature-card {
+				background: rgba(255, 255, 255, 0.7);
+				border: 1px solid rgba(14, 165, 233, 0.12);
+				border-radius: 16px;
+				padding: 24px 20px;
+				backdrop-filter: blur(8px);
+			}
+
+			:global(html.dark) .feature-card {
+				background: rgba(14, 42, 71, 0.5);
+				border-color: rgba(56, 189, 248, 0.12);
+			}
+
+			.feature-icon {
+				color: #0ea5e9;
+				margin-bottom: 12px;
+			}
+
+			:global(html.dark) .feature-icon {
+				color: #38bdf8;
+			}
+
+			.feature-title {
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: #0c1a2e;
+				margin-bottom: 6px;
+			}
+
+			:global(html.dark) .feature-title {
+				color: #e0f2fe;
+			}
+
+			.feature-desc {
+				font-size: 0.82rem;
+				color: #64748b;
+				line-height: 1.5;
+			}
+
+			:global(html.dark) .feature-desc {
+				color: #64748b;
+			}
+
+			/* Services section */
+			.section {
+				padding: 80px 24px;
+				max-width: 720px;
+				margin: 0 auto;
+			}
+
+			.section-label {
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: #0ea5e9;
+				margin-bottom: 12px;
+			}
+
+			:global(html.dark) .section-label {
+				color: #38bdf8;
+			}
+
+			.section-title {
+				font-size: clamp(1.6rem, 4vw, 2.2rem);
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				color: #0c1a2e;
+				margin-bottom: 16px;
+			}
+
+			:global(html.dark) .section-title {
+				color: #e0f2fe;
+			}
+
+			.section-desc {
+				font-size: 1rem;
+				line-height: 1.7;
+				color: #475569;
+				margin-bottom: 40px;
+			}
+
+			:global(html.dark) .section-desc {
+				color: #94a3b8;
+			}
+
+			.services-list {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+
+			.service-item {
+				display: flex;
+				gap: 16px;
+				align-items: flex-start;
+				padding: 20px;
+				background: rgba(255, 255, 255, 0.7);
+				border: 1px solid rgba(14, 165, 233, 0.1);
+				border-radius: 14px;
+			}
+
+			:global(html.dark) .service-item {
+				background: rgba(14, 42, 71, 0.4);
+				border-color: rgba(56, 189, 248, 0.1);
+			}
+
+			.service-icon {
+				color: #0ea5e9;
+				flex-shrink: 0;
+				margin-top: 2px;
+			}
+
+			:global(html.dark) .service-icon {
+				color: #38bdf8;
+			}
+
+			.service-name {
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: #0c1a2e;
+				margin-bottom: 4px;
+			}
+
+			:global(html.dark) .service-name {
+				color: #e0f2fe;
+			}
+
+			.service-text {
+				font-size: 0.875rem;
+				color: #64748b;
+				line-height: 1.5;
+			}
+
+			/* Areas */
+			.areas-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 12px;
+				margin-top: 32px;
+			}
+
+			.area-card {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				padding: 16px 20px;
+				background: rgba(255, 255, 255, 0.7);
+				border: 1px solid rgba(14, 165, 233, 0.1);
+				border-radius: 12px;
+				text-decoration: none;
+				color: #0c1a2e;
+				font-weight: 500;
+				font-size: 0.9rem;
+				transition: all 0.2s ease;
+			}
+
+			.area-card:hover {
+				border-color: rgba(14, 165, 233, 0.35);
+				background: rgba(14, 165, 233, 0.05);
+				transform: translateY(-2px);
+			}
+
+			:global(html.dark) .area-card {
+				background: rgba(14, 42, 71, 0.4);
+				color: #e0f2fe;
+				border-color: rgba(56, 189, 248, 0.1);
+			}
+
+			:global(html.dark) .area-card:hover {
+				border-color: rgba(56, 189, 248, 0.3);
+				background: rgba(56, 189, 248, 0.08);
+			}
+
+			.area-card :global(svg) {
+				color: #0ea5e9;
+				flex-shrink: 0;
+			}
+
+			:global(html.dark) .area-card :global(svg) {
+				color: #38bdf8;
+			}
+
+			/* Reviews */
+			.reviews-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 16px;
+				margin-top: 32px;
+			}
+
+			.review-card {
+				padding: 24px;
+				background: rgba(255, 255, 255, 0.7);
+				border: 1px solid rgba(14, 165, 233, 0.1);
+				border-radius: 16px;
+			}
+
+			:global(html.dark) .review-card {
+				background: rgba(14, 42, 71, 0.4);
+				border-color: rgba(56, 189, 248, 0.1);
+			}
+
+			.review-stars {
+				display: flex;
+				gap: 3px;
+				color: #f59e0b;
+				margin-bottom: 12px;
+			}
+
+			.review-text {
+				font-size: 0.875rem;
+				line-height: 1.6;
+				color: #475569;
+				margin-bottom: 14px;
+			}
+
+			:global(html.dark) .review-text {
+				color: #94a3b8;
+			}
+
+			.review-author {
+				font-size: 0.82rem;
+				font-weight: 600;
+				color: #0c1a2e;
+			}
+
+			:global(html.dark) .review-author {
+				color: #bae6fd;
+			}
+
+			.review-city {
+				font-size: 0.78rem;
+				color: #94a3b8;
+			}
+
+			/* Footer CTA */
+			.footer-cta {
+				padding: 80px 24px;
+				max-width: 720px;
+				margin: 0 auto;
+				text-align: center;
+			}
+
+			.footer-cta-title {
+				font-size: clamp(1.6rem, 4vw, 2.2rem);
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				color: #0c1a2e;
+				margin-bottom: 16px;
+			}
+
+			:global(html.dark) .footer-cta-title {
+				color: #e0f2fe;
+			}
+
+			.footer-cta-desc {
+				font-size: 1rem;
+				color: #475569;
+				margin-bottom: 32px;
+			}
+
+			:global(html.dark) .footer-cta-desc {
+				color: #94a3b8;
+			}
+
+			.contact-row {
+				display: flex;
+				justify-content: center;
+				gap: 16px;
+				flex-wrap: wrap;
+			}
+
+			footer {
+				text-align: center;
+				padding: 32px 24px;
+				font-size: 0.82rem;
+				color: #94a3b8;
+				border-top: 1px solid rgba(14, 165, 233, 0.1);
+			}
+
+			:global(html.dark) footer {
+				border-color: rgba(56, 189, 248, 0.08);
+			}
+
+			@media (max-width: 640px) {
+				.features-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.areas-grid, .reviews-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.cta-group {
+					flex-direction: column;
+				}
+
+				.cta-button {
+					width: 100%;
+					justify-content: center;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="hero-wrapper">
+			<svg class="pool-bg" viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+				<rect x="12" y="12" width="376" height="236" rx="32" stroke="currentColor" stroke-width="8"/>
+				<path d="M40 160 Q90 140 140 160 Q190 180 240 160 Q290 140 360 160" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+				<path d="M40 195 Q90 175 140 195 Q190 215 240 195 Q290 175 360 195" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+			</svg>
+			<Navbar />
+			<main class="main-content">
+				<p class="hero-eyebrow">
+					<Droplets size={14} />
+					Pool Cleaning &amp; Maintenance Cyprus
+				</p>
+
+				<h1 class="headline">
+					Crystal clear pools,<br/>
+					<span class="accent">all year round.</span>
+				</h1>
+
+				<p class="hero-desc">
+					Professional swimming pool cleaning and maintenance across Cyprus. We keep your pool safe, balanced, and sparkling — so you can simply enjoy it.
+				</p>
+
+				<div class="cta-group">
+					<a href="tel:+35700000000" class="cta-button primary">
+						<Phone size={16} />
+						Call for a Free Quote
+					</a>
+					<a href="/prices" class="cta-button secondary">
+						View Pricing
+					</a>
+				</div>
+
+				<div class="features-grid">
+					<div class="feature-card">
+						<div class="feature-icon"><Droplets size={24} /></div>
+						<div class="feature-title">Weekly Cleaning</div>
+						<div class="feature-desc">Regular skimming, vacuuming, and brushing to keep your pool pristine.</div>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon"><Shield size={24} /></div>
+						<div class="feature-title">Chemical Balancing</div>
+						<div class="feature-desc">Precise water chemistry checks and adjustments every visit.</div>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon"><Clock size={24} /></div>
+						<div class="feature-title">Reliable Schedule</div>
+						<div class="feature-desc">Fixed weekly or bi-weekly visits — we show up, every time.</div>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<!-- Services -->
+		<section class="section" id="services">
+			<p class="section-label">What We Do</p>
+			<h2 class="section-title">Full Pool Care, Start to Finish</h2>
+			<p class="section-desc">From routine weekly cleans to one-off deep cleans and equipment checks, we handle everything your pool needs to stay healthy and beautiful.</p>
+
+			<div class="services-list">
+				<div class="service-item">
+					<div class="service-icon"><Droplets size={22} /></div>
+					<div>
+						<div class="service-name">Weekly &amp; Bi-Weekly Maintenance</div>
+						<div class="service-text">Skimming, vacuuming, brushing walls and tiles, emptying baskets, and checking equipment — every scheduled visit.</div>
+					</div>
+				</div>
+				<div class="service-item">
+					<div class="service-icon"><Shield size={22} /></div>
+					<div>
+						<div class="service-name">Water Chemistry &amp; Chemical Treatment</div>
+						<div class="service-text">We test pH, chlorine, alkalinity, and calcium hardness, then dose correctly to keep your water safe and clear.</div>
+					</div>
+				</div>
+				<div class="service-item">
+					<div class="service-icon"><Star size={22} /></div>
+					<div>
+						<div class="service-name">Deep Cleaning &amp; Algae Treatment</div>
+						<div class="service-text">Full brush-down, acid washing, and algae shock treatments to restore neglected or green pools.</div>
+					</div>
+				</div>
+				<div class="service-item">
+					<div class="service-icon"><Clock size={22} /></div>
+					<div>
+						<div class="service-name">Winter Opening &amp; Closing</div>
+						<div class="service-text">Seasonal preparation to protect your pool through winter and get it swim-ready for summer.</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Areas -->
+		<section class="section" id="areas">
+			<p class="section-label">Where We Work</p>
+			<h2 class="section-title">Serving All of Cyprus</h2>
+			<p class="section-desc">We cover the whole island — whether your pool is in a villa in Paphos or a complex in Limassol, we'll come to you.</p>
+
+			<div class="areas-grid">
+				<a href="/pool-cleaning-limassol" class="area-card">
+					<MapPin size={18} />
+					Limassol
+				</a>
+				<a href="/pool-cleaning-paphos" class="area-card">
+					<MapPin size={18} />
+					Paphos
+				</a>
+				<a href="#" class="area-card">
+					<MapPin size={18} />
+					Nicosia
+				</a>
+				<a href="#" class="area-card">
+					<MapPin size={18} />
+					Larnaca
+				</a>
+				<a href="#" class="area-card">
+					<MapPin size={18} />
+					Famagusta
+				</a>
+				<a href="#" class="area-card">
+					<MapPin size={18} />
+					Ayia Napa
+				</a>
+			</div>
+		</section>
+
+		<!-- Reviews -->
+		<section class="section" id="reviews">
+			<p class="section-label">Reviews</p>
+			<h2 class="section-title">What Our Clients Say</h2>
+
+			<div class="reviews-grid">
+				<div class="review-card">
+					<div class="review-stars">
+						<Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
+					</div>
+					<p class="review-text">"Our pool has never looked better. They come every week without fail and the water is always perfect."</p>
+					<div class="review-author">Maria K.</div>
+					<div class="review-city">Limassol</div>
+				</div>
+				<div class="review-card">
+					<div class="review-stars">
+						<Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
+					</div>
+					<p class="review-text">"Took over our pool after it turned green. Completely transformed it in two visits. Highly recommend."</p>
+					<div class="review-author">Andreas P.</div>
+					<div class="review-city">Paphos</div>
+				</div>
+				<div class="review-card">
+					<div class="review-stars">
+						<Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
+					</div>
+					<p class="review-text">"Professional, punctual, and very reasonably priced. Our whole villa complex uses them now."</p>
+					<div class="review-author">James T.</div>
+					<div class="review-city">Nicosia</div>
+				</div>
+				<div class="review-card">
+					<div class="review-stars">
+						<Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
+					</div>
+					<p class="review-text">"Very thorough and reliable. They explain what they're doing and why. We've used them for two years."</p>
+					<div class="review-author">Sofia L.</div>
+					<div class="review-city">Larnaca</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer CTA -->
+		<div class="footer-cta">
+			<h2 class="footer-cta-title">Ready for a cleaner pool?</h2>
+			<p class="footer-cta-desc">Get a free quote — no commitment, just a quick chat about your pool and what it needs.</p>
+			<div class="contact-row">
+				<a href="tel:+35700000000" class="cta-button primary">
+					<Phone size={16} />
+					Call Us Now
+				</a>
+				<a href="mailto:hello@poolcleaning-cyprus.com" class="cta-button secondary">
+					<Mail size={16} />
+					Send an Email
+				</a>
+			</div>
+		</div>
+
+		<footer>
+			&copy; {new Date().getFullYear()} Pool Cleaning Cyprus &mdash; Serving Limassol, Paphos, Nicosia, Larnaca & beyond.
+		</footer>
+	</body>
+</html>

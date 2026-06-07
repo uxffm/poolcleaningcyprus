@@ -1,0 +1,174 @@
+---
+import Navbar from '../../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map(post => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const siteUrl = "https://poolcleaning-cyprus.com";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{post.data.title} | Pool Cleaning Cyprus</title>
+		<meta name="description" content={post.data.description} />
+		<meta name="author" content={post.data.author} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={`${siteUrl}/blog/${post.slug}`} />
+		<meta property="og:title" content={post.data.title} />
+		<meta property="og:description" content={post.data.description} />
+		<meta property="og:type" content="article" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			html { scroll-behavior: smooth; }
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+				background: #f0f9ff;
+				color: #0c1a2e;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+			:global(html.dark) body { background: #071829; color: #e0f2fe; }
+
+			.page-wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 140px 24px 80px;
+			}
+
+			.back-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				font-size: 0.85rem;
+				font-weight: 500;
+				color: #0ea5e9;
+				text-decoration: none;
+				margin-bottom: 40px;
+				transition: gap 0.2s ease;
+			}
+			.back-link:hover { gap: 10px; }
+			:global(html.dark) .back-link { color: #38bdf8; }
+
+			.post-meta {
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: #0ea5e9;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				margin-bottom: 16px;
+			}
+			:global(html.dark) .post-meta { color: #38bdf8; }
+
+			h1 {
+				font-size: clamp(1.8rem, 5vw, 2.6rem);
+				font-weight: 700;
+				letter-spacing: -0.03em;
+				color: #0c1a2e;
+				margin-bottom: 40px;
+				line-height: 1.2;
+			}
+			:global(html.dark) h1 { color: #e0f2fe; }
+
+			.divider {
+				border: none;
+				border-top: 1px solid rgba(14,165,233,0.12);
+				margin-bottom: 40px;
+			}
+			:global(html.dark) .divider { border-color: rgba(56,189,248,0.08); }
+
+			/* Article content styles */
+			.prose :global(p) {
+				font-size: 1rem;
+				line-height: 1.8;
+				color: #334155;
+				margin-bottom: 20px;
+			}
+			:global(html.dark) .prose :global(p) { color: #94a3b8; }
+
+			.prose :global(h2) {
+				font-size: 1.4rem;
+				font-weight: 700;
+				color: #0c1a2e;
+				margin: 40px 0 16px;
+				letter-spacing: -0.02em;
+			}
+			:global(html.dark) .prose :global(h2) { color: #e0f2fe; }
+
+			.prose :global(h3) {
+				font-size: 1.1rem;
+				font-weight: 600;
+				color: #0c1a2e;
+				margin: 28px 0 12px;
+			}
+			:global(html.dark) .prose :global(h3) { color: #e0f2fe; }
+
+			.prose :global(ul), .prose :global(ol) {
+				padding-left: 24px;
+				margin-bottom: 20px;
+			}
+
+			.prose :global(li) {
+				font-size: 1rem;
+				line-height: 1.7;
+				color: #334155;
+				margin-bottom: 6px;
+			}
+			:global(html.dark) .prose :global(li) { color: #94a3b8; }
+
+			.prose :global(strong) { color: #0c1a2e; font-weight: 600; }
+			:global(html.dark) .prose :global(strong) { color: #e0f2fe; }
+
+			footer {
+				text-align: center;
+				padding: 32px 24px;
+				font-size: 0.82rem;
+				color: #94a3b8;
+				border-top: 1px solid rgba(14,165,233,0.1);
+				margin-top: 40px;
+			}
+			:global(html.dark) footer { border-color: rgba(56,189,248,0.08); }
+		</style>
+	</head>
+	<body>
+		<Navbar />
+		<div class="page-wrapper">
+			<a href="/blog" class="back-link">← Back to Blog</a>
+
+			<div class="post-meta">
+				{post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+				&nbsp;·&nbsp; {post.data.author}
+			</div>
+
+			<h1>{post.data.title}</h1>
+			<hr class="divider" />
+
+			<article class="prose">
+				<Content />
+			</article>
+		</div>
+
+		<footer>
+			&copy; {new Date().getFullYear()} Pool Cleaning Cyprus &mdash; Serving Limassol, Paphos, Nicosia, Larnaca & beyond.
+		</footer>
+	</body>
+</html>

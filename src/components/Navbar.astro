@@ -1,0 +1,177 @@
+---
+import { Moon, Sun } from '@lucide/astro';
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/';
+const isAbout = pathname.startsWith('/about');
+const isPrices = pathname.startsWith('/prices');
+const isLimassol = pathname.startsWith('/pool-cleaning-limassol');
+const isPaphos = pathname.startsWith('/pool-cleaning-paphos');
+const isBlog = pathname.startsWith('/blog');
+---
+
+<nav class="navbar">
+	<div class="nav-links">
+		<a href="/" class={`nav-item ${isHome ? 'active' : ''}`} data-astro-prefetch="load">Home</a>
+		<a href="/about" class={`nav-item ${isAbout ? 'active' : ''}`} data-astro-prefetch="load">About</a>
+		<a href="/prices" class={`nav-item ${isPrices ? 'active' : ''}`} data-astro-prefetch="load">Prices</a>
+		<a href="/pool-cleaning-limassol" class={`nav-item ${isLimassol ? 'active' : ''}`} data-astro-prefetch="load">Limassol</a>
+		<a href="/pool-cleaning-paphos" class={`nav-item ${isPaphos ? 'active' : ''}`} data-astro-prefetch="load">Paphos</a>
+		<a href="/blog" class={`nav-item ${isBlog ? 'active' : ''}`} data-astro-prefetch="load">Blog</a>
+	</div>
+	<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+		<span class="moon-icon"><Moon size={18} /></span>
+		<span class="sun-icon"><Sun size={18} /></span>
+	</button>
+</nav>
+
+<style>
+	.navbar {
+		position: fixed;
+		top: 24px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 8px;
+		z-index: 1000;
+		background: rgba(255, 255, 255, 0.75);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		padding: 12px 20px;
+		border-radius: 50px;
+		border: 1px solid rgba(0, 0, 0, 0.08);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	}
+
+	:global(html.dark) .navbar {
+		background: rgba(10, 30, 50, 0.5);
+		border-color: rgba(255, 255, 255, 0.1);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+	}
+
+	.nav-links {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 2px;
+	}
+
+	.nav-item {
+		display: flex;
+		align-items: center;
+		padding: 8px 14px;
+		border-radius: 8px;
+		color: rgba(45, 55, 72, 0.65);
+		text-decoration: none;
+		font-size: 0.875rem;
+		font-weight: 500;
+		transition: all 0.2s ease;
+		white-space: nowrap;
+	}
+
+	.nav-item:hover {
+		color: #0ea5e9;
+		background: rgba(14, 165, 233, 0.08);
+	}
+
+	.nav-item.active {
+		color: #0ea5e9;
+		background: rgba(14, 165, 233, 0.1);
+	}
+
+	.theme-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		border: none;
+		background: transparent;
+		color: rgba(45, 55, 72, 0.6);
+		cursor: pointer;
+		transition: all 0.3s ease;
+		border-radius: 50%;
+		margin-left: 4px;
+	}
+
+	.theme-toggle:hover {
+		color: #0ea5e9;
+		background: rgba(14, 165, 233, 0.08);
+	}
+
+	.sun-icon { display: none; }
+
+	:global(html.dark) .moon-icon { display: none; }
+	:global(html.dark) .sun-icon { display: block; }
+
+	:global(html.dark) .nav-item {
+		color: rgba(186, 230, 253, 0.7);
+	}
+
+	:global(html.dark) .nav-item:hover,
+	:global(html.dark) .nav-item.active {
+		color: #38bdf8;
+		background: rgba(56, 189, 248, 0.15);
+	}
+
+	:global(html.dark) .theme-toggle {
+		color: rgba(186, 230, 253, 0.7);
+	}
+
+	:global(html.dark) .theme-toggle:hover {
+		color: #38bdf8;
+		background: rgba(56, 189, 248, 0.1);
+	}
+
+	@media (max-width: 600px) {
+		.navbar {
+			top: 16px;
+			padding: 8px 12px;
+		}
+		.nav-item {
+			padding: 7px 10px;
+			font-size: 0.8rem;
+		}
+		.theme-toggle { margin-left: 2px; }
+	}
+</style>
+
+<script is:inline>
+	(function() {
+		const saved = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		if (saved === 'dark' || (!saved && prefersDark)) {
+			document.documentElement.classList.add('dark');
+		}
+	})();
+
+	function updateActiveNav() {
+		const pathname = window.location.pathname;
+		document.querySelectorAll('.nav-item').forEach(item => {
+			const href = item.getAttribute('href');
+			item.classList.remove('active');
+			if (href === '/' && pathname === '/') item.classList.add('active');
+			else if (href !== '/' && pathname.startsWith(href)) item.classList.add('active');
+		});
+	}
+
+	if (!window.__navSetup) {
+		window.__navSetup = true;
+		document.addEventListener('click', (e) => {
+			if (e.target.closest('#theme-toggle')) {
+				document.documentElement.classList.toggle('dark');
+				localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+			}
+		});
+		document.addEventListener('astro:before-swap', (e) => {
+			const saved = localStorage.getItem('theme');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (saved === 'dark' || (!saved && prefersDark)) {
+				e.newDocument.documentElement.classList.add('dark');
+			}
+		});
+		document.addEventListener('astro:after-swap', updateActiveNav);
+	}
+</script>

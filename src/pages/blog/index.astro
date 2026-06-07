@@ -1,0 +1,209 @@
+---
+import Navbar from '../../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { getCollection } from 'astro:content';
+
+const siteTitle = "Pool Care Blog | Tips & Advice | Pool Cleaning Cyprus";
+const siteDescription = "Expert pool care tips, maintenance guides, and advice for pool owners in Cyprus. Learn how to keep your swimming pool clean, safe, and crystal clear.";
+const siteUrl = "https://poolcleaning-cyprus.com";
+const siteName = "Pool Cleaning Cyprus";
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{siteTitle}</title>
+		<meta name="description" content={siteDescription} />
+		<meta name="author" content={siteName} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={`${siteUrl}/blog`} />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={siteDescription} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			html { scroll-behavior: smooth; }
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+				background: #f0f9ff;
+				color: #0c1a2e;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+			:global(html.dark) body { background: #071829; color: #e0f2fe; }
+
+			.page-wrapper {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 140px 24px 80px;
+			}
+
+			.page-eyebrow {
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: #0ea5e9;
+				margin-bottom: 12px;
+			}
+			:global(html.dark) .page-eyebrow { color: #38bdf8; }
+
+			h1 {
+				font-size: clamp(2rem, 5vw, 3rem);
+				font-weight: 700;
+				letter-spacing: -0.03em;
+				color: #0c1a2e;
+				margin-bottom: 12px;
+			}
+			:global(html.dark) h1 { color: #e0f2fe; }
+
+			.intro {
+				font-size: 1rem;
+				line-height: 1.7;
+				color: #475569;
+				margin-bottom: 56px;
+			}
+			:global(html.dark) .intro { color: #94a3b8; }
+
+			/* Post list */
+			.posts-list {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+
+			.post-card {
+				display: block;
+				padding: 24px 28px;
+				background: rgba(255,255,255,0.7);
+				border: 1px solid rgba(14,165,233,0.1);
+				border-radius: 16px;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+			:global(html.dark) .post-card {
+				background: rgba(14,42,71,0.4);
+				border-color: rgba(56,189,248,0.1);
+			}
+			.post-card:hover {
+				border-color: rgba(14,165,233,0.3);
+				transform: translateY(-2px);
+				box-shadow: 0 8px 24px rgba(14,165,233,0.1);
+			}
+			:global(html.dark) .post-card:hover {
+				border-color: rgba(56,189,248,0.25);
+			}
+
+			.post-date {
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: #0ea5e9;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				margin-bottom: 8px;
+			}
+			:global(html.dark) .post-date { color: #38bdf8; }
+
+			.post-title {
+				font-size: 1.1rem;
+				font-weight: 700;
+				color: #0c1a2e;
+				margin-bottom: 8px;
+				letter-spacing: -0.01em;
+			}
+			:global(html.dark) .post-title { color: #e0f2fe; }
+
+			.post-desc {
+				font-size: 0.875rem;
+				color: #64748b;
+				line-height: 1.6;
+			}
+
+			/* Empty state */
+			.empty-state {
+				text-align: center;
+				padding: 64px 24px;
+				background: rgba(255,255,255,0.5);
+				border: 1px dashed rgba(14,165,233,0.2);
+				border-radius: 20px;
+			}
+			:global(html.dark) .empty-state {
+				background: rgba(14,42,71,0.3);
+				border-color: rgba(56,189,248,0.15);
+			}
+
+			.empty-icon {
+				font-size: 2.5rem;
+				margin-bottom: 16px;
+			}
+
+			.empty-title {
+				font-size: 1.1rem;
+				font-weight: 600;
+				color: #0c1a2e;
+				margin-bottom: 8px;
+			}
+			:global(html.dark) .empty-title { color: #e0f2fe; }
+
+			.empty-desc {
+				font-size: 0.875rem;
+				color: #94a3b8;
+				line-height: 1.6;
+			}
+
+			footer {
+				text-align: center;
+				padding: 32px 24px;
+				font-size: 0.82rem;
+				color: #94a3b8;
+				border-top: 1px solid rgba(14,165,233,0.1);
+				margin-top: 40px;
+			}
+			:global(html.dark) footer { border-color: rgba(56,189,248,0.08); }
+		</style>
+	</head>
+	<body>
+		<Navbar />
+		<div class="page-wrapper">
+			<p class="page-eyebrow">Blog</p>
+			<h1>Pool Care Tips &amp; Guides</h1>
+			<p class="intro">Practical advice for keeping your pool in perfect condition — from water chemistry to seasonal maintenance and everything in between.</p>
+
+			{posts.length > 0 ? (
+				<div class="posts-list">
+					{posts.map(post => (
+						<a href={`/blog/${post.slug}`} class="post-card">
+							<div class="post-date">
+								{post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+							</div>
+							<div class="post-title">{post.data.title}</div>
+							<div class="post-desc">{post.data.description}</div>
+						</a>
+					))}
+				</div>
+			) : (
+				<div class="empty-state">
+					<div class="empty-icon">🏊</div>
+					<div class="empty-title">Articles coming soon</div>
+					<div class="empty-desc">We're working on helpful guides for pool owners in Cyprus.<br/>Check back shortly.</div>
+				</div>
+			)}
+		</div>
+
+		<footer>
+			&copy; {new Date().getFullYear()} Pool Cleaning Cyprus &mdash; Serving Limassol, Paphos, Nicosia, Larnaca & beyond.
+		</footer>
+	</body>
+</html>
