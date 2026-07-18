@@ -1,13 +1,11 @@
 ---
 import Navbar from '../components/Navbar.astro';
-import { Droplets, Shield, Clock, MapPin, Phone, Mail, Star } from '@lucide/astro';
 import { ClientRouter } from 'astro:transitions';
 
 const siteTitle = "Pool Cleaning Cyprus | Professional Swimming Pool Services";
 const siteDescription = "Professional pool cleaning and maintenance services across Cyprus. Crystal clear pools in Limassol, Nicosia, Paphos, and Larnaca. Reliable, affordable, and thorough.";
 const siteUrl = "https://poolcleaningcyprus.com";
 const siteName = "Pool Cleaning Cyprus";
-const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, pool service limassol, pool cleaning paphos, pool maintenance nicosia, larnaca pool cleaning, pool chemicals cyprus, pool repair cyprus";
 ---
 
 <!DOCTYPE html>
@@ -15,39 +13,21 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
 		<title>{siteTitle}</title>
-		<meta name="title" content={siteTitle} />
 		<meta name="description" content={siteDescription} />
-		<meta name="keywords" content={siteKeywords} />
-		<meta name="author" content={siteName} />
 		<meta name="robots" content="index, follow" />
 		<link rel="canonical" href={siteUrl} />
-
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={siteUrl} />
 		<meta property="og:title" content={siteTitle} />
 		<meta property="og:description" content={siteDescription} />
-		<meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
 		<meta property="og:site_name" content={siteName} />
-		<meta property="og:locale" content="en_CY" />
-
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={siteTitle} />
-		<meta name="twitter:description" content={siteDescription} />
-		<meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
-
 		<meta name="geo.region" content="CY" />
 		<meta name="geo.placename" content="Cyprus" />
-		<meta name="geo.position" content="35.1264;33.4299" />
-		<meta name="ICBM" content="35.1264, 33.4299" />
-
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
 		<meta name="generator" content={Astro.generator} />
 		<ClientRouter />
 
@@ -60,700 +40,1590 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 			"url": "https://poolcleaningcyprus.com",
 			"telephone": "+357-00-000000",
 			"email": "hello@poolcleaningcyprus.com",
-			"address": {
-				"@type": "PostalAddress",
-				"addressLocality": "Limassol",
-				"addressCountry": "CY"
-			},
+			"address": { "@type": "PostalAddress", "addressLocality": "Limassol", "addressCountry": "CY" },
 			"areaServed": ["Limassol", "Nicosia", "Paphos", "Larnaca", "Famagusta"],
 			"serviceType": "Pool Cleaning and Maintenance"
 		}
 		</script>
 
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-
-			html {
-				scroll-behavior: smooth;
-			}
+			*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+			html { scroll-behavior: smooth; }
 
 			body {
 				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 				background: #f0f9ff;
 				color: #0c1a2e;
-				min-height: 100vh;
 				overflow-x: hidden;
+				line-height: 1.6;
 			}
+			:global(html.dark) body { background: #050f1a; color: #e0f2fe; }
 
-			:global(html.dark) body {
-				background: #071829;
-				color: #e0f2fe;
-			}
-
-			/* Hero */
-			.hero-wrapper {
+			/* ─────────────────────── HERO ─────────────────────── */
+			.hero {
+				background: #0a1628;
+				position: relative;
+				overflow: hidden;
 				min-height: 100vh;
 				display: flex;
 				flex-direction: column;
-				position: relative;
-				overflow: hidden;
 			}
 
-			.hero-wrapper::before {
+			.hero::before {
 				content: '';
 				position: absolute;
 				inset: 0;
 				background:
-					radial-gradient(ellipse 80% 60% at 50% -10%, rgba(14, 165, 233, 0.18) 0%, transparent 70%),
-					radial-gradient(ellipse 50% 40% at 80% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 60%);
+					radial-gradient(ellipse 90% 60% at 50% -5%, rgba(6,182,212,0.22) 0%, transparent 60%),
+					radial-gradient(ellipse 50% 50% at 90% 100%, rgba(14,165,233,0.12) 0%, transparent 55%),
+					radial-gradient(ellipse 40% 40% at 0% 70%, rgba(6,182,212,0.08) 0%, transparent 50%);
 				pointer-events: none;
 			}
 
-			:global(html.dark) .hero-wrapper::before {
-				background:
-					radial-gradient(ellipse 80% 60% at 50% -10%, rgba(14, 165, 233, 0.25) 0%, transparent 70%),
-					radial-gradient(ellipse 50% 40% at 80% 80%, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
-			}
-
-			.pool-bg {
+			/* Subtle grid overlay */
+			.hero::after {
+				content: '';
 				position: absolute;
-				right: -60px;
-				top: 50%;
-				transform: translateY(-50%) rotate(-8deg);
-				width: 560px;
-				height: auto;
-				color: rgba(14, 165, 233, 0.12);
+				inset: 0;
+				background-image:
+					linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px),
+					linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px);
+				background-size: 60px 60px;
 				pointer-events: none;
-				z-index: 0;
 			}
 
-			:global(html.dark) .pool-bg {
-				color: rgba(56, 189, 248, 0.1);
-			}
-
-			@media (max-width: 900px) {
-				.pool-bg {
-					width: 400px;
-					right: -80px;
-					opacity: 0.7;
-				}
-			}
-
-			@media (max-width: 600px) {
-				.pool-bg {
-					display: none;
-				}
-			}
-
-			.main-content {
+			.hero-inner {
 				flex: 1;
-				max-width: 720px;
-				margin: 0 auto;
-				padding: 160px 24px 80px;
 				position: relative;
 				z-index: 1;
+				max-width: 1160px;
+				margin: 0 auto;
 				width: 100%;
+				padding: 160px 2rem 100px;
+				display: grid;
+				grid-template-columns: 1fr 420px;
+				gap: 4rem;
+				align-items: center;
 			}
 
 			.hero-eyebrow {
 				display: inline-flex;
 				align-items: center;
-				gap: 8px;
-				font-size: 0.8rem;
-				font-weight: 600;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				color: #0ea5e9;
-				margin-bottom: 20px;
-			}
-
-			:global(html.dark) .hero-eyebrow {
-				color: #38bdf8;
-			}
-
-			h1.headline {
-				font-size: clamp(2.4rem, 6vw, 3.8rem);
+				gap: 10px;
+				font-size: 0.72rem;
 				font-weight: 700;
-				line-height: 1.1;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: #06b6d4;
+				margin-bottom: 1.4rem;
+			}
+
+			.eyebrow-line {
+				width: 28px;
+				height: 2px;
+				background: #06b6d4;
+				border-radius: 2px;
+			}
+
+			h1 {
+				font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+				font-weight: 900;
+				line-height: 1.05;
 				letter-spacing: -0.03em;
+				color: #fff;
+				margin-bottom: 1.4rem;
+			}
+
+			h1 .highlight {
+				position: relative;
 				color: #0c1a2e;
-				margin-bottom: 24px;
+				display: inline-block;
+				padding: 0 10px;
+				margin: 0 2px;
+				white-space: nowrap;
 			}
 
-			:global(html.dark) h1.headline {
-				color: #e0f2fe;
+			h1 .highlight::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: #06b6d4;
+				border-radius: 6px;
+				z-index: -1;
+				transform: rotate(-1deg) skewX(-2deg);
 			}
 
-			h1.headline .accent {
-				color: #0ea5e9;
+			h1 .highlight-2 {
+				position: relative;
+				color: #06b6d4;
+				display: inline-block;
 			}
 
-			:global(html.dark) h1.headline .accent {
-				color: #38bdf8;
+			h1 .highlight-2::after {
+				content: '';
+				position: absolute;
+				bottom: 2px;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: #06b6d4;
+				border-radius: 2px;
+				opacity: 0.6;
 			}
 
 			.hero-desc {
-				font-size: 1.1rem;
-				line-height: 1.7;
-				color: #334155;
-				margin-bottom: 40px;
-				max-width: 560px;
+				font-size: 1.05rem;
+				line-height: 1.8;
+				color: rgba(186,230,253,0.65);
+				margin-bottom: 2.4rem;
+				max-width: 500px;
 			}
 
-			:global(html.dark) .hero-desc {
-				color: #94a3b8;
-			}
-
-			.cta-group {
+			.hero-cta-row {
 				display: flex;
-				gap: 12px;
+				gap: 14px;
 				flex-wrap: wrap;
-				margin-bottom: 64px;
+				margin-bottom: 3.5rem;
 			}
 
-			.cta-button {
+			.btn-primary {
 				display: inline-flex;
 				align-items: center;
 				gap: 8px;
-				padding: 14px 28px;
-				border-radius: 12px;
+				padding: 15px 32px;
+				background: #06b6d4;
+				color: #0a1628;
+				border-radius: 10px;
+				font-size: 0.95rem;
+				font-weight: 700;
+				text-decoration: none;
+				letter-spacing: 0.01em;
+				box-shadow: 0 4px 24px rgba(6,182,212,0.45), 0 0 0 0 rgba(6,182,212,0.3);
+				transition: all 0.2s ease;
+			}
+
+			.btn-primary:hover {
+				background: #0891b2;
+				color: #fff;
+				transform: translateY(-2px);
+				box-shadow: 0 8px 32px rgba(6,182,212,0.5);
+			}
+
+			.btn-outline {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 15px 32px;
+				border: 1.5px solid rgba(56,189,248,0.35);
+				color: #7dd3fc;
+				border-radius: 10px;
 				font-size: 0.95rem;
 				font-weight: 600;
 				text-decoration: none;
 				transition: all 0.2s ease;
-				cursor: pointer;
 			}
 
-			.cta-button.primary {
-				background: #0ea5e9;
+			.btn-outline:hover {
+				border-color: #06b6d4;
+				color: #06b6d4;
+				background: rgba(6,182,212,0.08);
+			}
+
+			.hero-stats {
+				display: flex;
+				gap: 2.5rem;
+				padding-top: 1rem;
+				border-top: 1px solid rgba(56,189,248,0.12);
+			}
+
+			.stat-num {
+				font-size: 1.8rem;
+				font-weight: 800;
 				color: #fff;
-				box-shadow: 0 4px 20px rgba(14, 165, 233, 0.35);
+				letter-spacing: -0.03em;
+				line-height: 1;
+				margin-bottom: 4px;
 			}
 
-			.cta-button.primary:hover {
-				background: #0284c7;
-				transform: translateY(-1px);
-				box-shadow: 0 6px 24px rgba(14, 165, 233, 0.45);
-			}
+			.stat-num span { color: #06b6d4; }
 
-			.cta-button.secondary {
-				background: rgba(14, 165, 233, 0.08);
-				color: #0ea5e9;
-				border: 1px solid rgba(14, 165, 233, 0.25);
-			}
-
-			.cta-button.secondary:hover {
-				background: rgba(14, 165, 233, 0.14);
-				transform: translateY(-1px);
-			}
-
-			:global(html.dark) .cta-button.secondary {
-				background: rgba(56, 189, 248, 0.1);
-				color: #38bdf8;
-				border-color: rgba(56, 189, 248, 0.2);
-			}
-
-			/* Feature cards */
-			.features-grid {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: 16px;
-				margin-bottom: 80px;
-			}
-
-			.feature-card {
-				background: rgba(255, 255, 255, 0.7);
-				border: 1px solid rgba(14, 165, 233, 0.12);
-				border-radius: 16px;
-				padding: 24px 20px;
-				backdrop-filter: blur(8px);
-			}
-
-			:global(html.dark) .feature-card {
-				background: rgba(14, 42, 71, 0.5);
-				border-color: rgba(56, 189, 248, 0.12);
-			}
-
-			.feature-icon {
-				color: #0ea5e9;
-				margin-bottom: 12px;
-			}
-
-			:global(html.dark) .feature-icon {
-				color: #38bdf8;
-			}
-
-			.feature-title {
-				font-size: 0.9rem;
+			.stat-label {
+				font-size: 0.7rem;
 				font-weight: 600;
-				color: #0c1a2e;
-				margin-bottom: 6px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: rgba(186,230,253,0.45);
 			}
 
-			:global(html.dark) .feature-title {
-				color: #e0f2fe;
+			/* Hero visual card */
+			.hero-card {
+				background: rgba(255,255,255,0.04);
+				border: 1px solid rgba(56,189,248,0.15);
+				border-radius: 24px;
+				padding: 2rem;
+				backdrop-filter: blur(10px);
+				position: relative;
 			}
 
-			.feature-desc {
-				font-size: 0.82rem;
-				color: #64748b;
-				line-height: 1.5;
+			.hero-card::before {
+				content: '';
+				position: absolute;
+				top: -1px; left: -1px; right: -1px;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+				border-radius: 24px 24px 0 0;
 			}
 
-			:global(html.dark) .feature-desc {
-				color: #64748b;
-			}
-
-			/* Services section */
-			.section {
-				padding: 80px 24px;
-				max-width: 720px;
-				margin: 0 auto;
-			}
-
-			.section-label {
-				font-size: 0.75rem;
+			.hero-card-title {
+				font-size: 0.72rem;
 				font-weight: 700;
 				letter-spacing: 0.1em;
 				text-transform: uppercase;
-				color: #0ea5e9;
-				margin-bottom: 12px;
+				color: #06b6d4;
+				margin-bottom: 1.4rem;
 			}
 
-			:global(html.dark) .section-label {
-				color: #38bdf8;
+			.pool-svg-wrap {
+				background: rgba(6,182,212,0.06);
+				border: 1px solid rgba(6,182,212,0.15);
+				border-radius: 16px;
+				padding: 1.5rem;
+				margin-bottom: 1.5rem;
+				display: flex;
+				justify-content: center;
 			}
 
-			.section-title {
-				font-size: clamp(1.6rem, 4vw, 2.2rem);
+			.hero-feature-list {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+
+			.hero-feature-list li {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				font-size: 0.875rem;
+				color: rgba(186,230,253,0.8);
+			}
+
+			.check-icon {
+				width: 20px;
+				height: 20px;
+				background: rgba(6,182,212,0.15);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+			}
+
+			.badge {
+				position: absolute;
+				top: -16px;
+				right: -16px;
+				background: #0891b2;
+				border: 2px solid #0a1628;
+				border-radius: 14px;
+				padding: 8px 14px;
+				font-size: 0.72rem;
 				font-weight: 700;
-				letter-spacing: -0.02em;
-				color: #0c1a2e;
-				margin-bottom: 16px;
+				color: #fff;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				white-space: nowrap;
 			}
 
-			:global(html.dark) .section-title {
-				color: #e0f2fe;
+			.badge strong { color: #a5f3fc; font-size: 1rem; display: block; }
+
+			/* ─────────────────────── SHARED SECTION ─────────────────────── */
+			section { padding: 5rem 1.5rem; }
+
+			.section-inner { max-width: 1100px; margin: 0 auto; }
+
+			.section-header { text-align: center; margin-bottom: 3.5rem; }
+
+			.section-tag {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: #0891b2;
+				margin-bottom: 0.9rem;
+			}
+
+			.section-tag::before, .section-tag::after {
+				content: '';
+				width: 20px;
+				height: 1.5px;
+				background: currentColor;
+				border-radius: 2px;
+				opacity: 0.5;
+			}
+
+			:global(html.dark) .section-tag { color: #06b6d4; }
+
+			h2 {
+				font-size: clamp(1.8rem, 4vw, 2.6rem);
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				color: #0c1a2e;
+				margin-bottom: 0.8rem;
+				line-height: 1.15;
+			}
+
+			:global(html.dark) h2 { color: #e0f2fe; }
+
+			.section-divider {
+				width: 36px;
+				height: 3px;
+				background: #06b6d4;
+				border-radius: 2px;
+				margin: 0.9rem auto 1.2rem;
 			}
 
 			.section-desc {
 				font-size: 1rem;
-				line-height: 1.7;
-				color: #475569;
-				margin-bottom: 40px;
+				color: #64748b;
+				max-width: 540px;
+				margin: 0 auto;
+				line-height: 1.75;
+			}
+			:global(html.dark) .section-desc { color: #94a3b8; }
+
+			/* ─────────────────────── SERVICES ─────────────────────── */
+			.services { background: #fff; }
+			:global(html.dark) .services { background: #071829; }
+
+			.services-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5rem;
 			}
 
-			:global(html.dark) .section-desc {
-				color: #94a3b8;
+			.service-card {
+				background: #f8fafc;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 2rem 1.6rem;
+				transition: all 0.25s ease;
+				position: relative;
+				overflow: hidden;
 			}
 
-			.services-list {
+			.service-card::before {
+				content: '';
+				position: absolute;
+				top: 0; left: 0; right: 0;
+				height: 3px;
+				background: linear-gradient(90deg, #06b6d4, #0ea5e9);
+				opacity: 0;
+				transition: opacity 0.25s ease;
+			}
+
+			.service-card:hover {
+				border-color: rgba(6,182,212,0.4);
+				transform: translateY(-4px);
+				box-shadow: 0 12px 36px rgba(6,182,212,0.12);
+			}
+
+			.service-card:hover::before { opacity: 1; }
+
+			:global(html.dark) .service-card {
+				background: rgba(14,42,71,0.45);
+				border-color: rgba(56,189,248,0.1);
+			}
+
+			:global(html.dark) .service-card:hover {
+				border-color: rgba(6,182,212,0.35);
+			}
+
+			.service-icon-wrap {
+				width: 56px;
+				height: 56px;
+				border-radius: 16px;
+				background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 1.2rem;
+				box-shadow: 0 6px 20px rgba(6,182,212,0.3);
+			}
+
+			.service-card h3 {
+				font-size: 1rem;
+				font-weight: 700;
+				color: #0c1a2e;
+				margin-bottom: 0.5rem;
+				letter-spacing: -0.01em;
+			}
+			:global(html.dark) .service-card h3 { color: #e0f2fe; }
+
+			.service-card p {
+				font-size: 0.875rem;
+				color: #64748b;
+				line-height: 1.65;
+			}
+
+			/* ─────────────────────── PRICING ─────────────────────── */
+			.pricing { background: #f0f9ff; }
+			:global(html.dark) .pricing { background: #050f1a; }
+
+			.pricing-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5rem;
+				align-items: stretch;
+			}
+
+			.price-card {
+				background: #fff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 2.2rem 2rem;
 				display: flex;
 				flex-direction: column;
-				gap: 16px;
+				transition: all 0.25s ease;
+				position: relative;
 			}
 
-			.service-item {
+			.price-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 40px rgba(6,182,212,0.1);
+			}
+
+			:global(html.dark) .price-card {
+				background: rgba(14,42,71,0.45);
+				border-color: rgba(56,189,248,0.1);
+			}
+
+			.price-card.featured {
+				background: linear-gradient(160deg, #0a1e3a 0%, #0c2347 100%);
+				border-color: #06b6d4;
+				border-width: 2px;
+				box-shadow: 0 20px 60px rgba(6,182,212,0.25);
+				transform: scale(1.04);
+			}
+
+			.price-card.featured:hover {
+				transform: scale(1.04) translateY(-4px);
+			}
+
+			:global(html.dark) .price-card.featured {
+				background: linear-gradient(160deg, #061428 0%, #0a1e38 100%);
+			}
+
+			.price-badge {
+				position: absolute;
+				top: -14px;
+				left: 50%;
+				transform: translateX(-50%);
+				background: #06b6d4;
+				color: #0a1628;
+				font-size: 0.7rem;
+				font-weight: 800;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				padding: 5px 16px;
+				border-radius: 50px;
+				white-space: nowrap;
+			}
+
+			.price-tier {
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: #06b6d4;
+				margin-bottom: 0.5rem;
+			}
+
+			.price-name {
+				font-size: 1.4rem;
+				font-weight: 800;
+				color: #0c1a2e;
+				margin-bottom: 0.4rem;
+			}
+			.price-card.featured .price-name { color: #fff; }
+			:global(html.dark) .price-name { color: #e0f2fe; }
+
+			.price-amount {
+				font-size: 2.4rem;
+				font-weight: 900;
+				color: #0c1a2e;
+				letter-spacing: -0.04em;
+				line-height: 1;
+				margin-bottom: 0.3rem;
+			}
+			.price-card.featured .price-amount { color: #fff; }
+			:global(html.dark) .price-amount { color: #e0f2fe; }
+
+			.price-amount sup { font-size: 1.2rem; font-weight: 700; vertical-align: super; }
+			.price-amount sub { font-size: 0.85rem; font-weight: 500; opacity: 0.6; letter-spacing: 0; }
+
+			.price-note {
+				font-size: 0.78rem;
+				color: #94a3b8;
+				margin-bottom: 1.5rem;
+			}
+			.price-card.featured .price-note { color: rgba(186,230,253,0.55); }
+
+			.price-divider {
+				height: 1px;
+				background: #e2e8f0;
+				margin-bottom: 1.5rem;
+			}
+			.price-card.featured .price-divider { background: rgba(56,189,248,0.2); }
+			:global(html.dark) .price-divider { background: rgba(56,189,248,0.1); }
+
+			.price-features {
+				list-style: none;
 				display: flex;
-				gap: 16px;
+				flex-direction: column;
+				gap: 10px;
+				flex: 1;
+				margin-bottom: 2rem;
+			}
+
+			.price-features li {
+				display: flex;
 				align-items: flex-start;
-				padding: 20px;
-				background: rgba(255, 255, 255, 0.7);
-				border: 1px solid rgba(14, 165, 233, 0.1);
-				border-radius: 14px;
+				gap: 10px;
+				font-size: 0.875rem;
+				color: #475569;
+				line-height: 1.5;
 			}
+			.price-card.featured .price-features li { color: rgba(186,230,253,0.8); }
+			:global(html.dark) .price-features li { color: #94a3b8; }
 
-			:global(html.dark) .service-item {
-				background: rgba(14, 42, 71, 0.4);
-				border-color: rgba(56, 189, 248, 0.1);
-			}
-
-			.service-icon {
-				color: #0ea5e9;
-				flex-shrink: 0;
+			.price-features li::before {
+				content: '';
+				width: 18px;
+				height: 18px;
+				min-width: 18px;
+				background: rgba(6,182,212,0.12);
+				border-radius: 50%;
+				background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6L5 9L10 3' stroke='%2306b6d4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+				background-position: center;
 				margin-top: 2px;
 			}
 
-			:global(html.dark) .service-icon {
+			.price-card.featured .price-features li::before {
+				background-color: rgba(6,182,212,0.2);
+			}
+
+			.price-cta {
+				display: block;
+				text-align: center;
+				padding: 13px;
+				border-radius: 12px;
+				font-size: 0.9rem;
+				font-weight: 700;
+				text-decoration: none;
+				transition: all 0.2s ease;
+				border: 1.5px solid rgba(6,182,212,0.3);
+				color: #0891b2;
+			}
+
+			.price-cta:hover {
+				background: rgba(6,182,212,0.08);
+				border-color: #06b6d4;
+			}
+
+			:global(html.dark) .price-cta {
 				color: #38bdf8;
+				border-color: rgba(56,189,248,0.25);
 			}
 
-			.service-name {
-				font-size: 0.95rem;
-				font-weight: 600;
-				color: #0c1a2e;
-				margin-bottom: 4px;
+			.price-card.featured .price-cta {
+				background: #06b6d4;
+				border-color: #06b6d4;
+				color: #0a1628;
+				font-weight: 800;
+				box-shadow: 0 4px 20px rgba(6,182,212,0.4);
 			}
 
-			:global(html.dark) .service-name {
-				color: #e0f2fe;
+			.price-card.featured .price-cta:hover {
+				background: #0891b2;
+				color: #fff;
 			}
 
-			.service-text {
-				font-size: 0.875rem;
-				color: #64748b;
-				line-height: 1.5;
-			}
+			/* ─────────────────────── HOW IT WORKS ─────────────────────── */
+			.how-it-works { background: #fff; }
+			:global(html.dark) .how-it-works { background: #071829; }
 
-			/* Areas */
-			.areas-grid {
+			.steps-row {
 				display: grid;
-				grid-template-columns: repeat(2, 1fr);
-				gap: 12px;
-				margin-top: 32px;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 2rem;
+				position: relative;
 			}
 
-			.area-card {
+			.steps-row::before {
+				content: '';
+				position: absolute;
+				top: 44px;
+				left: calc(16.66% + 44px);
+				right: calc(16.66% + 44px);
+				height: 2px;
+				background: linear-gradient(90deg, #06b6d4, #0ea5e9, #06b6d4);
+				opacity: 0.25;
+			}
+
+			.step {
+				text-align: center;
+				padding: 0 1rem;
+				position: relative;
+			}
+
+			.step-icon {
+				width: 88px;
+				height: 88px;
+				border-radius: 50%;
+				margin: 0 auto 1.4rem;
 				display: flex;
 				align-items: center;
-				gap: 10px;
-				padding: 16px 20px;
-				background: rgba(255, 255, 255, 0.7);
-				border: 1px solid rgba(14, 165, 233, 0.1);
-				border-radius: 12px;
-				text-decoration: none;
+				justify-content: center;
+				position: relative;
+			}
+
+			.step-icon.blue { background: linear-gradient(135deg, #06b6d4, #0ea5e9); box-shadow: 0 8px 28px rgba(6,182,212,0.35); }
+			.step-icon.navy { background: #0c1a2e; box-shadow: 0 8px 28px rgba(12,26,46,0.3); }
+			:global(html.dark) .step-icon.navy { background: #0a2040; }
+			.step-icon.outline { background: transparent; border: 2px solid rgba(6,182,212,0.35); }
+
+			.step-num {
+				position: absolute;
+				top: -6px;
+				right: -6px;
+				width: 24px;
+				height: 24px;
+				background: #06b6d4;
+				border-radius: 50%;
+				font-size: 0.7rem;
+				font-weight: 800;
+				color: #0a1628;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.step h3 {
+				font-size: 1.05rem;
+				font-weight: 700;
 				color: #0c1a2e;
-				font-weight: 500;
-				font-size: 0.9rem;
+				margin-bottom: 0.5rem;
+			}
+			:global(html.dark) .step h3 { color: #e0f2fe; }
+
+			.step p {
+				font-size: 0.875rem;
+				color: #64748b;
+				line-height: 1.65;
+			}
+			:global(html.dark) .step p { color: #94a3b8; }
+
+			/* ─────────────────────── WHY US ─────────────────────── */
+			.why-us {
+				background: #0a1628;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.why-us::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(6,182,212,0.14) 0%, transparent 60%);
+				pointer-events: none;
+			}
+
+			.why-us .section-tag { color: #06b6d4; }
+			.why-us h2 { color: #fff; }
+			.why-us .section-divider { background: #06b6d4; }
+			.why-us .section-desc { color: rgba(186,230,253,0.55); }
+
+			.why-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.5rem;
+				max-width: 860px;
+				margin: 0 auto;
+			}
+
+			.why-card {
+				display: flex;
+				gap: 1.2rem;
+				align-items: flex-start;
+				padding: 1.6rem;
+				background: rgba(255,255,255,0.035);
+				border: 1px solid rgba(56,189,248,0.1);
+				border-radius: 18px;
 				transition: all 0.2s ease;
 			}
 
-			.area-card:hover {
-				border-color: rgba(14, 165, 233, 0.35);
-				background: rgba(14, 165, 233, 0.05);
-				transform: translateY(-2px);
+			.why-card:hover {
+				background: rgba(6,182,212,0.06);
+				border-color: rgba(6,182,212,0.25);
 			}
 
-			:global(html.dark) .area-card {
-				background: rgba(14, 42, 71, 0.4);
-				color: #e0f2fe;
-				border-color: rgba(56, 189, 248, 0.1);
+			.why-icon {
+				width: 50px;
+				height: 50px;
+				min-width: 50px;
+				background: rgba(6,182,212,0.15);
+				border-radius: 14px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 
-			:global(html.dark) .area-card:hover {
-				border-color: rgba(56, 189, 248, 0.3);
-				background: rgba(56, 189, 248, 0.08);
+			.why-text h3 {
+				font-size: 0.95rem;
+				font-weight: 700;
+				color: #fff;
+				margin-bottom: 0.4rem;
 			}
 
-			.area-card :global(svg) {
-				color: #0ea5e9;
-				flex-shrink: 0;
+			.why-text p {
+				font-size: 0.85rem;
+				color: rgba(186,230,253,0.55);
+				line-height: 1.65;
 			}
 
-			:global(html.dark) .area-card :global(svg) {
-				color: #38bdf8;
-			}
+			/* ─────────────────────── TESTIMONIALS ─────────────────────── */
+			.testimonials { background: #f0f9ff; }
+			:global(html.dark) .testimonials { background: #050f1a; }
 
-			/* Reviews */
-			.reviews-grid {
+			.testimonials-grid {
 				display: grid;
 				grid-template-columns: repeat(2, 1fr);
-				gap: 16px;
-				margin-top: 32px;
+				gap: 1.5rem;
 			}
 
 			.review-card {
-				padding: 24px;
-				background: rgba(255, 255, 255, 0.7);
-				border: 1px solid rgba(14, 165, 233, 0.1);
-				border-radius: 16px;
+				background: #fff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 20px;
+				padding: 2rem;
+				position: relative;
+				transition: all 0.2s ease;
+			}
+
+			.review-card:hover {
+				border-color: rgba(6,182,212,0.3);
+				box-shadow: 0 8px 32px rgba(6,182,212,0.08);
+				transform: translateY(-2px);
 			}
 
 			:global(html.dark) .review-card {
-				background: rgba(14, 42, 71, 0.4);
-				border-color: rgba(56, 189, 248, 0.1);
+				background: rgba(14,42,71,0.4);
+				border-color: rgba(56,189,248,0.1);
+			}
+
+			.review-quote-icon {
+				position: absolute;
+				top: 1.5rem;
+				right: 1.5rem;
+				color: rgba(6,182,212,0.15);
 			}
 
 			.review-stars {
 				display: flex;
 				gap: 3px;
-				color: #f59e0b;
-				margin-bottom: 12px;
+				margin-bottom: 1rem;
 			}
+
+			.star { color: #f59e0b; }
 
 			.review-text {
-				font-size: 0.875rem;
-				line-height: 1.6;
+				font-size: 0.925rem;
+				line-height: 1.75;
 				color: #475569;
-				margin-bottom: 14px;
+				margin-bottom: 1.4rem;
+				font-style: italic;
 			}
-
-			:global(html.dark) .review-text {
-				color: #94a3b8;
-			}
+			:global(html.dark) .review-text { color: #94a3b8; }
 
 			.review-author {
-				font-size: 0.82rem;
-				font-weight: 600;
-				color: #0c1a2e;
+				display: flex;
+				align-items: center;
+				gap: 12px;
 			}
 
-			:global(html.dark) .review-author {
-				color: #bae6fd;
+			.review-avatar {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.8rem;
+				font-weight: 700;
+				color: #0a1628;
+				flex-shrink: 0;
 			}
+
+			.review-name {
+				font-size: 0.875rem;
+				font-weight: 700;
+				color: #0c1a2e;
+			}
+			:global(html.dark) .review-name { color: #e0f2fe; }
 
 			.review-city {
 				font-size: 0.78rem;
 				color: #94a3b8;
 			}
 
-			/* Footer CTA */
-			.footer-cta {
-				padding: 80px 24px;
-				max-width: 720px;
-				margin: 0 auto;
-				text-align: center;
-			}
+			/* ─────────────────────── AREAS ─────────────────────── */
+			.areas { background: #fff; }
+			:global(html.dark) .areas { background: #071829; }
 
-			.footer-cta-title {
-				font-size: clamp(1.6rem, 4vw, 2.2rem);
-				font-weight: 700;
-				letter-spacing: -0.02em;
-				color: #0c1a2e;
-				margin-bottom: 16px;
-			}
-
-			:global(html.dark) .footer-cta-title {
-				color: #e0f2fe;
-			}
-
-			.footer-cta-desc {
-				font-size: 1rem;
-				color: #475569;
-				margin-bottom: 32px;
-			}
-
-			:global(html.dark) .footer-cta-desc {
-				color: #94a3b8;
-			}
-
-			.contact-row {
+			.areas-grid {
 				display: flex;
-				justify-content: center;
-				gap: 16px;
 				flex-wrap: wrap;
+				gap: 10px;
+				justify-content: center;
+				margin-bottom: 1.5rem;
 			}
 
-			footer {
+			.area-chip {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				padding: 10px 22px;
+				background: #f0f9ff;
+				border: 1.5px solid #e0f2fe;
+				border-radius: 50px;
+				font-size: 0.875rem;
+				font-weight: 600;
+				color: #0c1a2e;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			.area-chip:hover {
+				border-color: #06b6d4;
+				background: rgba(6,182,212,0.06);
+				color: #0891b2;
+				transform: translateY(-2px);
+				box-shadow: 0 4px 14px rgba(6,182,212,0.12);
+			}
+
+			:global(html.dark) .area-chip {
+				background: rgba(14,42,71,0.5);
+				color: #e0f2fe;
+				border-color: rgba(56,189,248,0.12);
+			}
+
+			:global(html.dark) .area-chip:hover {
+				border-color: rgba(6,182,212,0.5);
+				background: rgba(6,182,212,0.08);
+				color: #06b6d4;
+			}
+
+			.area-dot {
+				width: 7px;
+				height: 7px;
+				background: #06b6d4;
+				border-radius: 50%;
+			}
+
+			.areas-note {
 				text-align: center;
-				padding: 32px 24px;
-				font-size: 0.82rem;
-				color: #94a3b8;
-				border-top: 1px solid rgba(14, 165, 233, 0.1);
+				font-size: 0.875rem;
+				color: #64748b;
 			}
 
-			:global(html.dark) footer {
-				border-color: rgba(56, 189, 248, 0.08);
+			.areas-note a { color: #0891b2; font-weight: 600; }
+			:global(html.dark) .areas-note { color: #94a3b8; }
+			:global(html.dark) .areas-note a { color: #06b6d4; }
+
+			/* ─────────────────────── CONTACT ─────────────────────── */
+			.contact { background: #f0f9ff; }
+			:global(html.dark) .contact { background: #050f1a; }
+
+			.contact-inner {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 4rem;
+				max-width: 960px;
+				margin: 0 auto;
+				align-items: start;
+			}
+
+			.contact-info .section-tag { justify-content: flex-start; }
+			.contact-info .section-tag::before { display: none; }
+			.contact-info h2 { text-align: left; }
+			.contact-info .section-divider { margin-left: 0; }
+			.contact-info .intro-text { color: #64748b; margin-bottom: 2rem; line-height: 1.75; }
+			:global(html.dark) .contact-info .intro-text { color: #94a3b8; }
+
+			.contact-item {
+				display: flex;
+				gap: 14px;
+				align-items: flex-start;
+				margin-bottom: 1.1rem;
+			}
+
+			.contact-icon {
+				width: 42px;
+				height: 42px;
+				background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+				border-radius: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+				box-shadow: 0 4px 14px rgba(6,182,212,0.25);
+			}
+
+			.contact-label {
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+				color: #94a3b8;
+				margin-bottom: 2px;
+			}
+
+			.contact-value {
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: #0c1a2e;
+				text-decoration: none;
+			}
+
+			.contact-value:hover { color: #0891b2; }
+			:global(html.dark) .contact-value { color: #e0f2fe; }
+
+			.contact-form {
+				background: #fff;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 24px;
+				padding: 2.2rem;
+				box-shadow: 0 4px 32px rgba(6,182,212,0.06);
+			}
+
+			:global(html.dark) .contact-form {
+				background: rgba(14,42,71,0.4);
+				border-color: rgba(56,189,248,0.1);
+			}
+
+			.form-group { margin-bottom: 1.1rem; }
+
+			.form-group label {
+				display: block;
+				font-size: 0.78rem;
+				font-weight: 700;
+				color: #0c1a2e;
+				margin-bottom: 6px;
+				letter-spacing: 0.02em;
+			}
+			:global(html.dark) .form-group label { color: #bae6fd; }
+
+			.form-group input,
+			.form-group textarea {
+				width: 100%;
+				padding: 11px 14px;
+				border: 1.5px solid #e2e8f0;
+				border-radius: 10px;
+				font-size: 0.9rem;
+				font-family: inherit;
+				background: #f8fafc;
+				color: #0c1a2e;
+				outline: none;
+				transition: border-color 0.2s, box-shadow 0.2s;
+			}
+
+			:global(html.dark) .form-group input,
+			:global(html.dark) .form-group textarea {
+				background: rgba(7,24,41,0.8);
+				color: #e0f2fe;
+				border-color: rgba(56,189,248,0.15);
+			}
+
+			.form-group input:focus,
+			.form-group textarea:focus {
+				border-color: #06b6d4;
+				box-shadow: 0 0 0 3px rgba(6,182,212,0.12);
+				background: #fff;
+			}
+
+			:global(html.dark) .form-group input:focus,
+			:global(html.dark) .form-group textarea:focus { background: rgba(7,24,41,0.9); }
+
+			.form-group textarea { height: 110px; resize: vertical; }
+
+			.form-submit { margin-top: 0.4rem; }
+			.form-submit .btn-primary { width: 100%; justify-content: center; }
+
+			/* ─────────────────────── FOOTER ─────────────────────── */
+			footer {
+				background: #050e1c;
+				text-align: center;
+				padding: 2.2rem 1.5rem;
+				font-size: 0.82rem;
+				color: rgba(186,230,253,0.35);
+				border-top: 1px solid rgba(56,189,248,0.06);
+			}
+
+			footer a { color: rgba(186,230,253,0.5); text-decoration: underline; }
+
+			/* ─────────────────────── RESPONSIVE ─────────────────────── */
+			@media (max-width: 960px) {
+				.hero-inner { grid-template-columns: 1fr; padding: 130px 1.5rem 70px; }
+				.hero-card { display: none; }
+				.services-grid { grid-template-columns: repeat(2, 1fr); }
+				.pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+				.price-card.featured { transform: none; }
+				.price-card.featured:hover { transform: translateY(-4px); }
+				.testimonials-grid { grid-template-columns: 1fr; }
+				.contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+				.steps-row { grid-template-columns: 1fr; gap: 2rem; }
+				.steps-row::before { display: none; }
+				.why-grid { grid-template-columns: 1fr; max-width: 540px; }
 			}
 
 			@media (max-width: 640px) {
-				.features-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.areas-grid, .reviews-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.cta-group {
-					flex-direction: column;
-				}
-
-				.cta-button {
-					width: 100%;
-					justify-content: center;
-				}
+				.services-grid { grid-template-columns: 1fr; }
+				.hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+				h1 { font-size: 2.5rem; }
 			}
 		</style>
 	</head>
 	<body>
-		<div class="hero-wrapper">
-			<svg class="pool-bg" viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-				<rect x="12" y="12" width="376" height="236" rx="32" stroke="currentColor" stroke-width="8"/>
-				<path d="M40 160 Q90 140 140 160 Q190 180 240 160 Q290 140 360 160" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-				<path d="M40 195 Q90 175 140 195 Q190 215 240 195 Q290 175 360 195" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-			</svg>
-			<Navbar />
-			<main class="main-content">
-				<p class="hero-eyebrow">
-					<Droplets size={14} />
-					Pool Cleaning &amp; Maintenance Cyprus
-				</p>
+		<Navbar />
 
-				<h1 class="headline">
-					Crystal clear pools,<br/>
-					<span class="accent">all year round.</span>
-				</h1>
-
-				<p class="hero-desc">
-					Professional swimming pool cleaning and maintenance across Cyprus. We keep your pool safe, balanced, and sparkling — so you can simply enjoy it.
-				</p>
-
-				<div class="cta-group">
-					<a href="tel:+35700000000" class="cta-button primary">
-						<Phone size={16} />
-						Call for a Free Quote
-					</a>
-					<a href="/prices" class="cta-button secondary">
-						View Pricing
-					</a>
-				</div>
-
-				<div class="features-grid">
-					<div class="feature-card">
-						<div class="feature-icon"><Droplets size={24} /></div>
-						<div class="feature-title">Weekly Cleaning</div>
-						<div class="feature-desc">Regular skimming, vacuuming, and brushing to keep your pool pristine.</div>
+		<!-- ══ HERO ══ -->
+		<section class="hero">
+			<div class="hero-inner">
+				<div>
+					<p class="hero-eyebrow">
+						<span class="eyebrow-line"></span>
+						Professional Pool Services — Cyprus
+					</p>
+					<h1>
+						<span class="highlight">Professional</span><br/>
+						&amp; Reliable Pool<br/>
+						<span class="highlight-2">Cleaning</span> Services
+					</h1>
+					<p class="hero-desc">
+						We keep your pool crystal clear, perfectly balanced, and swim-ready all year round. Trusted by over 2,000 pool owners across Cyprus.
+					</p>
+					<div class="hero-cta-row">
+						<a href="#contact" class="btn-primary">Request a Free Quote</a>
+						<a href="#services" class="btn-outline">See Our Services</a>
 					</div>
-					<div class="feature-card">
-						<div class="feature-icon"><Shield size={24} /></div>
-						<div class="feature-title">Chemical Balancing</div>
-						<div class="feature-desc">Precise water chemistry checks and adjustments every visit.</div>
-					</div>
-					<div class="feature-card">
-						<div class="feature-icon"><Clock size={24} /></div>
-						<div class="feature-title">Reliable Schedule</div>
-						<div class="feature-desc">Fixed weekly or bi-weekly visits — we show up, every time.</div>
+					<div class="hero-stats">
+						<div>
+							<div class="stat-num">10<span>+</span></div>
+							<div class="stat-label">Years Experience</div>
+						</div>
+						<div>
+							<div class="stat-num">2<span>k+</span></div>
+							<div class="stat-label">Pools Maintained</div>
+						</div>
+						<div>
+							<div class="stat-num">100<span>%</span></div>
+							<div class="stat-label">Satisfaction</div>
+						</div>
 					</div>
 				</div>
-			</main>
-		</div>
 
-		<!-- Services -->
-		<section class="section" id="services">
-			<p class="section-label">What We Do</p>
-			<h2 class="section-title">Full Pool Care, Start to Finish</h2>
-			<p class="section-desc">From routine weekly cleans to one-off deep cleans and equipment checks, we handle everything your pool needs to stay healthy and beautiful.</p>
+				<div class="hero-card">
+					<div class="badge">New Clients<strong>Free Visit</strong></div>
+					<p class="hero-card-title">What every visit includes</p>
+					<div class="pool-svg-wrap">
+						<svg width="180" height="110" viewBox="0 0 220 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect x="20" y="15" width="180" height="100" rx="18" fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.3)" stroke-width="1.5"/>
+							<path d="M38 75 Q62 62 86 75 Q110 88 134 75 Q158 62 182 75" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" fill="none"/>
+							<path d="M38 95 Q62 82 86 95 Q110 108 134 95 Q158 82 182 95" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+							<rect x="22" y="28" width="4" height="44" rx="2" fill="rgba(56,189,248,0.35)"/>
+							<rect x="22" y="36" width="16" height="3" rx="1.5" fill="rgba(56,189,248,0.35)"/>
+							<rect x="22" y="48" width="16" height="3" rx="1.5" fill="rgba(56,189,248,0.35)"/>
+							<circle cx="110" cy="42" r="18" fill="rgba(6,182,212,0.1)" stroke="rgba(6,182,212,0.25)" stroke-width="1.5"/>
+							<path d="M103 42 L108 47 L117 37" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+					<ul class="hero-feature-list">
+						<li>
+							<span class="check-icon">
+								<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							</span>
+							Skimming, vacuuming &amp; brushing
+						</li>
+						<li>
+							<span class="check-icon">
+								<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							</span>
+							Full water chemistry test &amp; dose
+						</li>
+						<li>
+							<span class="check-icon">
+								<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							</span>
+							Filter &amp; pump equipment check
+						</li>
+						<li>
+							<span class="check-icon">
+								<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							</span>
+							Visit report after every clean
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
 
-			<div class="services-list">
-				<div class="service-item">
-					<div class="service-icon"><Droplets size={22} /></div>
-					<div>
-						<div class="service-name">Weekly &amp; Bi-Weekly Maintenance</div>
-						<div class="service-text">Skimming, vacuuming, brushing walls and tiles, emptying baskets, and checking equipment — every scheduled visit.</div>
-					</div>
+		<!-- ══ SERVICES ══ -->
+		<section class="services" id="services">
+			<div class="section-inner">
+				<div class="section-header">
+					<span class="section-tag">What We Do</span>
+					<h2>Our Pool Services</h2>
+					<div class="section-divider"></div>
+					<p class="section-desc">Complete pool care for villas, complexes, hotels, and private homes across Cyprus.</p>
 				</div>
-				<div class="service-item">
-					<div class="service-icon"><Shield size={22} /></div>
-					<div>
-						<div class="service-name">Water Chemistry &amp; Chemical Treatment</div>
-						<div class="service-text">We test pH, chlorine, alkalinity, and calcium hardness, then dose correctly to keep your water safe and clear.</div>
+				<div class="services-grid">
+
+					<div class="service-card">
+						<div class="service-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+								<path d="M6 12 Q9 9 12 12 Q15 15 18 12" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+								<path d="M6 17 Q9 14 12 17 Q15 20 18 17" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+							</svg>
+						</div>
+						<h3>Weekly &amp; Bi-Weekly Maintenance</h3>
+						<p>Skimming, vacuuming, wall brushing, basket emptying, and equipment checks — on every scheduled visit, without fail.</p>
 					</div>
-				</div>
-				<div class="service-item">
-					<div class="service-icon"><Star size={22} /></div>
-					<div>
-						<div class="service-name">Deep Cleaning &amp; Algae Treatment</div>
-						<div class="service-text">Full brush-down, acid washing, and algae shock treatments to restore neglected or green pools.</div>
+
+					<div class="service-card">
+						<div class="service-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+								<circle cx="12" cy="12" r="8" stroke="white" stroke-width="2"/>
+								<path d="M12 8 L12 12 L15 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+								<circle cx="12" cy="12" r="2" fill="white" opacity="0.4"/>
+							</svg>
+						</div>
+						<h3>Water Chemistry &amp; Chemical Balancing</h3>
+						<p>Precise testing and dosing of pH, chlorine, alkalinity, and calcium hardness — safe, clear water every time.</p>
 					</div>
+
+					<div class="service-card">
+						<div class="service-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+								<path d="M12 3 Q8 7 4 9 L4 18 Q8 21 12 22 Q16 21 20 18 L20 9 Q16 7 12 3Z" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.15)"/>
+								<path d="M9 13 L11 15 L15 11" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</div>
+						<h3>Deep Cleaning &amp; Algae Treatment</h3>
+						<p>Full brush-down, acid washing, and algae shock treatments to restore neglected or green pools to crystal condition.</p>
+					</div>
+
+					<div class="service-card">
+						<div class="service-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+								<rect x="4" y="8" width="16" height="12" rx="3" stroke="white" stroke-width="2"/>
+								<path d="M8 8 L8 5 Q8 3 12 3 Q16 3 16 5 L16 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+								<circle cx="12" cy="14" r="2" fill="white"/>
+							</svg>
+						</div>
+						<h3>Winter Opening &amp; Closing</h3>
+						<p>Seasonal preparation to protect your pool through winter and get it fully swim-ready for summer — no surprises in spring.</p>
+					</div>
+
+					<div class="service-card">
+						<div class="service-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+								<rect x="5" y="14" width="14" height="6" rx="2" stroke="white" stroke-width="1.8"/>
+								<path d="M9 14 L9 10 Q9 7 12 7 Q15 7 15 10 L15 14" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+								<path d="M5 8 Q8 6 12 8" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+							</svg>
+						</div>
+						<h3>Pump &amp; Filter Maintenance</h3>
+						<p>Backwashing, filter cleaning, pump inspection, and equipment servicing to keep your circulation running efficiently.</p>
+					</div>
+
+					<div class="service-card">
+						<div class="service-icon-wrap">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+								<path d="M12 2 L15 8 L22 9 L17 14 L18.5 21 L12 18 L5.5 21 L7 14 L2 9 L9 8 Z" fill="white" opacity="0.9"/>
+							</svg>
+						</div>
+						<h3>One-Off &amp; Emergency Cleans</h3>
+						<p>Single visits for post-party pools, pre-sale inspections, or sudden water issues. Fast response across all major cities.</p>
+					</div>
+
 				</div>
-				<div class="service-item">
-					<div class="service-icon"><Clock size={22} /></div>
-					<div>
-						<div class="service-name">Winter Opening &amp; Closing</div>
-						<div class="service-text">Seasonal preparation to protect your pool through winter and get it swim-ready for summer.</div>
+			</div>
+		</section>
+
+		<!-- ══ PRICING ══ -->
+		<section class="pricing" id="pricing">
+			<div class="section-inner">
+				<div class="section-header">
+					<span class="section-tag">Pricing</span>
+					<h2>Simple, Transparent Packages</h2>
+					<div class="section-divider"></div>
+					<p class="section-desc">Choose the plan that suits your pool. All packages include chemicals, equipment checks, and a visit report.</p>
+				</div>
+				<div class="pricing-grid">
+
+					<div class="price-card">
+						<p class="price-tier">Basic</p>
+						<p class="price-name">Silver</p>
+						<p class="price-amount"><sup>€</sup>60<sub>/visit</sub></p>
+						<p class="price-note">Bi-weekly schedule</p>
+						<div class="price-divider"></div>
+						<ul class="price-features">
+							<li>Skimming &amp; vacuuming</li>
+							<li>Wall &amp; tile brushing</li>
+							<li>Empty baskets</li>
+							<li>Chemical test &amp; dose</li>
+							<li>Equipment visual check</li>
+						</ul>
+						<a href="#contact" class="price-cta">Get Started</a>
+					</div>
+
+					<div class="price-card featured">
+						<div class="price-badge">Most Popular</div>
+						<p class="price-tier">Standard</p>
+						<p class="price-name">Platinum</p>
+						<p class="price-amount"><sup>€</sup>45<sub>/visit</sub></p>
+						<p class="price-note">Weekly schedule — best value</p>
+						<div class="price-divider"></div>
+						<ul class="price-features">
+							<li>Everything in Silver</li>
+							<li>Weekly frequency</li>
+							<li>Full filter backwash</li>
+							<li>Waterline tile scrub</li>
+							<li>Photo visit report</li>
+							<li>Priority response</li>
+						</ul>
+						<a href="#contact" class="price-cta">Get Started</a>
+					</div>
+
+					<div class="price-card">
+						<p class="price-tier">Premium</p>
+						<p class="price-name">Elite</p>
+						<p class="price-amount"><sup>€</sup>POA</p>
+						<p class="price-note">Tailored to your pool</p>
+						<div class="price-divider"></div>
+						<ul class="price-features">
+							<li>Everything in Platinum</li>
+							<li>Pump &amp; filter service</li>
+							<li>Quarterly deep clean</li>
+							<li>Winter close &amp; spring open</li>
+							<li>24/7 emergency callout</li>
+						</ul>
+						<a href="#contact" class="price-cta">Get a Quote</a>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- ══ HOW IT WORKS ══ -->
+		<section class="how-it-works" id="how-it-works">
+			<div class="section-inner">
+				<div class="section-header">
+					<span class="section-tag">Our Process</span>
+					<h2>How It Works</h2>
+					<div class="section-divider"></div>
+					<p class="section-desc">From first contact to sparkling water — here's exactly what to expect.</p>
+				</div>
+				<div class="steps-row">
+					<div class="step">
+						<div class="step-icon blue">
+							<div class="step-num">1</div>
+							<svg width="38" height="38" viewBox="0 0 24 24" fill="none">
+								<rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="2"/>
+								<path d="M3 7 L12 13 L21 7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+							</svg>
+						</div>
+						<h3>Get in Touch</h3>
+						<p>Call or fill in the form — tell us your location, pool size, and what you need. We'll respond within 2 hours.</p>
+					</div>
+					<div class="step">
+						<div class="step-icon navy">
+							<div class="step-num">2</div>
+							<svg width="38" height="38" viewBox="0 0 24 24" fill="none">
+								<path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="rgba(6,182,212,0.3)"/>
+								<circle cx="12" cy="9" r="3" fill="#06b6d4"/>
+							</svg>
+						</div>
+						<h3>We Come to You</h3>
+						<p>One of our certified technicians visits at an agreed time — fully equipped and on schedule.</p>
+					</div>
+					<div class="step">
+						<div class="step-icon outline">
+							<div class="step-num">3</div>
+							<svg width="38" height="38" viewBox="0 0 24 24" fill="none">
+								<path d="M6 12 Q9 9 12 12 Q15 15 18 12" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+								<path d="M6 17 Q9 14 12 17 Q15 20 18 17" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+								<circle cx="12" cy="7" r="3" stroke="#06b6d4" stroke-width="2"/>
+							</svg>
+						</div>
+						<h3>Enjoy Your Pool</h3>
+						<p>We clean, balance, and send you a report. Crystal clear water, every visit, guaranteed.</p>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Areas -->
-		<section class="section" id="areas">
-			<p class="section-label">Where We Work</p>
-			<h2 class="section-title">Serving All of Cyprus</h2>
-			<p class="section-desc">We cover the whole island — whether your pool is in a villa in Paphos or a complex in Limassol, we'll come to you.</p>
-
-			<div class="areas-grid">
-				<a href="/pool-cleaning-limassol" class="area-card">
-					<MapPin size={18} />
-					Limassol
-				</a>
-				<a href="/pool-cleaning-paphos" class="area-card">
-					<MapPin size={18} />
-					Paphos
-				</a>
-				<a href="#" class="area-card">
-					<MapPin size={18} />
-					Nicosia
-				</a>
-				<a href="#" class="area-card">
-					<MapPin size={18} />
-					Larnaca
-				</a>
-				<a href="#" class="area-card">
-					<MapPin size={18} />
-					Famagusta
-				</a>
-				<a href="#" class="area-card">
-					<MapPin size={18} />
-					Ayia Napa
-				</a>
-			</div>
-		</section>
-
-		<!-- Reviews -->
-		<section class="section" id="reviews">
-			<p class="section-label">Reviews</p>
-			<h2 class="section-title">What Our Clients Say</h2>
-
-			<div class="reviews-grid">
-				<div class="review-card">
-					<div class="review-stars">
-						<Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
-					</div>
-					<p class="review-text">"Our pool has never looked better. They come every week without fail and the water is always perfect."</p>
-					<div class="review-author">Maria K.</div>
-					<div class="review-city">Limassol</div>
+		<!-- ══ WHY US ══ -->
+		<section class="why-us" id="why-us">
+			<div class="section-inner">
+				<div class="section-header">
+					<span class="section-tag">Why Choose Us</span>
+					<h2>The Pool Cleaning Cyprus Difference</h2>
+					<div class="section-divider"></div>
+					<p class="section-desc">Ten years cleaning pools across the island. Here's what sets us apart.</p>
 				</div>
-				<div class="review-card">
-					<div class="review-stars">
-						<Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
+				<div class="why-grid">
+					<div class="why-card">
+						<div class="why-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+								<path d="M12 2 L15 8 L22 9 L17 14 L18.5 21 L12 18 L5.5 21 L7 14 L2 9 L9 8 Z" fill="rgba(6,182,212,0.7)"/>
+							</svg>
+						</div>
+						<div class="why-text">
+							<h3>Certified &amp; Experienced</h3>
+							<p>Fully certified technicians, insured and trained. We know Cyprus pools — the hard water, the climate, the seasonal challenges.</p>
+						</div>
 					</div>
-					<p class="review-text">"Took over our pool after it turned green. Completely transformed it in two visits. Highly recommend."</p>
-					<div class="review-author">Andreas P.</div>
-					<div class="review-city">Paphos</div>
-				</div>
-				<div class="review-card">
-					<div class="review-stars">
-						<Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
+					<div class="why-card">
+						<div class="why-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+								<circle cx="12" cy="12" r="9" stroke="#06b6d4" stroke-width="2"/>
+								<path d="M12 7 L12 12 L16 14" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/>
+							</svg>
+						</div>
+						<div class="why-text">
+							<h3>Reliable &amp; Punctual</h3>
+							<p>Fixed weekly or bi-weekly visits — your technician shows up every time. Same-day emergency call-outs available island-wide.</p>
+						</div>
 					</div>
-					<p class="review-text">"Professional, punctual, and very reasonably priced. Our whole villa complex uses them now."</p>
-					<div class="review-author">James T.</div>
-					<div class="review-city">Nicosia</div>
-				</div>
-				<div class="review-card">
-					<div class="review-stars">
-						<Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" /><Star size={14} fill="currentColor" />
+					<div class="why-card">
+						<div class="why-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+								<path d="M12 2 Q8 6 4 8 Q4 15 8 19 Q10 21 12 22 Q14 21 16 19 Q20 15 20 8 Q16 6 12 2Z" stroke="#06b6d4" stroke-width="2" fill="rgba(6,182,212,0.1)"/>
+								<path d="M9 12 L11 14 L15 10" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</div>
+						<div class="why-text">
+							<h3>Safe Chemicals, Every Time</h3>
+							<p>EU-approved products, correctly dosed. Child and pet-safe water maintained on every visit, with proper chemical disposal.</p>
+						</div>
 					</div>
-					<p class="review-text">"Very thorough and reliable. They explain what they're doing and why. We've used them for two years."</p>
-					<div class="review-author">Sofia L.</div>
-					<div class="review-city">Larnaca</div>
+					<div class="why-card">
+						<div class="why-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+								<rect x="4" y="11" width="16" height="10" rx="2" stroke="#06b6d4" stroke-width="2"/>
+								<path d="M8 11 L8 7 Q8 3 12 3 Q16 3 16 7 L16 11" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+								<circle cx="12" cy="16" r="1.5" fill="#06b6d4"/>
+							</svg>
+						</div>
+						<div class="why-text">
+							<h3>Guaranteed Results</h3>
+							<p>Crystal clear water after every visit. If your pool isn't right, we come back at no additional cost until it is.</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Footer CTA -->
-		<div class="footer-cta">
-			<h2 class="footer-cta-title">Ready for a cleaner pool?</h2>
-			<p class="footer-cta-desc">Get a free quote — no commitment, just a quick chat about your pool and what it needs.</p>
-			<div class="contact-row">
-				<a href="tel:+35700000000" class="cta-button primary">
-					<Phone size={16} />
-					Call Us Now
-				</a>
-				<a href="mailto:hello@poolcleaningcyprus.com" class="cta-button secondary">
-					<Mail size={16} />
-					Send an Email
-				</a>
-			</div>
-		</div>
+		<!-- ══ TESTIMONIALS ══ -->
+		<section class="testimonials" id="reviews">
+			<div class="section-inner">
+				<div class="section-header">
+					<span class="section-tag">Reviews</span>
+					<h2>What Our Clients Say</h2>
+					<div class="section-divider"></div>
+					<p class="section-desc">Over 2,000 pools maintained. Here's what pool owners across Cyprus say about our service.</p>
+				</div>
+				<div class="testimonials-grid">
 
+					<div class="review-card">
+						<div class="review-quote-icon">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
+						</div>
+						<div class="review-stars">
+							<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+						</div>
+						<p class="review-text">"Our pool has never looked better. They come every week without fail and the water is always perfect. Best decision we made for our villa."</p>
+						<div class="review-author">
+							<div class="review-avatar">MK</div>
+							<div>
+								<div class="review-name">Maria K.</div>
+								<div class="review-city">Limassol</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="review-card">
+						<div class="review-quote-icon">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
+						</div>
+						<div class="review-stars">
+							<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+						</div>
+						<p class="review-text">"Took over our pool after it turned completely green. Transformed it in two visits. Professional, honest, and very fairly priced. Highly recommend."</p>
+						<div class="review-author">
+							<div class="review-avatar">AP</div>
+							<div>
+								<div class="review-name">Andreas P.</div>
+								<div class="review-city">Paphos</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="review-card">
+						<div class="review-quote-icon">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
+						</div>
+						<div class="review-stars">
+							<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+						</div>
+						<p class="review-text">"Professional, punctual, and very reasonably priced. Our entire villa complex uses them now — 8 pools and not a single issue. Outstanding service."</p>
+						<div class="review-author">
+							<div class="review-avatar">JT</div>
+							<div>
+								<div class="review-name">James T.</div>
+								<div class="review-city">Nicosia</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="review-card">
+						<div class="review-quote-icon">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
+						</div>
+						<div class="review-stars">
+							<span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+						</div>
+						<p class="review-text">"Very thorough and reliable. They always explain what they've done and why. We've used them for two years and never had a problem. Great team."</p>
+						<div class="review-author">
+							<div class="review-avatar">SL</div>
+							<div>
+								<div class="review-name">Sofia L.</div>
+								<div class="review-city">Larnaca</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- ══ AREAS ══ -->
+		<section class="areas" id="areas">
+			<div class="section-inner">
+				<div class="section-header">
+					<span class="section-tag">Coverage</span>
+					<h2>We Serve All of Cyprus</h2>
+					<div class="section-divider"></div>
+					<p class="section-desc">From Paphos to Famagusta — wherever your pool is, we'll come to you.</p>
+				</div>
+				<div class="areas-grid">
+					<a class="area-chip" href="/pool-cleaning-limassol"><span class="area-dot"></span>Limassol</a>
+					<a class="area-chip" href="/pool-cleaning-paphos"><span class="area-dot"></span>Paphos</a>
+					<div class="area-chip"><span class="area-dot"></span>Nicosia</div>
+					<div class="area-chip"><span class="area-dot"></span>Larnaca</div>
+					<div class="area-chip"><span class="area-dot"></span>Famagusta</div>
+					<div class="area-chip"><span class="area-dot"></span>Ayia Napa</div>
+					<div class="area-chip"><span class="area-dot"></span>Protaras</div>
+					<div class="area-chip"><span class="area-dot"></span>Kyrenia</div>
+				</div>
+				<p class="areas-note">Not sure if we cover your area? <a href="#contact">Ask us</a> — we travel throughout the island.</p>
+			</div>
+		</section>
+
+		<!-- ══ CONTACT ══ -->
+		<section class="contact" id="contact">
+			<div class="contact-inner">
+				<div class="contact-info">
+					<span class="section-tag">Get In Touch</span>
+					<h2>Get a Free Quote</h2>
+					<div class="section-divider"></div>
+					<p class="intro-text">Tell us about your pool and we'll get back to you within 2 hours with a clear, no-obligation price. No jargon, no surprises.</p>
+
+					<div class="contact-item">
+						<div class="contact-icon">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+								<rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="2"/>
+								<path d="M3 7 L12 13 L21 7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+							</svg>
+						</div>
+						<div>
+							<p class="contact-label">Email</p>
+							<a href="mailto:hello@poolcleaningcyprus.com" class="contact-value">hello@poolcleaningcyprus.com</a>
+						</div>
+					</div>
+
+					<div class="contact-item">
+						<div class="contact-icon">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+								<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</div>
+						<div>
+							<p class="contact-label">Phone</p>
+							<a href="tel:+35700000000" class="contact-value">+357 00 000 000</a>
+						</div>
+					</div>
+
+					<div class="contact-item">
+						<div class="contact-icon">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+								<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="rgba(255,255,255,0.8)"/>
+								<circle cx="12" cy="9" r="2.5" fill="#0a1628"/>
+							</svg>
+						</div>
+						<div>
+							<p class="contact-label">Based In</p>
+							<span class="contact-value">Limassol — Island-wide coverage</span>
+						</div>
+					</div>
+				</div>
+
+				<form class="contact-form" name="contact" method="POST" data-netlify="true">
+					<input type="hidden" name="form-name" value="contact" />
+					<div class="form-group">
+						<label for="name">Your Name</label>
+						<input type="text" id="name" name="name" placeholder="Your Name" required />
+					</div>
+					<div class="form-group">
+						<label for="email">Email Address</label>
+						<input type="email" id="email" name="email" placeholder="you@example.com" />
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone Number</label>
+						<input type="tel" id="phone" name="phone" placeholder="+357 XX XXX XXX" />
+					</div>
+					<div class="form-group">
+						<label for="message">About Your Pool (optional)</label>
+						<textarea id="message" name="message" placeholder="Pool size, location, current condition, frequency needed..."></textarea>
+					</div>
+					<div class="form-submit">
+						<button type="submit" class="btn-primary">Send Request &rarr;</button>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<!-- ══ FOOTER ══ -->
 		<footer>
-			&copy; {new Date().getFullYear()} Pool Cleaning Cyprus &mdash; Serving Limassol, Paphos, Nicosia, Larnaca & beyond.
+			<p>&copy; {new Date().getFullYear()} <strong style="color: rgba(186,230,253,0.6);">Pool Cleaning Cyprus</strong>. All rights reserved. Professional pool cleaning and maintenance across Cyprus.</p>
+			<p style="margin-top: 6px; opacity: 0.6;">Also need pest control? Visit <a href="https://pestcontrolcyp.com">Pest Control Cyprus</a></p>
 		</footer>
 	</body>
 </html>
