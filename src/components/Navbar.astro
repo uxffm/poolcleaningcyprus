@@ -11,6 +11,20 @@ const isBlog = pathname.startsWith('/blog');
 ---
 
 <nav class="navbar">
+	<a href="/" class="nav-brand" data-astro-prefetch="load">
+		<svg class="brand-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<circle cx="14" cy="14" r="13" fill="url(#dropGrad)" opacity="0.15"/>
+			<path d="M14 4C14 4 7 12 7 17a7 7 0 0 0 14 0c0-5-7-13-7-13z" fill="url(#dropGrad)"/>
+			<path d="M10.5 18.5C10.5 16.5 12 15 14 15" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+			<defs>
+				<linearGradient id="dropGrad" x1="14" y1="4" x2="14" y2="24" gradientUnits="userSpaceOnUse">
+					<stop offset="0%" stop-color="#38bdf8"/>
+					<stop offset="100%" stop-color="#0284c7"/>
+				</linearGradient>
+			</defs>
+		</svg>
+		<span class="brand-text">Pool Cleaning Cyprus</span>
+	</a>
 	<div class="nav-links">
 		<a href="/" class={`nav-item ${isHome ? 'active' : ''}`} data-astro-prefetch="load">Home</a>
 		<a href="/about" class={`nav-item ${isAbout ? 'active' : ''}`} data-astro-prefetch="load">About</a>
@@ -28,27 +42,52 @@ const isBlog = pathname.startsWith('/blog');
 <style>
 	.navbar {
 		position: fixed;
-		top: 24px;
-		left: 50%;
-		transform: translateX(-50%);
+		top: 0;
+		left: 0;
+		right: 0;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		gap: 8px;
 		z-index: 1000;
-		background: rgba(255, 255, 255, 0.75);
+		background: rgba(255, 255, 255, 0.88);
 		backdrop-filter: blur(20px);
 		-webkit-backdrop-filter: blur(20px);
-		padding: 12px 20px;
-		border-radius: 50px;
-		border: 1px solid rgba(0, 0, 0, 0.08);
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+		padding: 0 32px;
+		height: 64px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+		box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+	}
+
+	.nav-brand {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		text-decoration: none;
+		margin-right: auto;
+		flex-shrink: 0;
+	}
+
+	.brand-icon {
+		flex-shrink: 0;
+	}
+
+	.brand-text {
+		font-size: 1rem;
+		font-weight: 700;
+		color: #0c1a2e;
+		letter-spacing: -0.01em;
+		white-space: nowrap;
+	}
+
+	:global(html.dark) .brand-text {
+		color: #e0f2fe;
 	}
 
 	:global(html.dark) .navbar {
-		background: rgba(10, 30, 50, 0.5);
-		border-color: rgba(255, 255, 255, 0.1);
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+		background: rgba(10, 22, 40, 0.92);
+		border-color: rgba(255, 255, 255, 0.08);
+		box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
 	}
 
 	.nav-links {
@@ -125,16 +164,32 @@ const isBlog = pathname.startsWith('/blog');
 		background: rgba(56, 189, 248, 0.1);
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 768px) {
 		.navbar {
-			top: 16px;
-			padding: 8px 12px;
+			padding: 0 16px;
+			height: 56px;
+		}
+		.brand-text {
+			font-size: 0.85rem;
 		}
 		.nav-item {
-			padding: 7px 10px;
-			font-size: 0.8rem;
+			padding: 6px 8px;
+			font-size: 0.78rem;
 		}
-		.theme-toggle { margin-left: 2px; }
+		.theme-toggle { margin-left: 0; }
+	}
+
+	@media (max-width: 480px) {
+		.nav-links {
+			gap: 0;
+		}
+		.nav-item {
+			padding: 5px 6px;
+			font-size: 0.74rem;
+		}
+		.brand-text {
+			display: none;
+		}
 	}
 </style>
 
