@@ -4,7 +4,6 @@ import { Moon, Sun } from '@lucide/astro';
 const pathname = Astro.url.pathname;
 const isHome = pathname === '/';
 const isAbout = pathname.startsWith('/about');
-const isPrices = pathname.startsWith('/prices');
 const isLimassol = pathname.startsWith('/pool-cleaning-limassol');
 const isPaphos = pathname.startsWith('/pool-cleaning-paphos');
 const isBlog = pathname.startsWith('/blog');
@@ -28,7 +27,7 @@ const isBlog = pathname.startsWith('/blog');
 	<div class="nav-links">
 		<a href="/" class={`nav-item ${isHome ? 'active' : ''}`} data-astro-prefetch="load">Home</a>
 		<a href="/about" class={`nav-item ${isAbout ? 'active' : ''}`} data-astro-prefetch="load">About</a>
-		<a href="/prices" class={`nav-item ${isPrices ? 'active' : ''}`} data-astro-prefetch="load">Prices</a>
+		<a href="/#pricing" class="nav-item" data-astro-prefetch="load">Prices</a>
 		<a href="/pool-cleaning-limassol" class={`nav-item ${isLimassol ? 'active' : ''}`} data-astro-prefetch="load">Limassol</a>
 		<a href="/pool-cleaning-paphos" class={`nav-item ${isPaphos ? 'active' : ''}`} data-astro-prefetch="load">Paphos</a>
 		<a href="/blog" class={`nav-item ${isBlog ? 'active' : ''}`} data-astro-prefetch="load">Blog</a>

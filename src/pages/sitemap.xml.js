@@ -6,8 +6,7 @@ export async function GET() {
 	const staticPages = [
 		{ url: '/',                          priority: '1.0', changefreq: 'weekly' },
 		{ url: '/about/',                    priority: '0.7', changefreq: 'monthly' },
-		{ url: '/prices/',                   priority: '0.8', changefreq: 'monthly' },
-		{ url: '/pool-cleaning-limassol/',   priority: '0.9', changefreq: 'monthly' },
+{ url: '/pool-cleaning-limassol/',   priority: '0.9', changefreq: 'monthly' },
 		{ url: '/pool-cleaning-paphos/',     priority: '0.9', changefreq: 'monthly' },
 		{ url: '/blog/',                     priority: '0.8', changefreq: 'weekly' },
 	];
