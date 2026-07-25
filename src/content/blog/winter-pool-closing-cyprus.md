@@ -93,7 +93,7 @@ Slowly, yes — and Cyprus water rarely stays cold for long. One warm week in Fe
 No — and please don't. An empty pool in winter risks serious structural damage from groundwater pressure, and refilling a large pool is expensive in a country where water isn't cheap. Pools should only be drained for specific repair or deep-clean reasons, and only briefly.
 
 **What does a winter schedule cost?**
-Less than you'd think — bi-weekly winter visits typically run well below summer rates. [See our pricing](/prices) or call for a quote based on your pool.
+Less than you'd think — bi-weekly winter visits typically run well below summer rates. [See our pricing](/#pricing) or call for a quote based on your pool.
 
 ---
 
