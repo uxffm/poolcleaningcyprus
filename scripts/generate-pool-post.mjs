@@ -101,6 +101,8 @@ Requirements:
 - End with a short call to action (call or email us)
 - Do NOT include any internal or external hyperlinks — no markdown links at all
 - Do NOT include frontmatter, do NOT include an H1 title — start directly with a short intro paragraph
+- Em dashes: use sparingly — no more than three or four in the entire post, and only where an aside genuinely earns the pause. Prefer full stops and commas. Do not join clauses with a dash out of habit.
+- Be precise with terminology and avoid overclaiming (e.g. "among the hardest" not "the hardest", name the specific component when it matters)
 
 Return ONLY the markdown body content, nothing else.`;
 
