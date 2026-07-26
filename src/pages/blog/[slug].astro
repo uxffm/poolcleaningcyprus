@@ -15,6 +15,7 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 
 const siteUrl = "https://poolcleaningcyprus.com";
+const siteName = "Pool Cleaning Cyprus";
 ---
 
 <!DOCTYPE html>
@@ -31,102 +32,138 @@ const siteUrl = "https://poolcleaningcyprus.com";
 		<link rel="alternate" hreflang="en" href={`${siteUrl}/blog/${post.slug}/`} />
 		<meta name="geo.region" content="CY" />
 		<meta name="geo.placename" content="Cyprus" />
-		<meta name="geo.position" content="35.1264;33.4299" />
-		<meta name="ICBM" content="35.1264, 33.4299" />
 		<meta property="og:title" content={post.data.title} />
 		<meta property="og:description" content={post.data.description} />
 		<meta property="og:type" content="article" />
+		<meta property="og:url" content={`${siteUrl}/blog/${post.slug}/`} />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="article:published_time" content={post.data.pubDate.toISOString()} />
+		<meta property="article:author" content={post.data.author} />
+		<script type="application/ld+json" is:inline set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "BlogPosting",
+			"headline": post.data.title,
+			"description": post.data.description,
+			"datePublished": post.data.pubDate.toISOString(),
+			"author": { "@type": "Organization", "name": post.data.author, "url": siteUrl },
+			"publisher": { "@type": "Organization", "name": siteName, "url": siteUrl },
+			"mainEntityOfPage": { "@type": "WebPage", "@id": `${siteUrl}/blog/${post.slug}/` }
+		})} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<ClientRouter />
 
 		<style>
-			* { margin: 0; padding: 0; box-sizing: border-box; }
-			html { scroll-behavior: smooth; }
-			body {
-				font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-				background: #f0f9ff;
-				color: #0c1a2e;
-				min-height: 100vh;
-				overflow-x: hidden;
-			}
-			:global(html.dark) body { background: #071829; color: #e0f2fe; }
+			:root {
+				--deep:  #072A38;
+				--water: #1B7A9E;
+				--aqua:  #6FD4E4;
+				--tile:  #F2F9FB;
+				--sun:   #FFC93C;
+				--ink:   #0A2530;
+				--muted: #3D6272;
 
-			.page-wrapper {
+				--font-display: "Bricolage Grotesque", sans-serif;
+				--font-body:    "Inter", sans-serif;
+
+				--radius: 14px;
+				--maxw:   1080px;
+			}
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; }
+			html { scroll-behavior: smooth; }
+
+			body {
+				font-family: var(--font-body);
+				color: var(--ink);
+				background: var(--tile);
+				line-height: 1.6;
+			}
+
+			.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+			a { color: inherit; }
+
+			.tile-strip {
+				height: 14px;
+				background:
+					repeating-linear-gradient(90deg,
+						var(--aqua)  0 22px,
+						var(--tile) 22px 26px,
+						var(--water) 26px 48px,
+						var(--tile) 48px 52px);
+			}
+
+			.page-section {
+				padding: 100px 0 80px;
+			}
+
+			.page-inner {
 				max-width: 680px;
-				margin: 0 auto;
-				padding: 140px 24px 80px;
 			}
 
 			.back-link {
 				display: inline-flex;
 				align-items: center;
 				gap: 6px;
-				font-size: 0.85rem;
+				font-size: .875rem;
 				font-weight: 500;
-				color: #0ea5e9;
+				color: var(--water);
 				text-decoration: none;
 				margin-bottom: 40px;
-				transition: gap 0.2s ease;
+				transition: gap .15s ease;
 			}
 			.back-link:hover { gap: 10px; }
-			:global(html.dark) .back-link { color: #38bdf8; }
 
 			.post-meta {
-				font-size: 0.78rem;
+				font-size: .78rem;
 				font-weight: 600;
-				color: #0ea5e9;
+				color: var(--water);
 				text-transform: uppercase;
-				letter-spacing: 0.06em;
+				letter-spacing: .06em;
 				margin-bottom: 16px;
 			}
-			:global(html.dark) .post-meta { color: #38bdf8; }
 
 			h1 {
-				font-size: clamp(1.8rem, 5vw, 2.6rem);
-				font-weight: 700;
-				letter-spacing: -0.03em;
-				color: #0c1a2e;
-				margin-bottom: 40px;
-				line-height: 1.2;
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: clamp(1.8rem, 5vw, 2.8rem);
+				line-height: 1.1;
+				color: var(--ink);
+				margin-bottom: 32px;
 			}
-			:global(html.dark) h1 { color: #e0f2fe; }
 
 			.divider {
 				border: none;
-				border-top: 1px solid rgba(14,165,233,0.12);
+				border-top: 1px solid #DCEBF0;
 				margin-bottom: 40px;
 			}
-			:global(html.dark) .divider { border-color: rgba(56,189,248,0.08); }
 
-			/* Article content styles */
+			/* Article prose */
 			.prose :global(p) {
 				font-size: 1rem;
 				line-height: 1.8;
-				color: #334155;
+				color: var(--muted);
 				margin-bottom: 20px;
 			}
-			:global(html.dark) .prose :global(p) { color: #94a3b8; }
 
 			.prose :global(h2) {
+				font-family: var(--font-display);
 				font-size: 1.4rem;
 				font-weight: 700;
-				color: #0c1a2e;
+				color: var(--ink);
 				margin: 40px 0 16px;
-				letter-spacing: -0.02em;
 			}
-			:global(html.dark) .prose :global(h2) { color: #e0f2fe; }
 
 			.prose :global(h3) {
+				font-family: var(--font-display);
 				font-size: 1.1rem;
-				font-weight: 600;
-				color: #0c1a2e;
+				font-weight: 700;
+				color: var(--ink);
 				margin: 28px 0 12px;
 			}
-			:global(html.dark) .prose :global(h3) { color: #e0f2fe; }
 
 			.prose :global(ul), .prose :global(ol) {
 				padding-left: 24px;
@@ -136,45 +173,112 @@ const siteUrl = "https://poolcleaningcyprus.com";
 			.prose :global(li) {
 				font-size: 1rem;
 				line-height: 1.7;
-				color: #334155;
+				color: var(--muted);
 				margin-bottom: 6px;
 			}
-			:global(html.dark) .prose :global(li) { color: #94a3b8; }
 
-			.prose :global(strong) { color: #0c1a2e; font-weight: 600; }
-			:global(html.dark) .prose :global(strong) { color: #e0f2fe; }
+			.prose :global(strong) { color: var(--ink); font-weight: 600; }
 
-			footer {
-				text-align: center;
-				padding: 32px 24px;
-				font-size: 0.82rem;
-				color: #94a3b8;
-				border-top: 1px solid rgba(14,165,233,0.1);
-				margin-top: 40px;
+			.prose :global(a) {
+				color: var(--water);
+				text-decoration: underline;
+				text-underline-offset: 3px;
 			}
-			:global(html.dark) footer { border-color: rgba(56,189,248,0.08); }
+
+			.prose :global(blockquote) {
+				border-left: 3px solid var(--aqua);
+				padding-left: 20px;
+				margin: 24px 0;
+				color: var(--muted);
+				font-style: italic;
+			}
+
+			.prose :global(table) {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 24px;
+				font-size: .9rem;
+			}
+
+			.prose :global(th) {
+				background: var(--deep);
+				color: #CFE8F0;
+				padding: 10px 14px;
+				text-align: left;
+				font-weight: 600;
+			}
+
+			.prose :global(td) {
+				padding: 10px 14px;
+				border-bottom: 1px solid #DCEBF0;
+				color: var(--muted);
+			}
+
+			.prose :global(tr:nth-child(even) td) {
+				background: #fff;
+			}
+
+			.prose :global(hr) {
+				border: none;
+				border-top: 1px solid #DCEBF0;
+				margin: 40px 0;
+			}
+
+			/* Footer */
+			footer {
+				background: var(--deep);
+				color: #9FC6D3;
+				padding: 40px 0;
+				font-size: .9rem;
+			}
+
+			.foot {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 16px;
+			}
+
+			footer a { color: #CFE8F0; text-decoration: none; margin-left: 20px; }
+			footer a:hover { color: var(--sun); }
 		</style>
 	</head>
 	<body>
+		<div class="tile-strip" aria-hidden="true"></div>
 		<Navbar />
-		<div class="page-wrapper">
-			<a href="/blog" class="back-link">← Back to Blog</a>
 
-			<div class="post-meta">
-				{post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-				&nbsp;·&nbsp; {post.data.author}
+		<section class="page-section">
+			<div class="wrap">
+				<div class="page-inner">
+					<a href="/blog" class="back-link">← Back to Blog</a>
+
+					<div class="post-meta">
+						{post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+						&nbsp;·&nbsp; {post.data.author}
+					</div>
+
+					<h1>{post.data.title}</h1>
+					<hr class="divider" />
+
+					<article class="prose">
+						<Content />
+					</article>
+				</div>
 			</div>
+		</section>
 
-			<h1>{post.data.title}</h1>
-			<hr class="divider" />
-
-			<article class="prose">
-				<Content />
-			</article>
-		</div>
+		<div class="tile-strip" aria-hidden="true"></div>
 
 		<footer>
-			&copy; {new Date().getFullYear()} Pool Cleaning Cyprus &mdash; Serving Limassol, Paphos, Nicosia, Larnaca & beyond.
+			<div class="wrap foot">
+				<span>&copy; {new Date().getFullYear()} Pool Cleaning Cyprus. Pool cleaning and maintenance across Cyprus.</span>
+				<span>
+					<a href="/#services">Services</a>
+					<a href="/#pricing">Pricing</a>
+					<a href="/#quote">Free quote</a>
+				</span>
+			</div>
 		</footer>
 	</body>
 </html>
