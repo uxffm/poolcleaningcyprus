@@ -65,6 +65,6 @@ Scale also creates rough surfaces where algae can anchor. Keeping your pH betwee
 
 If you're heading into the peak summer months, run a full water test — not just chlorine, but pH, alkalinity, stabiliser, and calcium hardness. Adjust accordingly before the heat peaks, not after you've already got a problem.
 
-The team at [Pool Cleaning Cyprus](/) works across Limassol, Paphos, Nicosia, Larnaca, and the surrounding areas, and we see the same preventable issues every summer. Getting your chemistry right in May makes June through September manageable. Waiting until your pool turns green in July means an emergency visit, a higher chemical bill, and potentially losing several days of swimming.
+Pool Cleaning Cyprus works across Limassol, Paphos, Nicosia, Larnaca, and the surrounding areas, and we see the same preventable issues every summer. Getting your chemistry right in May makes June through September manageable. Waiting until your pool turns green in July means an emergency visit, a higher chemical bill, and potentially losing several days of swimming.
 
 **Call us or send an email** — we'll assess your pool, balance your water properly for the Cyprus summer, and put you on a maintenance schedule that keeps algae from ever becoming your problem.

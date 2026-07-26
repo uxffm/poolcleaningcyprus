@@ -99,7 +99,7 @@ Requirements:
 - Structure: 3–5 clear H2 sections with genuine substance. H3 subheadings where useful.
 - Audience: Pool owners in Cyprus — homeowners, villa owners, holiday rental managers
 - End with a short call to action (call or email us)
-- Internal links: naturally link to the homepage (/) once using anchor text like "Pool Cleaning Cyprus" or "our team"
+- Do NOT include any internal or external hyperlinks — no markdown links at all
 - Do NOT include frontmatter, do NOT include an H1 title — start directly with a short intro paragraph
 
 Return ONLY the markdown body content, nothing else.`;
