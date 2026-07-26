@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 9 * * *'
   workflow_dispatch:
+    inputs:
+      topic_index:
+        description: 'Topic index to generate (leave empty for today)'
+        required: false
 
 permissions:
   contents: write
@@ -26,6 +30,7 @@ jobs:
         run: node scripts/generate-pool-post.mjs
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TOPIC_INDEX: ${{ inputs.topic_index }}
 
       - name: Commit and push
         uses: stefanzweifel/git-auto-commit-action@v5
