@@ -75,7 +75,7 @@ const callClaude = async (prompt) => {
 };
 
 const getTodayIndex = () => {
-  if (process.env.TOPIC_INDEX !== undefined) return parseInt(process.env.TOPIC_INDEX, 10);
+  if (process.env.TOPIC_INDEX) return parseInt(process.env.TOPIC_INDEX, 10);
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const start = new Date(START_DATE);
