@@ -10,3 +10,28 @@
   to = "https://poolcleaningcyprus.com/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/blog/2026-07-27-keeping-your-pool-water-balanced-during-cyprus-summer-heat/"
+  to = "/blog/pool-chemistry-chlorine-ph-alkalinity-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/2026-07-28-keeping-your-pool-water-balanced-in-cyprus-heat-a-local-guid/"
+  to = "/blog/pool-chemistry-chlorine-ph-alkalinity-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/2026-07-29-keeping-your-pool-water-balanced-in-cyprus-s-hot-climate/"
+  to = "/blog/pool-chemistry-chlorine-ph-alkalinity-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/2026-07-30-keeping-your-cyprus-pool-water-balanced-during-hot-summer-mo/"
+  to = "/blog/pool-chemistry-chlorine-ph-alkalinity-guide/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/2026-07-31-keep-your-cyprus-pool-water-balanced-during-summer-heat/"
+  to = "/blog/pool-chemistry-chlorine-ph-alkalinity-guide/"
+  status = 301
