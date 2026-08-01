@@ -753,30 +753,6 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 			</div>
 		</section>
 
-		<!-- ══ REVIEWS ══ -->
-		<section class="reviews" id="reviews">
-			<div class="wrap">
-				<div class="section-head">
-					<h2>{reviews.heading}</h2>
-					<p>{reviews.subheading}</p>
-				</div>
-				<div class="reviews-grid">
-					{reviews.items.map(review => (
-						<div class="review">
-							<div class="stars" set:html={"★".repeat(review.stars) + (review.stars < 5 ? `<span style="color:#d1d5db;">${"★".repeat(5 - review.stars)}</span>` : "")} />
-							<blockquote>"{review.quote}"</blockquote>
-							<div class="reviewer">
-								<div class="avatar">{review.initials}</div>
-								<div>
-									<div class="reviewer-name">{review.name}</div>
-									<div class="reviewer-city">{review.city}</div>
-								</div>
-							</div>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
 
 		<!-- ══ AREAS ══ -->
 		<section class="areas" id="areas">
