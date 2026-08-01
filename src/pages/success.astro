@@ -1,0 +1,154 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { site } from '../data/content';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Message sent | {site.name}</title>
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<style>
+			:root {
+				--deep:  #072A38;
+				--water: #1B7A9E;
+				--aqua:  #6FD4E4;
+				--tile:  #F2F9FB;
+				--sun:   #FFC93C;
+				--ink:   #0A2530;
+				--muted: #3D6272;
+				--font-display: "Bricolage Grotesque", sans-serif;
+				--font-body:    "Inter", sans-serif;
+				--radius: 14px;
+				--maxw:   1080px;
+			}
+			*, *::before, *::after { box-sizing: border-box; margin: 0; }
+			body {
+				font-family: var(--font-body);
+				color: var(--ink);
+				background: var(--tile);
+				line-height: 1.6;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+			}
+			.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+			a { color: inherit; }
+			a:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+
+			.tile-strip {
+				height: 14px;
+				background:
+					repeating-linear-gradient(90deg,
+						var(--aqua)  0 22px,
+						var(--tile) 22px 26px,
+						var(--water) 26px 48px,
+						var(--tile) 48px 52px);
+			}
+
+			.success-section {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				padding: 80px 0;
+			}
+
+			.success-inner {
+				max-width: 560px;
+			}
+
+			.eyebrow {
+				display: inline-block;
+				font-size: .8rem;
+				letter-spacing: .12em;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: var(--water);
+				margin-bottom: 16px;
+			}
+
+			h1 {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: clamp(2rem, 5vw, 3rem);
+				line-height: 1.1;
+				color: var(--ink);
+				margin-bottom: 20px;
+			}
+
+			p {
+				font-size: 1.05rem;
+				color: var(--muted);
+				margin-bottom: 32px;
+			}
+
+			.btn {
+				display: inline-block;
+				padding: 14px 28px;
+				background: var(--water);
+				color: #fff;
+				font-family: var(--font-display);
+				font-weight: 700;
+				font-size: .95rem;
+				border-radius: var(--radius);
+				text-decoration: none;
+				transition: transform .15s ease, box-shadow .15s ease;
+			}
+			.btn:hover { transform: translateY(-2px); }
+
+			footer {
+				background: var(--deep);
+				color: #9FC6D3;
+				font-size: .85rem;
+				padding: 24px 0;
+			}
+			.foot {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 16px;
+				flex-wrap: wrap;
+			}
+			footer a { color: #9FC6D3; text-decoration: none; margin-left: 20px; }
+			footer a:hover { color: var(--tile); }
+		</style>
+	</head>
+	<body>
+		<div class="tile-strip" aria-hidden="true"></div>
+		<Navbar />
+
+		<section class="success-section">
+			<div class="wrap">
+				<div class="success-inner">
+					<span class="eyebrow">Message received</span>
+					<h1>Thanks — we'll be in touch soon.</h1>
+					<p>We've got your request and will get back to you within one business day. We're based in Coral Bay, Paphos and serve pools across the island.</p>
+					<a href="/" class="btn">Back to homepage →</a>
+				</div>
+			</div>
+		</section>
+
+		<div class="tile-strip" aria-hidden="true"></div>
+
+		<footer>
+			<div class="wrap foot">
+				<span>&copy; {new Date().getFullYear()} {site.name}. Pool cleaning and maintenance across Cyprus.</span>
+				<span>
+					<a href="/#services">Services</a>
+					<a href="/#pricing">Pricing</a>
+					<a href="/#quote">Free quote</a>
+				</span>
+			</div>
+		</footer>
+	</body>
+</html>

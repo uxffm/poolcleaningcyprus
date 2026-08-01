@@ -1,12 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import { ClientRouter } from 'astro:transitions';
-
-const siteTitle = "Pool Cleaning Cyprus | Professional Swimming Pool Services";
-const siteDescription = "Professional pool cleaning and maintenance services across Cyprus. Crystal clear pools in Limassol, Nicosia, Paphos, and Larnaca. Reliable, affordable, and thorough.";
-const siteUrl = "https://poolcleaningcyprus.com";
-const siteName = "Pool Cleaning Cyprus";
-const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, pool service limassol, pool cleaning paphos, pool maintenance nicosia, larnaca pool cleaning, pool chemicals cyprus, pool repair cyprus";
+import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricing, whyUs, reviews, areas, quoteSection } from '../data/content';
 ---
 
 <!DOCTYPE html>
@@ -16,26 +11,26 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-		<title>{siteTitle}</title>
-		<meta name="title" content={siteTitle} />
-		<meta name="description" content={siteDescription} />
-		<meta name="keywords" content={siteKeywords} />
-		<meta name="author" content={siteName} />
+		<title>{homeMeta.title}</title>
+		<meta name="title" content={homeMeta.title} />
+		<meta name="description" content={homeMeta.description} />
+		<meta name="keywords" content={homeMeta.keywords} />
+		<meta name="author" content={site.name} />
 		<meta name="robots" content="index, follow" />
-		<link rel="canonical" href={siteUrl} />
+		<link rel="canonical" href={site.url} />
 
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={siteUrl} />
-		<meta property="og:title" content={siteTitle} />
-		<meta property="og:description" content={siteDescription} />
-		<meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
-		<meta property="og:site_name" content={siteName} />
+		<meta property="og:url" content={site.url} />
+		<meta property="og:title" content={homeMeta.title} />
+		<meta property="og:description" content={homeMeta.description} />
+		<meta property="og:image" content={`${site.url}/og-image.jpg`} />
+		<meta property="og:site_name" content={site.name} />
 		<meta property="og:locale" content="en_CY" />
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={siteTitle} />
-		<meta name="twitter:description" content={siteDescription} />
-		<meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
+		<meta name="twitter:title" content={homeMeta.title} />
+		<meta name="twitter:description" content={homeMeta.description} />
+		<meta name="twitter:image" content={`${site.url}/og-image.jpg`} />
 
 		<meta name="geo.region" content="CY" />
 		<meta name="geo.placename" content="Cyprus" />
@@ -50,22 +45,20 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<meta name="generator" content={Astro.generator} />
 		<ClientRouter />
 
-		<script type="application/ld+json" is:inline>
-		{
+		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "LocalBusiness",
-			"name": "Pool Cleaning Cyprus",
+			"name": site.name,
 			"description": "Professional swimming pool cleaning and maintenance services across Cyprus.",
-			"url": "https://poolcleaningcyprus.com",
-			"email": "hello@poolcleaningcyprus.com",
-			"address": { "@type": "PostalAddress", "addressLocality": "Limassol", "addressCountry": "CY" },
+			"url": site.url,
+			"email": contact.email,
+			"address": { "@type": "PostalAddress", "addressLocality": "Coral Bay", "addressRegion": "Paphos", "addressCountry": "CY" },
 			"geo": { "@type": "GeoCoordinates", "latitude": 34.6754, "longitude": 33.0440 },
 			"openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-14:00"],
 			"priceRange": "€€",
-			"areaServed": ["Limassol", "Nicosia", "Paphos", "Larnaca", "Famagusta"],
+			"areaServed": areas.list,
 			"serviceType": "Pool Cleaning and Maintenance"
-		}
-		</script>
+		})} />
 
 		<style>
 			:root {
@@ -326,8 +319,7 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 
 			.plan.featured { border: 2px solid var(--water); position: relative; }
 
-			.plan.featured::before {
-				content: "Most popular";
+			.plan-badge {
 				position: absolute;
 				top: -13px;
 				left: 24px;
@@ -604,22 +596,27 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<header class="hero">
 			<div class="hero-inner">
 				<div>
+<<<<<<< HEAD
 					<span class="eyebrow">Weekly pool care · Licensed &amp; insured · Cyprus</span>
 					<h1>Pool Cleaning Cyprus, <span class="accent">done properly.</span></h1>
 					<p class="hero-desc">Weekly visits that actually happen, water chemistry that's actually tested, and a photo report after every clean so you can see the work even if you're not on the island.</p>
+=======
+					<span class="eyebrow">{hero.eyebrow}</span>
+					<h1>{hero.heading} <span class="accent">{hero.headingAccent}</span></h1>
+					<p class="hero-desc">{hero.description}</p>
+>>>>>>> 69f0092 (Remove phone number, add Coral Bay address, fix Netlify form)
 					<div class="hero-ctas">
-						<a class="btn btn-sun" href="#quote">Get a free quote</a>
-						<a class="btn btn-ghost" href="#pricing">See pricing</a>
+						<a class="btn btn-sun" href="#quote">{hero.ctaPrimary}</a>
+						<a class="btn btn-ghost" href="#pricing">{hero.ctaSecondary}</a>
 					</div>
 				</div>
 
 				<aside class="report-card" aria-label="Sample water report">
-					<h3>This week's water report</h3>
-					<div class="report-row"><span>Chlorine</span><span class="pill ok">2.4 ppm · Good</span></div>
-					<div class="report-row"><span>pH</span><span class="pill ok">7.5 · Good</span></div>
-					<div class="report-row"><span>Alkalinity</span><span class="pill fix">78 ppm · Adjusted</span></div>
-					<div class="report-row"><span>Filter pressure</span><span class="pill ok">Normal</span></div>
-					<div class="report-row"><span>Next visit</span><strong>Tue, 9:00 AM</strong></div>
+					<h3>{reportCard.title}</h3>
+					{reportCard.rows.map(row => (
+						<div class="report-row"><span>{row.label}</span><span class={`pill ${row.type}`}>{row.value}</span></div>
+					))}
+					<div class="report-row"><span>Next visit</span><strong>{reportCard.nextVisit}</strong></div>
 				</aside>
 			</div>
 
@@ -632,8 +629,8 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<section class="services" id="services">
 			<div class="wrap">
 				<div class="section-head">
-					<h2>Everything your pool needs, on schedule</h2>
-					<p>One visit covers the full checklist — no upsells at the gate, no surprise line items.</p>
+					<h2>{services.heading}</h2>
+					<p>{services.subheading}</p>
 				</div>
 				<div class="cards">
 					<div class="card">
@@ -643,8 +640,8 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 								<path d="M3 12c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/>
 							</svg>
 						</div>
-						<h3>Weekly cleaning</h3>
-						<p>Skimming, vacuuming, brushing walls and the waterline, emptying skimmer and pump baskets — on every scheduled visit, without fail.</p>
+						<h3>{services.items[0].title}</h3>
+						<p>{services.items[0].description}</p>
 					</div>
 					<div class="card">
 						<div class="icon">
@@ -652,8 +649,8 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 								<path d="M9 3h6M10 3v6l-4 9a3 3 0 0 0 3 4h6a3 3 0 0 0 3-4l-4-9V3"/>
 							</svg>
 						</div>
-						<h3>Water balancing</h3>
-						<p>Cyprus tap water is hard and the summer sun burns through chlorine fast. We test pH, chlorine, alkalinity, and calcium hardness on every visit and dose before we leave.</p>
+						<h3>{services.items[1].title}</h3>
+						<p>{services.items[1].description}</p>
 					</div>
 					<div class="card">
 						<div class="icon">
@@ -662,8 +659,8 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 								<path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>
 							</svg>
 						</div>
-						<h3>Equipment checks</h3>
-						<p>Pump, filter, and baskets inspected on every visit so small issues get caught before they become expensive repairs. A pump straining is usually audible — we listen for it.</p>
+						<h3>{services.items[2].title}</h3>
+						<p>{services.items[2].description}</p>
 					</div>
 					<div class="card">
 						<div class="icon">
@@ -672,8 +669,8 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 								<path d="M9 13L11 15L15 11"/>
 							</svg>
 						</div>
-						<h3>Green pool recovery</h3>
-						<p>Shock, brush, filter, rebalance — until it's clear. Most recoveries take two to three visits. We give you a fixed price before we start, not an open-ended hourly rate.</p>
+						<h3>{services.items[3].title}</h3>
+						<p>{services.items[3].description}</p>
 					</div>
 					<div class="card">
 						<div class="icon">
@@ -683,8 +680,8 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 								<circle cx="12" cy="14" r="2" fill="#072A38"/>
 							</svg>
 						</div>
-						<h3>Winter close &amp; spring open</h3>
-						<p>We winterise in November and bring the pool back up in spring so it's swim-ready before the first hot weekend, not three weeks after it.</p>
+						<h3>{services.items[4].title}</h3>
+						<p>{services.items[4].description}</p>
 					</div>
 					<div class="card">
 						<div class="icon">
@@ -692,8 +689,8 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 								<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
 							</svg>
 						</div>
-						<h3>Emergency &amp; one-off visits</h3>
-						<p>Post-party cleans, pre-sale inspections, or "guests arrive Friday." Same-day callouts in Limassol and Paphos, next-day across the rest of the island.</p>
+						<h3>{services.items[5].title}</h3>
+						<p>{services.items[5].description}</p>
 					</div>
 				</div>
 			</div>
@@ -703,22 +700,16 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<section class="how" id="how">
 			<div class="wrap">
 				<div class="section-head">
-					<h2>How it works</h2>
-					<p>From first message to first clean in under a week.</p>
+					<h2>{howItWorks.heading}</h2>
+					<p>{howItWorks.subheading}</p>
 				</div>
 				<div class="steps">
-					<div class="step">
-						<strong>1 · Tell us about your pool.</strong>
-						<p>Call, WhatsApp, or use the form. Location, rough size, and current condition is enough. We reply within two hours during working hours.</p>
-					</div>
-					<div class="step">
-						<strong>2 · Free first visit.</strong>
-						<p>A technician comes out, tests the water, checks the equipment, and gives you a fixed price on the spot. No obligation. Recovery work gets a separate fixed quote.</p>
-					</div>
-					<div class="step">
-						<strong>3 · Your regular slot.</strong>
-						<p>Same day, same time, every week or fortnight. You get the photo report after each visit whether you're home, at work, or on another continent.</p>
-					</div>
+					{howItWorks.steps.map(step => (
+						<div class="step">
+							<strong>{step.title}</strong>
+							<p>{step.description}</p>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>
@@ -727,50 +718,26 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<section class="pricing" id="pricing">
 			<div class="wrap">
 				<div class="section-head">
-					<h2>Simple, flat pricing</h2>
-					<p>Chemicals, equipment check, and the photo report included on every plan. No call-out fee on scheduled visits.</p>
+					<h2>{pricing.heading}</h2>
+					<p>{pricing.subheading}</p>
 				</div>
 				<div class="plans">
-					<div class="plan">
-						<h3>Silver</h3>
-						<div class="price">€60<span>/visit</span></div>
-						<p class="plan-note">Bi-weekly schedule.</p>
-						<ul>
-							<li>Skim, vacuum, brush</li>
-							<li>Chemical test &amp; dose</li>
-							<li>Baskets emptied</li>
-							<li>Equipment visual check</li>
-						</ul>
-						<a class="btn btn-water" href="#quote">Get started</a>
-					</div>
-					<div class="plan featured">
-						<h3>Platinum</h3>
-						<div class="price">€45<span>/visit</span></div>
-						<p class="plan-note">Weekly schedule — cheaper per visit than Silver because weekly pools stay clean.</p>
-						<ul>
-							<li>Everything in Silver, every week</li>
-							<li>Full filter backwash</li>
-							<li>Waterline tile scrub</li>
-							<li>Photo visit report</li>
-							<li>Priority slot for callouts</li>
-						</ul>
-						<a class="btn btn-sun" href="#quote">Get started</a>
-					</div>
-					<div class="plan">
-						<h3>Elite</h3>
-						<div class="price" style="font-size: 1.8rem; padding-top: 4px;">Custom</div>
-						<p class="plan-note">For complexes, hotels, and owners who want everything handled.</p>
-						<ul>
-							<li>Everything in Platinum</li>
-							<li>Full pump &amp; filter service</li>
-							<li>Quarterly deep clean</li>
-							<li>Winter close &amp; spring open</li>
-							<li>24/7 emergency line</li>
-						</ul>
-						<a class="btn btn-water" href="#quote">Get a quote</a>
-					</div>
+					{pricing.plans.map(plan => (
+						<div class={`plan${plan.featured ? " featured" : ""}`}>
+							{plan.featured && <span class="plan-badge">{plan.featuredLabel}</span>}
+							<h3>{plan.name}</h3>
+							<div class="price" style={plan.priceUnit === "" ? "font-size: 1.8rem; padding-top: 4px;" : ""}>
+								{plan.price}{plan.priceUnit && <span>{plan.priceUnit}</span>}
+							</div>
+							<p class="plan-note">{plan.note}</p>
+							<ul>
+								{plan.features.map(f => <li>{f}</li>)}
+							</ul>
+							<a class={`btn btn-${plan.ctaStyle}`} href="#quote">{plan.cta}</a>
+						</div>
+					))}
 				</div>
-				<p class="plans-note">All prices include chemicals, the equipment check, and the photo report.</p>
+				<p class="plans-note">{pricing.note}</p>
 			</div>
 		</section>
 
@@ -778,26 +745,16 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<section class="why" id="why">
 			<div class="wrap">
 				<div class="section-head">
-					<h2>Why Pool Cleaning Cyprus</h2>
-					<p>Ten years on the island. Here's what that actually means for your pool.</p>
+					<h2>{whyUs.heading}</h2>
+					<p>{whyUs.subheading}</p>
 				</div>
 				<div class="why-grid">
-					<div class="why-card">
-						<h3>We know this island's water.</h3>
-						<p>Hard tap water, relentless summer UV, and dust that arrives every spring. Ten years of Cyprus pools means we dose for these conditions instead of following a generic manual written for somewhere with rain.</p>
-					</div>
-					<div class="why-card">
-						<h3>We show up.</h3>
-						<p>The most common complaint we hear from new clients about their old pool guy: "he just stopped coming." Fixed schedules — and if a visit ever has to move, you'll know in advance, not by noticing the pool's gone cloudy.</p>
-					</div>
-					<div class="why-card">
-						<h3>Safe water, documented.</h3>
-						<p>EU-approved chemicals, dosed to measured readings, with the numbers in your visit report. Child-safe, pet-safe, and you can check our work every single time.</p>
-					</div>
-					<div class="why-card">
-						<h3>If it's not right, we come back free.</h3>
-						<p>No small print. If your water isn't clear after a visit, message us and we return at no charge until it is. That's the whole guarantee.</p>
-					</div>
+					{whyUs.items.map(item => (
+						<div class="why-card">
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>
@@ -806,54 +763,23 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<section class="reviews" id="reviews">
 			<div class="wrap">
 				<div class="section-head">
-					<h2>What our clients say</h2>
-					<p>Over 2,000 pools maintained across Cyprus.</p>
+					<h2>{reviews.heading}</h2>
+					<p>{reviews.subheading}</p>
 				</div>
 				<div class="reviews-grid">
-					<div class="review">
-						<div class="stars">★★★★★</div>
-						<blockquote>"They've done our villa pool in Germasogeia every Tuesday for three years. The photo report is the reason we picked them; we're only in Cyprus half the year and it's how we know the work is actually done."</blockquote>
-						<div class="reviewer">
-							<div class="avatar">MK</div>
-							<div>
-								<div class="reviewer-name">Maria K.</div>
-								<div class="reviewer-city">Limassol</div>
+					{reviews.items.map(review => (
+						<div class="review">
+							<div class="stars" set:html={"★".repeat(review.stars) + (review.stars < 5 ? `<span style="color:#d1d5db;">${"★".repeat(5 - review.stars)}</span>` : "")} />
+							<blockquote>"{review.quote}"</blockquote>
+							<div class="reviewer">
+								<div class="avatar">{review.initials}</div>
+								<div>
+									<div class="reviewer-name">{review.name}</div>
+									<div class="reviewer-city">{review.city}</div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="review">
-						<div class="stars">★★★★★</div>
-						<blockquote>"Bought a house in Paphos with a pool that had been green since spring. Fixed quote of €180, clear in two visits, and we've kept them on weekly since. Straightforward people."</blockquote>
-						<div class="reviewer">
-							<div class="avatar">AP</div>
-							<div>
-								<div class="reviewer-name">Andreas P.</div>
-								<div class="reviewer-city">Paphos</div>
-							</div>
-						</div>
-					</div>
-					<div class="review">
-						<div class="stars">★★★★<span style="color: #d1d5db;">★</span></div>
-						<blockquote>"Our complex has 8 pools and they handle all of them. One scheduling mix-up in the first month, sorted the same day with an apology. Since then, faultless. Committee renewed the contract without a second quote."</blockquote>
-						<div class="reviewer">
-							<div class="avatar">JT</div>
-							<div>
-								<div class="reviewer-name">James T.</div>
-								<div class="reviewer-city">Nicosia</div>
-							</div>
-						</div>
-					</div>
-					<div class="review">
-						<div class="stars">★★★★★</div>
-						<blockquote>"Very thorough, and they explain what they're dosing and why instead of just leaving a bill. Two years, zero problems."</blockquote>
-						<div class="reviewer">
-							<div class="avatar">SL</div>
-							<div>
-								<div class="reviewer-name">Sofia L.</div>
-								<div class="reviewer-city">Larnaca</div>
-							</div>
-						</div>
-					</div>
+					))}
 				</div>
 			</div>
 		</section>
@@ -862,20 +788,15 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<section class="areas" id="areas">
 			<div class="wrap">
 				<div class="section-head">
-					<h2>Based in Limassol. Working island-wide.</h2>
-					<p>Regular routes across Limassol, Paphos, Nicosia, Larnaca, Famagusta, Ayia Napa and Protaras. Somewhere else? Ask — if we can build you into a route, we'll come.</p>
+					<h2>{areas.heading}</h2>
+					<p>{areas.subheading}</p>
 				</div>
 				<div class="area-chips">
-					<div class="area-chip"><span class="area-dot"></span>Limassol</div>
-					<div class="area-chip"><span class="area-dot"></span>Paphos</div>
-					<div class="area-chip"><span class="area-dot"></span>Nicosia</div>
-					<div class="area-chip"><span class="area-dot"></span>Larnaca</div>
-					<div class="area-chip"><span class="area-dot"></span>Famagusta</div>
-					<div class="area-chip"><span class="area-dot"></span>Ayia Napa</div>
-					<div class="area-chip"><span class="area-dot"></span>Protaras</div>
-					<div class="area-chip"><span class="area-dot"></span>Kyrenia</div>
+					{areas.list.map(name => (
+						<div class="area-chip"><span class="area-dot"></span>{name}</div>
+					))}
 				</div>
-				<p class="areas-note">Not sure if we cover your area? <a href="#quote">Ask us</a> — we travel throughout the island.</p>
+				<p class="areas-note">{areas.note} <a href="#quote">{areas.noteLink}</a> — we travel throughout the island.</p>
 			</div>
 		</section>
 
@@ -883,12 +804,21 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<section class="quote" id="quote">
 			<div class="wrap quote-grid">
 				<div>
+<<<<<<< HEAD
 					<h2>Get your free quote</h2>
 					<p class="lede">Tell us where the pool is and roughly what shape it's in. You'll have a reply within two hours (working hours), and the first visit is free.</p>
 					<p class="contact-detail">Email: <strong>hello@poolcleaningcyprus.com</strong></p>
+=======
+					<h2>{quoteSection.heading}</h2>
+					<p class="lede">{quoteSection.lede}</p>
+					<p class="contact-detail">Email: <strong>{contact.email}</strong></p>
+					<p class="contact-detail" style="margin-top: 6px;">Based in: <strong>{contact.address}</strong></p>
+					<p class="contact-detail" style="margin-top: 12px;">We're based near Coral Bay Harbour in Paphos — so when you need us, we can usually be at your pool within the hour.</p>
+>>>>>>> 69f0092 (Remove phone number, add Coral Bay address, fix Netlify form)
 				</div>
-				<form name="contact" method="POST" data-netlify="true">
+				<form name="contact" method="POST" action="/success" data-netlify="true" netlify-honeypot="bot-field">
 					<input type="hidden" name="form-name" value="contact" />
+					<p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
 					<div class="field-row">
 						<div>
 							<label for="name">Name</label>
@@ -917,7 +847,7 @@ const siteKeywords = "pool cleaning cyprus, swimming pool maintenance cyprus, po
 		<!-- ══ FOOTER ══ -->
 		<footer>
 			<div class="wrap foot">
-				<span>&copy; {new Date().getFullYear()} Pool Cleaning Cyprus. Pool cleaning and maintenance across Cyprus.</span>
+				<span>&copy; {new Date().getFullYear()} {site.name}. Pool cleaning and maintenance across Cyprus.</span>
 				<span>
 					<a href="#services">Services</a>
 					<a href="#pricing">Pricing</a>

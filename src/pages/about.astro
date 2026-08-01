@@ -1,12 +1,8 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import { ClientRouter } from 'astro:transitions';
-import { Droplets, Shield, Clock, Phone } from '@lucide/astro';
-
-const siteTitle = "About Us | Pool Cleaning Cyprus";
-const siteDescription = "Learn about Pool Cleaning Cyprus — a local team of certified pool technicians serving Limassol, Paphos, Nicosia, and Larnaca. Reliable, professional, and passionate about clean pools.";
-const siteUrl = "https://poolcleaningcyprus.com";
-const siteName = "Pool Cleaning Cyprus";
+import { Droplets, Shield, Clock, Mail } from '@lucide/astro';
+import { site, contact, aboutMeta, about } from '../data/content';
 ---
 
 <!DOCTYPE html>
@@ -14,19 +10,19 @@ const siteName = "Pool Cleaning Cyprus";
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{siteTitle}</title>
-		<meta name="description" content={siteDescription} />
-		<meta name="author" content={siteName} />
+		<title>{aboutMeta.title}</title>
+		<meta name="description" content={aboutMeta.description} />
+		<meta name="author" content={site.name} />
 		<meta name="robots" content="index, follow" />
-		<link rel="canonical" href={`${siteUrl}/about/`} />
-		<link rel="alternate" hreflang="en-CY" href={`${siteUrl}/about/`} />
-		<link rel="alternate" hreflang="en" href={`${siteUrl}/about/`} />
+		<link rel="canonical" href={`${site.url}/about/`} />
+		<link rel="alternate" hreflang="en-CY" href={`${site.url}/about/`} />
+		<link rel="alternate" hreflang="en" href={`${site.url}/about/`} />
 		<meta name="geo.region" content="CY" />
 		<meta name="geo.placename" content="Cyprus" />
 		<meta name="geo.position" content="35.1264;33.4299" />
 		<meta name="ICBM" content="35.1264, 33.4299" />
-		<meta property="og:title" content={siteTitle} />
-		<meta property="og:description" content={siteDescription} />
+		<meta property="og:title" content={aboutMeta.title} />
+		<meta property="og:description" content={aboutMeta.description} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -211,47 +207,37 @@ const siteName = "Pool Cleaning Cyprus";
 		<section class="page-section">
 			<div class="wrap">
 				<div class="page-inner">
-					<span class="eyebrow">About Us</span>
-					<h1>We Keep Cyprus<br/>Pools Sparkling</h1>
+					<span class="eyebrow">{about.eyebrow}</span>
+					<h1>{about.heading1}<br/>{about.heading2}</h1>
 
-					<p class="body-text">
-						Pool Cleaning Cyprus is a local team of certified pool technicians with years of hands-on experience across the island. We started because we saw too many beautiful pools going cloudy, green, or chemically unbalanced — often because owners didn't have the time or know-how to maintain them properly.
-					</p>
-					<p class="body-text">
-						We take care of all of that for you. From weekly visits to one-off deep cleans, equipment checks, and algae treatments — we treat every pool like it's our own.
-					</p>
+					{about.paragraphs.map(p => <p class="body-text">{p}</p>)}
 
 					<hr class="divider" />
 
-					<h2>Our Values</h2>
+					<h2>{about.valuesHeading}</h2>
 					<div class="values-grid">
 						<div class="value-card">
 							<div class="value-icon"><Droplets size={22} color="#072A38" /></div>
-							<div class="value-title">Quality First</div>
-							<div class="value-desc">We never cut corners. Every visit follows the same thorough checklist — no matter the pool size or location.</div>
+							<div class="value-title">{about.values[0].title}</div>
+							<div class="value-desc">{about.values[0].description}</div>
 						</div>
 						<div class="value-card">
 							<div class="value-icon"><Clock size={22} color="#072A38" /></div>
-							<div class="value-title">Reliability</div>
-							<div class="value-desc">We show up when we say we will. Consistent scheduling you can count on, every week.</div>
+							<div class="value-title">{about.values[1].title}</div>
+							<div class="value-desc">{about.values[1].description}</div>
 						</div>
 						<div class="value-card">
 							<div class="value-icon"><Shield size={22} color="#072A38" /></div>
-							<div class="value-title">Transparency</div>
-							<div class="value-desc">Clear pricing, honest advice, and written reports after every visit so you always know what's been done.</div>
+							<div class="value-title">{about.values[2].title}</div>
+							<div class="value-desc">{about.values[2].description}</div>
 						</div>
 					</div>
 
-					<p class="body-text">
-						We're proud to serve homeowners, villa rentals, hotels, and residential complexes across Cyprus. Whether you have a small private pool or a large commercial one, we have the equipment and expertise to keep it in perfect condition.
-					</p>
-					<p class="body-text">
-						Get in touch — we're always happy to talk through what your pool needs and give you an honest, no-pressure quote.
-					</p>
+					{about.closingParagraphs.map(p => <p class="body-text">{p}</p>)}
 
-					<a href="tel:+35700000000" class="cta-button">
-						<Phone size={16} />
-						Call Us Today
+					<a href={`mailto:${contact.email}`} class="cta-button">
+						<Mail size={16} />
+						{about.cta}
 					</a>
 				</div>
 			</div>
@@ -261,7 +247,7 @@ const siteName = "Pool Cleaning Cyprus";
 
 		<footer>
 			<div class="wrap foot">
-				<span>&copy; {new Date().getFullYear()} Pool Cleaning Cyprus. Pool cleaning and maintenance across Cyprus.</span>
+				<span>&copy; {new Date().getFullYear()} {site.name}. Pool cleaning and maintenance across Cyprus.</span>
 				<span>
 					<a href="/#services">Services</a>
 					<a href="/#pricing">Pricing</a>
