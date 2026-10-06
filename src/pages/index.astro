@@ -253,20 +253,21 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 
 			.services-top {
 				display: grid;
-				grid-template-columns: 1fr 320px;
+				grid-template-columns: 1fr 300px;
 				gap: 0 56px;
-				align-items: stretch;
+				align-items: start;
 				margin-bottom: 48px;
 			}
 			.services-photo {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
+				width: 300px;
+				height: auto;
+				min-height: 520px;
+				object-fit: contain;
 				object-position: top center;
 				mix-blend-mode: multiply;
 				display: block;
 			}
-			.services-col { display: flex; flex-direction: column; gap: 28px; padding-bottom: 60px; }
+			.services-col { display: flex; flex-direction: column; gap: 28px; }
 			.services-bottom {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
