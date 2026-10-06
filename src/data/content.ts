@@ -52,59 +52,61 @@ export const reportCard = {
 
 export const services = {
   heading:    "Everything your pool needs, on schedule",
-  subheading: "One visit covers the full checklist. We do not upsell at the gate, no surprise line items.",
-  items: [
+  subheading: "Complete swimming pool cleaning and maintenance in one regular visit. We cover the full checklist, from water treatment and filtration to equipment checks. No upselling at the gate and no surprise line items.",
+  left: [
     {
-      title:       "Weekly cleaning",
-      description: "Skimming, vacuuming, brushing walls and the waterline, emptying skimmer and pump baskets. On every scheduled visit, without fail. Tide lines removed and scale descaled where it builds up, so the waterline stays clean instead of crusting over.",
+      title:       "Weekly pool cleaning",
+      description: "Skimming, vacuuming, brushing walls and the waterline, and emptying skimmer and pump baskets. Every scheduled visit includes the full cleaning routine. Tide lines are removed and scale is treated where it builds up, helping residential and villa pools stay clean between visits.",
     },
     {
       title:       "Water balancing & testing",
-      description: "Cyprus tap water is hard and the summer sun burns through chlorine fast. We test pH, chlorine, alkalinity and calcium hardness on every visit and dose to measured readings before we leave. To the parameters set out in the WHO water-safety guidelines.",
+      description: "Cyprus tap water is hard and the summer sun burns through chlorine fast. We test pH, chlorine, alkalinity and calcium hardness on every visit. Chemical balancing is based on measured readings, helping maintain safe and consistent water quality in line with WHO water-safety guidance.",
     },
     {
       title:       "Algae prevention",
-      description: "Routine anti-algae treatment on every visit, not just once there's a problem. Prevention is cheaper than a green-pool recovery, and it's part of standard care here.",
+      description: "Routine algae prevention is part of our regular pool maintenance, not something we wait to deal with once the water turns green. Correct chlorine levels, water circulation and filtration all help keep algae under control.",
     },
     {
-      title:       "Filter & backwash",
-      description: "Full filter backwash and rinse as part of regular service, with the skimmer and pump baskets cleared every visit. Media checked and reported on.",
+      title:       "Filter, circulation & backwash",
+      description: "Proper pool filtration and water circulation are essential for clear water. We backwash and rinse the filter as part of regular maintenance, clear the skimmer and pump baskets, and check the filter media for signs of wear or reduced performance.",
     },
     {
-      title:       "Equipment checks",
-      description: "Pump, filter and baskets inspected on every visit so small issues get caught before they become expensive repairs. A pump straining is usually audible. We'll listen for it.",
+      title:       "Pool equipment checks",
+      description: "Your pump, filter, baskets and other pool equipment are inspected on every visit so small problems can be caught before they become expensive repairs. A pump under strain is often audible. We listen for it and report anything unusual.",
     },
     {
       title:       "Salt & saltwater pools",
-      description: "Salt-chlorinated pools fully supported. Cell inspection, salt-level testing and top-up, and the same water-balancing checks as any other pool. Thinking of switching to salt? Ask us.",
+      description: "Saltwater and salt-chlorinated swimming pools are fully supported. We inspect the salt cell, test salt levels, top up where required and carry out the same water testing and chemical balancing used for other pools. Thinking of switching to salt? Ask us before, so we can recommend the right type.",
     },
     {
       title:       "Green pool recovery",
-      description: "Shock, brush, filter, rebalance, until it's clear. Most recoveries take two to three visits. We give you a fixed price before we start, not an open-ended hourly rate.",
+      description: "Green pool treatment includes shock treatment, brushing, filtration and chemical rebalancing until the water is clear again. Most recoveries take two to three visits. We give you a fixed price before work starts, not an open-ended hourly rate.",
     },
+  ],
+  right: [
     {
-      title:       "Equipment repairs",
-      description: "We don't just flag problems. We fix them. Pumps, filters and skimmers, leaks and plumbing, pool lights and electrical components. Diagnosed and repaired so you're not left chasing a separate contractor.",
+      title:       "Pool equipment repairs",
+      description: "We don't just flag problems. We repair pool equipment too. Pumps, filters, skimmers, leaks, plumbing, pool lights and electrical components can all be diagnosed and repaired without leaving you to find another contractor.",
     },
     {
       title:       "Heat pumps & pool heating",
-      description: "Energy-efficient heat pump supply, installation and servicing for year-round swimming. Ask us for a heating quote sized to your pool.",
+      description: "Energy-efficient swimming pool heat pump supply, installation and servicing for more comfortable year-round swimming. Ask us for a pool-heating quote based on the size and requirements of your pool.",
     },
     {
       title:       "Pool installation & renovation",
-      description: "New pool installation, renovation and re-lining, piping and filtration, pump, skimmer and drainage, lighting and automation, and liner replacement. Get in touch for a project quote.",
+      description: "New swimming pool installation, renovation and re-lining, including piping, filtration systems, pumps, skimmers, drainage, lighting, automation and liner replacement. Contact us for a project quote.",
     },
     {
-      title:       "Seasonal set-up",
-      description: "Timer / time-clock adjusted each season so your pump runs the right hours for the weather. Enough to turn the water over properly without wasting power.",
+      title:       "Seasonal pool set-up",
+      description: "We adjust your timer or time-clock as the seasons change so your pump runs long enough to maintain proper circulation and filtration without wasting electricity.",
     },
     {
       title:       "Winter close & spring open",
-      description: "We winterise in November and bring the pool back up in spring so it's swim-ready before the first hot weekend, not three weeks after it.",
+      description: "Seasonal pool maintenance includes winter closing and spring opening. We winterise your pool in November and bring it back into service in spring so the water and equipment are ready before the warmer weather arrives.",
     },
     {
-      title:       "Emergency & one-off visits",
-      description: 'Post-party cleans, pre-sale inspections, or "guests arrive Friday." Same-day callouts in Paphos and the west, next-day across the rest of the island.',
+      title:       "Emergency & one-off pool cleaning",
+      description: "Post-party cleaning, pre-sale pool inspections or last-minute preparation before guests arrive. Same-day callouts are available in Paphos and western Cyprus, with next-day service across much of the rest of the island.",
     },
   ],
 }

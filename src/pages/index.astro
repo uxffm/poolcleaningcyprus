@@ -3,14 +3,7 @@ import Navbar from '../components/Navbar.astro';
 import { ClientRouter } from 'astro:transitions';
 import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricing, whyUs, reviews, areas, commercial, standards, expectations, referrals, quoteSection } from '../data/content';
 
-const serviceIcons = [
-	'<path d="M3 17c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M3 12c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/>',
-	'<path d="M9 3h6M10 3v6l-4 9a3 3 0 0 0 3 4h6a3 3 0 0 0 3-4l-4-9V3"/>',
-	'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',
-	'<path d="M12 3Q8 7 4 9L4 18Q8 21 12 22Q16 21 20 18L20 9Q16 7 12 3Z"/><path d="M9 13L11 15L15 11"/>',
-	'<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M8 8L8 5Q8 3 12 3Q16 3 16 5L16 8"/><circle cx="12" cy="14" r="2" fill="#072A38"/>',
-	'<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>',
-];
+
 ---
 
 <!DOCTYPE html>
@@ -258,40 +251,29 @@ const serviceIcons = [
 			/* ── services ── */
 			.services { background: #fff; }
 
-			.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-
-			.card {
-				background: #fff;
-				border: 1px solid #DCEBF0;
-				border-radius: var(--radius);
-				padding: 28px;
-				transition: transform .15s ease, box-shadow .15s ease;
-			}
-
-			.card:hover {
-				transform: translateY(-4px);
-				box-shadow: 0 12px 30px rgba(7,42,56,.1);
-			}
-
-			.card .icon {
-				width: 48px;
-				height: 48px;
-				border-radius: 12px;
-				background: var(--aqua);
+			.services-trio {
 				display: grid;
-				place-items: center;
-				margin-bottom: 18px;
+				grid-template-columns: 1fr auto 1fr;
+				gap: 0 48px;
+				align-items: start;
 			}
-
-			.card h3 {
+			.services-col { display: flex; flex-direction: column; gap: 28px; }
+			.services-col.right { text-align: right; }
+			.svc-item h3 {
 				font-family: var(--font-display);
+				font-size: 1rem;
 				font-weight: 700;
-				font-size: 1.1rem;
-				margin-bottom: 8px;
 				color: var(--ink);
+				margin-bottom: 5px;
 			}
-
-			.card p { font-size: .95rem; color: var(--muted); }
+			.svc-item p { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+			.services-img {
+				width: 210px;
+				mix-blend-mode: multiply;
+				display: block;
+				position: sticky;
+				top: 80px;
+			}
 
 			/* ── how it works ── */
 			.how { background: var(--deep); color: var(--tile); }
@@ -645,7 +627,9 @@ const serviceIcons = [
 			@media (max-width: 860px) {
 				.hero-inner { grid-template-columns: 1fr; padding: 60px 24px 120px; }
 				.report-card { transform: none; max-width: 420px; }
-				.cards        { grid-template-columns: 1fr; }
+				.services-trio { grid-template-columns: 1fr; }
+				.services-img { width: 160px; margin: 0 auto; position: static; }
+				.services-col.right { text-align: left; }
 				.steps        { grid-template-columns: 1fr; }
 				.plans        { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
 				.quote-grid   { grid-template-columns: 1fr; }
@@ -696,16 +680,24 @@ const serviceIcons = [
 					<h2>{services.heading}</h2>
 					<p>{services.subheading}</p>
 				</div>
-				<div class="cards">
-					{services.items.map((item, i) => (
-						<div class="card">
-							<div class="icon">
-								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#072A38" stroke-width="2" stroke-linecap="round" set:html={serviceIcons[i % serviceIcons.length]} />
+				<div class="services-trio">
+					<div class="services-col left">
+						{services.left.map(item => (
+							<div class="svc-item">
+								<h3>{item.title}</h3>
+								<p>{item.description}</p>
 							</div>
-							<h3>{item.title}</h3>
-							<p>{item.description}</p>
-						</div>
-					))}
+						))}
+					</div>
+					<img src="/team-photo.png" alt="Pool cleaning technician" class="services-img" width="210" height="560" />
+					<div class="services-col right">
+						{services.right.map(item => (
+							<div class="svc-item">
+								<h3>{item.title}</h3>
+								<p>{item.description}</p>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</section>
