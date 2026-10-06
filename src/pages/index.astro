@@ -251,33 +251,26 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 			/* ── services ── */
 			.services { background: #fff; }
 
-			.services-body {
-				position: relative;
-			}
-			.services-bg {
-				position: absolute;
-				top: 0;
-				left: 50%;
-				transform: translateX(-50%);
-				height: 100%;
-				width: auto;
-				max-width: 420px;
-				object-fit: contain;
-				object-position: top;
-				mix-blend-mode: multiply;
-				opacity: 0.18;
-				pointer-events: none;
-				user-select: none;
-			}
-			.services-trio {
-				position: relative;
-				z-index: 1;
+			.services-top {
 				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 28px 48px;
+				grid-template-columns: 1fr auto;
+				gap: 0 56px;
+				align-items: start;
+				margin-bottom: 48px;
+			}
+			.services-photo {
+				width: 340px;
+				height: auto;
+				mix-blend-mode: multiply;
+				display: block;
+				flex-shrink: 0;
 			}
 			.services-col { display: flex; flex-direction: column; gap: 28px; }
-			.services-col.right { text-align: right; }
+			.services-bottom {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 28px 40px;
+			}
 			.svc-item h3 {
 				font-family: var(--font-display);
 				font-size: 1rem;
@@ -639,9 +632,9 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 			@media (max-width: 860px) {
 				.hero-inner { grid-template-columns: 1fr; padding: 60px 24px 120px; }
 				.report-card { transform: none; max-width: 420px; }
-				.services-trio { grid-template-columns: 1fr; }
-				.services-bg { max-width: 260px; }
-				.services-col.right { text-align: left; }
+				.services-top { grid-template-columns: 1fr; }
+				.services-photo { width: 220px; margin: 0 auto; }
+				.services-bottom { grid-template-columns: 1fr; }
 				.steps        { grid-template-columns: 1fr; }
 				.plans        { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
 				.quote-grid   { grid-template-columns: 1fr; }
@@ -692,26 +685,24 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 					<h2>{services.heading}</h2>
 					<p>{services.subheading}</p>
 				</div>
-				<div class="services-body">
-					<img src="/team-photo.png" alt="Pool cleaning technician" class="services-bg" />
-					<div class="services-trio">
-						<div class="services-col left">
-							{services.left.map(item => (
-								<div class="svc-item">
-									<h3>{item.title}</h3>
-									<p>{item.description}</p>
-								</div>
-							))}
-						</div>
-						<div class="services-col right">
-							{services.right.map(item => (
-								<div class="svc-item">
-									<h3>{item.title}</h3>
-									<p>{item.description}</p>
-								</div>
-							))}
-						</div>
+				<div class="services-top">
+					<div class="services-col">
+						{services.left.map(item => (
+							<div class="svc-item">
+								<h3>{item.title}</h3>
+								<p>{item.description}</p>
+							</div>
+						))}
 					</div>
+					<img src="/team-photo.png" alt="Pool cleaning technician" class="services-photo" />
+				</div>
+				<div class="services-bottom">
+					{services.right.map(item => (
+						<div class="svc-item">
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>
