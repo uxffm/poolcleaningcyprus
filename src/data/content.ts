@@ -29,10 +29,10 @@ export const aboutMeta = {
 // ── Homepage ─────────────────────────────────────────────
 
 export const hero = {
-  eyebrow:       "Weekly pool care · Standards-based water safety · Cyprus",
+  eyebrow:       "Weekly pool cleaning & maintenance · Standards-based water safety · Cyprus",
   heading:       "Pool cleaning across Cyprus,",
   headingAccent: "done properly.",
-  description:   "Weekly visits that actually happen, water chemistry tested to recognised safety standards, and a photo report after every clean. Your pool cleaning service for Cyprus.",
+  description:   "Professional swimming pool cleaning and maintenance across Cyprus. Regular visits, water chemistry tested and balanced to recognised safety standards, and a photo report after every clean.",
   ctaPrimary:    "Get a free quote",
   ctaSecondary:  "See pricing",
 }
