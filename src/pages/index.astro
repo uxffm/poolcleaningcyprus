@@ -253,17 +253,18 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 
 			.services-top {
 				display: grid;
-				grid-template-columns: 1fr auto;
+				grid-template-columns: 1fr 320px;
 				gap: 0 56px;
-				align-items: start;
+				align-items: stretch;
 				margin-bottom: 48px;
 			}
 			.services-photo {
-				width: 340px;
-				height: auto;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: top center;
 				mix-blend-mode: multiply;
 				display: block;
-				flex-shrink: 0;
 			}
 			.services-col { display: flex; flex-direction: column; gap: 28px; }
 			.services-bottom {
