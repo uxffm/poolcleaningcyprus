@@ -33,8 +33,10 @@ export const hero = {
   heading:       "Pool cleaning across Cyprus,",
   headingAccent: "done properly.",
   description:   "Professional swimming pool cleaning and maintenance across Cyprus. Regular visits, water chemistry tested and balanced to recognised safety standards, and a photo report after every clean.",
-  ctaPrimary:    "Get a free quote",
-  ctaSecondary:  "See pricing",
+  ctaPrimary:    "Call us",
+  ctaSecondary:  "Ask on WhatsApp",
+  phone:         "+35797603083",
+  whatsapp:      "https://wa.me/35797603083",
 }
 
 export const reportCard = {
