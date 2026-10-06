@@ -251,11 +251,29 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 			/* ── services ── */
 			.services { background: #fff; }
 
+			.services-body {
+				position: relative;
+			}
+			.services-bg {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				height: 100%;
+				width: auto;
+				max-width: 420px;
+				object-fit: contain;
+				object-position: top;
+				mix-blend-mode: multiply;
+				pointer-events: none;
+				user-select: none;
+			}
 			.services-trio {
+				position: relative;
+				z-index: 1;
 				display: grid;
-				grid-template-columns: 1fr auto 1fr;
-				gap: 0 48px;
-				align-items: start;
+				grid-template-columns: 1fr 1fr;
+				gap: 28px 48px;
 			}
 			.services-col { display: flex; flex-direction: column; gap: 28px; }
 			.services-col.right { text-align: right; }
@@ -267,14 +285,6 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 				margin-bottom: 5px;
 			}
 			.svc-item p { font-size: .9rem; color: var(--muted); line-height: 1.6; }
-			.services-img {
-				width: 210px;
-				height: auto;
-				mix-blend-mode: multiply;
-				display: block;
-				position: sticky;
-				top: 80px;
-			}
 
 			/* ── how it works ── */
 			.how { background: var(--deep); color: var(--tile); }
@@ -629,7 +639,7 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 				.hero-inner { grid-template-columns: 1fr; padding: 60px 24px 120px; }
 				.report-card { transform: none; max-width: 420px; }
 				.services-trio { grid-template-columns: 1fr; }
-				.services-img { width: 160px; margin: 0 auto; position: static; }
+				.services-bg { max-width: 260px; }
 				.services-col.right { text-align: left; }
 				.steps        { grid-template-columns: 1fr; }
 				.plans        { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
@@ -681,23 +691,25 @@ import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricin
 					<h2>{services.heading}</h2>
 					<p>{services.subheading}</p>
 				</div>
-				<div class="services-trio">
-					<div class="services-col left">
-						{services.left.map(item => (
-							<div class="svc-item">
-								<h3>{item.title}</h3>
-								<p>{item.description}</p>
-							</div>
-						))}
-					</div>
-					<img src="/team-photo.png" alt="Pool cleaning technician" class="services-img" width="210" />
-					<div class="services-col right">
-						{services.right.map(item => (
-							<div class="svc-item">
-								<h3>{item.title}</h3>
-								<p>{item.description}</p>
-							</div>
-						))}
+				<div class="services-body">
+					<img src="/team-photo.png" alt="Pool cleaning technician" class="services-bg" />
+					<div class="services-trio">
+						<div class="services-col left">
+							{services.left.map(item => (
+								<div class="svc-item">
+									<h3>{item.title}</h3>
+									<p>{item.description}</p>
+								</div>
+							))}
+						</div>
+						<div class="services-col right">
+							{services.right.map(item => (
+								<div class="svc-item">
+									<h3>{item.title}</h3>
+									<p>{item.description}</p>
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>
