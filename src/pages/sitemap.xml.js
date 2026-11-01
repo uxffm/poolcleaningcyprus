@@ -7,6 +7,7 @@ export async function GET() {
 	const staticPages = [
 		{ url: '/',       priority: '1.0', changefreq: 'weekly',  lastmod: today },
 		{ url: '/about/', priority: '0.7', changefreq: 'monthly', lastmod: today },
+		{ url: '/pool-cleaning-paphos/', priority: '0.9', changefreq: 'monthly', lastmod: today },
 		{ url: '/blog/',  priority: '0.8', changefreq: 'weekly',  lastmod: today },
 	];
 

@@ -1,0 +1,325 @@
+---
+import Navbar from '../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { Droplets, FlaskConical, Filter, Leaf, Wrench, Waves, Camera, MapPin, Clock, Gauge, Receipt, ShieldCheck } from '@lucide/astro';
+import { site, contact } from '../data/content';
+
+const title = 'Pool Cleaning Paphos – Professional Swimming Pool Maintenance | Pool Cleaning Cyprus';
+const description = 'Professional pool cleaning in Paphos. Weekly and bi-weekly swimming pool maintenance, water testing, filter care, green pool recovery and a photo report after every clean. Free first visit.';
+const url = `${site.url}/pool-cleaning-paphos/`;
+const phone = '+35797603083';
+const whatsapp = 'https://wa.me/35797603083';
+
+const services = [
+	{ icon: Droplets, title: 'Weekly Swimming Pool Cleaning', text: 'Our regular pool cleaning service includes skimming leaves and debris from the water, vacuuming the pool floor, brushing walls and steps, and cleaning the waterline. We also empty the skimmer and pump baskets to maintain proper water circulation. Regular cleaning prevents dirt, dust and organic material from accumulating and helps keep your swimming pool looking its best.' },
+	{ icon: FlaskConical, title: 'Pool Water Testing & Chemical Balancing', text: 'Maintaining the correct water chemistry is essential for a clean and comfortable swimming pool. We test chlorine, pH, total alkalinity and calcium hardness during our scheduled visits. Based on the measured readings, we adjust the chemical balance, taking into account the effects of Cyprus’s hard water and strong sunlight.' },
+	{ icon: Filter, title: 'Pool Filter Cleaning & Maintenance', text: 'Your filtration system plays an important role in keeping swimming pool water clear. We inspect filters, check pressure levels and carry out backwashing and rinsing when required. We also check pump baskets, skimmers and other filtration components to support proper circulation and prevent unnecessary strain on your equipment.' },
+	{ icon: Leaf, title: 'Algae Prevention & Green Pool Treatment', text: 'Warm weather and insufficient chlorine levels can encourage algae growth. Regular maintenance helps prevent algae by monitoring water chemistry, filtration and circulation. If your pool has already turned green, we offer green pool recovery: shock treatment, brushing, filtration and water rebalancing until the pool is clear again.' },
+	{ icon: Wrench, title: 'Pool Pump & Equipment Repairs', text: 'We provide pool equipment inspections and repair services in Paphos, including swimming pool pumps, filters, skimmers, plumbing, leaks, pool lighting and related components. Identifying equipment problems early can help prevent more expensive repairs and interruptions to your regular pool maintenance.' },
+	{ icon: Waves, title: 'Saltwater Pool Maintenance', text: 'We also maintain saltwater swimming pools. Our service includes salt-level testing, salt cell inspections and water chemistry adjustments. Whether your pool uses a traditional chlorine system or salt chlorination, we can help maintain the correct water balance.' },
+];
+
+const areas = ['Coral Bay', 'Peyia', 'Kissonerga', 'Chloraka', 'Tala', 'Paphos Town', 'Universal', 'Geroskipou', 'Konia', 'Emba', 'Tsada'];
+
+const why = [
+	{ icon: Clock, title: 'Reliable scheduled visits', text: 'Your pool receives regular attention on an agreed schedule. If a visit needs to change, we let you know in advance.' },
+	{ icon: MapPin, title: 'Local knowledge', text: 'We understand the effects of hard water, summer temperatures, dust and strong sunlight on swimming pools in Paphos.' },
+	{ icon: Gauge, title: 'Measured water chemistry', text: 'We test water parameters and adjust chemical levels based on actual readings rather than guesswork.' },
+	{ icon: Receipt, title: 'Transparent pricing', text: 'You receive clear pricing before work begins, with no unexpected charges for standard scheduled visits.' },
+	{ icon: Camera, title: 'Photo reports after every clean', text: 'You can check the work completed and see your pool’s condition, even when you’re not in Cyprus.' },
+	{ icon: ShieldCheck, title: 'Complete pool maintenance', text: 'From regular cleaning and water balancing to equipment repairs and green pool recovery, we provide a complete range of swimming pool services.' },
+];
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	"name": site.name,
+	"url": url,
+	"telephone": phone,
+	"description": description,
+	"address": { "@type": "PostalAddress", "addressLocality": "Coral Bay", "addressRegion": "Paphos", "addressCountry": "CY" },
+	"areaServed": areas.map(a => ({ "@type": "City", "name": a })),
+	"serviceType": "Swimming pool cleaning and maintenance",
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content={site.name} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={url} />
+		<link rel="alternate" hreflang="en-CY" href={url} />
+		<link rel="alternate" hreflang="en" href={url} />
+		<meta name="geo.region" content="CY-05" />
+		<meta name="geo.placename" content="Paphos" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={url} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+		<ClientRouter />
+
+		<style>
+			:root {
+				--deep:  #072A38;
+				--water: #1B7A9E;
+				--aqua:  #6FD4E4;
+				--tile:  #F2F9FB;
+				--sun:   #FFC93C;
+				--ink:   #0A2530;
+				--muted: #3D6272;
+				--font-display: "Bricolage Grotesque", sans-serif;
+				--font-body:    "Inter", sans-serif;
+				--radius: 14px;
+				--maxw:   1080px;
+			}
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; }
+			html { scroll-behavior: smooth; }
+			body { font-family: var(--font-body); color: var(--ink); background: var(--tile); line-height: 1.6; }
+			.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+			a { color: inherit; }
+			a:focus-visible, button:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+
+			.tile-strip {
+				height: 14px;
+				background: repeating-linear-gradient(90deg, var(--aqua) 0 22px, var(--tile) 22px 26px, var(--water) 26px 48px, var(--tile) 48px 52px);
+			}
+
+			.btn {
+				display: inline-flex; align-items: center; border: none; cursor: pointer;
+				font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+				padding: 13px 26px; border-radius: 999px; text-decoration: none;
+				transition: transform .15s ease, box-shadow .15s ease;
+			}
+			.btn:hover { transform: translateY(-2px); }
+			.btn-sun { background: var(--sun); color: var(--ink); box-shadow: 0 4px 14px rgba(255,201,60,.4); }
+			.btn-ghost { background: transparent; color: var(--tile); border: 2px solid rgba(242,249,251,.5); }
+			.btn-ghost:hover { border-color: var(--tile); }
+
+			/* hero */
+			.hero {
+				background: linear-gradient(175deg, var(--water) 0%, var(--deep) 85%);
+				color: var(--tile); position: relative; overflow: hidden; padding-top: 64px;
+			}
+			.hero-inner { padding: 80px 24px 140px; max-width: var(--maxw); margin: 0 auto; }
+			.eyebrow { display: inline-block; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--aqua); margin-bottom: 16px; }
+			h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.05; margin-bottom: 20px; max-width: 18ch; }
+			h1 .accent { color: var(--sun); }
+			.hero-desc { font-size: 1.1rem; max-width: 56ch; color: #CFE8F0; margin-bottom: 16px; line-height: 1.7; }
+			.hero-desc strong { color: #fff; }
+			.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+
+			.wave { position: absolute; bottom: -2px; left: 0; width: 200%; height: 90px; animation: drift 14s linear infinite; }
+			@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+			/* sections */
+			section { padding: 88px 0; }
+			.section-head { max-width: 62ch; margin-bottom: 48px; }
+			h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.15; margin-bottom: 12px; }
+			.section-head p, .lead { color: var(--muted); font-size: 1.05rem; line-height: 1.75; }
+			.lead + .lead { margin-top: 16px; }
+
+			.services { background: #fff; }
+			.svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+			.svc-card { background: var(--tile); border: 1px solid #DCEBF0; border-radius: var(--radius); padding: 28px; }
+			.icon-box { width: 44px; height: 44px; border-radius: 12px; background: var(--aqua); display: grid; place-items: center; margin-bottom: 16px; }
+			.svc-card h3, .why-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-bottom: 8px; color: var(--ink); }
+			.svc-card p, .why-card p { color: var(--muted); font-size: .95rem; line-height: 1.65; }
+
+			.split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+			.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+			.chip { background: #fff; border: 1px solid #DCEBF0; border-radius: 999px; padding: 8px 16px; font-size: .92rem; font-weight: 500; color: var(--ink); display: inline-flex; align-items: center; gap: 6px; }
+			.note { color: var(--muted); font-size: .95rem; }
+
+			.plans { background: linear-gradient(175deg, var(--water) 0%, var(--deep) 100%); color: var(--tile); }
+			.plans h2 { color: #fff; }
+			.plans .section-head p { color: #CFE8F0; }
+			.plan-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin-bottom: 28px; }
+			.plan { background: var(--tile); color: var(--ink); border-radius: var(--radius); padding: 28px; box-shadow: 0 24px 60px rgba(0,0,0,.25); }
+			.plan .tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--water); }
+			.plan h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin: 6px 0 4px; }
+			.plan .price { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; }
+			.plan .price small { font-family: var(--font-body); font-size: .9rem; font-weight: 500; color: var(--muted); }
+			.plan p { color: var(--muted); font-size: .92rem; margin-top: 10px; }
+			.plans .fine { color: #CFE8F0; max-width: 62ch; line-height: 1.7; }
+			.plans .fine + .fine { margin-top: 12px; }
+
+			.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+			.why-card { background: #fff; border: 1px solid #DCEBF0; border-radius: var(--radius); padding: 24px 20px; }
+			.why-card h3 { font-size: 1rem; }
+			.why-card p { font-size: .875rem; }
+
+			.quote { background: #fff; text-align: center; }
+			.quote .section-head { margin-left: auto; margin-right: auto; }
+			.quote .hero-ctas { justify-content: center; }
+			.quote .btn-ghost { color: var(--ink); border-color: var(--water); }
+			.quote strong.cta-line { display: block; margin-top: 16px; font-family: var(--font-display); font-size: 1.15rem; }
+
+			footer { background: var(--deep); color: #9FC6D3; padding: 40px 0; font-size: .9rem; }
+			.foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+			footer a { color: #CFE8F0; text-decoration: none; margin-left: 20px; }
+			footer a:hover { color: var(--sun); }
+
+			@media (max-width: 860px) {
+				.svc-grid, .split, .plan-grid { grid-template-columns: 1fr; }
+				.split { gap: 32px; }
+				.why-grid { grid-template-columns: 1fr 1fr; }
+			}
+			@media (max-width: 640px) {
+				section { padding: 64px 0; }
+				.hero-inner { padding: 60px 24px 120px; }
+				.why-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tile-strip" aria-hidden="true"></div>
+		<Navbar />
+
+		<header class="hero">
+			<div class="hero-inner">
+				<span class="eyebrow">Coral Bay · Peyia · Paphos</span>
+				<h1>Pool Cleaning Paphos – <span class="accent">Professional Swimming Pool Maintenance</span></h1>
+				<p class="hero-desc">Looking for reliable <strong>pool cleaning in Paphos</strong>? Pool Cleaning Cyprus provides professional swimming pool cleaning and maintenance for private homes, villas, holiday rentals and commercial properties throughout the Paphos area.</p>
+				<p class="hero-desc">We take care of everything your swimming pool needs to stay clean, clear and safe. From weekly pool cleaning and water testing to chemical balancing, filter maintenance and equipment inspections, our pool technicians keep your pool in excellent condition throughout the year.</p>
+				<p class="hero-desc">Based in Coral Bay, we serve Paphos and surrounding areas with reliable scheduled visits, transparent pricing and a photo report after every clean.</p>
+				<div class="hero-ctas">
+					<a class="btn btn-sun" href={`tel:${phone}`}>Call us {phone}</a>
+					<a class="btn btn-ghost" href={whatsapp} target="_blank" rel="noopener noreferrer">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:6px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Ask on WhatsApp
+					</a>
+				</div>
+			</div>
+			<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+				<path d="M0,45 C120,80 240,10 360,45 C480,80 600,10 720,45 C840,80 960,10 1080,45 C1200,80 1320,10 1440,45 L1440,90 L0,90 Z M1440,45 C1560,80 1680,10 1800,45 C1920,80 2040,10 2160,45 C2280,80 2400,10 2520,45 C2640,80 2760,10 2880,45 L2880,90 L1440,90 Z" fill="#F2F9FB"/>
+			</svg>
+		</header>
+
+		<section>
+			<div class="wrap">
+				<div class="section-head" style="margin-bottom:0">
+					<h2>Professional Pool Cleaning Services in Paphos</h2>
+					<p class="lead">Keeping a swimming pool clean in Cyprus requires regular attention. High summer temperatures, strong UV exposure, dust and hard water can quickly affect water quality and put additional strain on pool equipment.</p>
+					<p class="lead">Our swimming pool maintenance services are designed around these local conditions. Every visit follows a consistent cleaning and maintenance routine to help prevent common pool problems and keep your water ready for swimming.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="services" id="services" style="padding-top:72px">
+			<div class="wrap">
+				<div class="svc-grid">
+					{services.map(s => (
+						<article class="svc-card">
+							<div class="icon-box"><s.icon size={22} color="#072A38" /></div>
+							<h3>{s.title}</h3>
+							<p>{s.text}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="wrap split">
+				<div>
+					<h2>Pool Cleaning for Villas, Private Homes & Holiday Rentals in Paphos</h2>
+					<p class="lead">Paphos has many private swimming pools, holiday villas and rental properties that require consistent maintenance throughout the year.</p>
+					<p class="lead">Whether you live in Cyprus permanently or manage a holiday property from abroad, you need a pool cleaning company you can rely on.</p>
+					<p class="lead">We offer scheduled swimming pool maintenance for private residential pools, villa swimming pools, holiday homes, rental properties, apartment complexes and hotels.</p>
+					<p class="lead">Our regular service includes a photo report after every visit. You can see the condition of your pool and the work completed without needing to be present.</p>
+				</div>
+				<div>
+					<h2>Swimming Pool Maintenance Throughout Paphos</h2>
+					<p class="lead">We are based in Coral Bay and provide pool cleaning and maintenance across Paphos and the surrounding areas. Our service coverage includes:</p>
+					<ul class="chips" style="list-style:none;padding:0">
+						{areas.map(a => <li class="chip"><MapPin size={14} color="#1B7A9E" />{a}</li>)}
+					</ul>
+					<p class="note">If your property is outside these locations, contact us to check availability.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="plans" id="pricing">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>Weekly & Bi-Weekly Pool Cleaning Plans</h2>
+					<p>We offer straightforward pool cleaning plans to suit different swimming pools and maintenance requirements.</p>
+				</div>
+				<div class="plan-grid">
+					<div class="plan">
+						<span class="tag">Bi-weekly</span>
+						<h3>Silver</h3>
+						<div class="price">from €60 <small>per visit</small></div>
+						<p>Includes chemicals and equipment checks.</p>
+					</div>
+					<div class="plan">
+						<span class="tag">Weekly</span>
+						<h3>Platinum</h3>
+						<div class="price">€45 <small>per visit</small></div>
+						<p>Includes chemicals and equipment checks, plus filter backwashing, waterline cleaning and a photo report.</p>
+					</div>
+				</div>
+				<p class="fine">Larger or unusually deep swimming pools may require an individual quote.</p>
+				<p class="fine">For holiday villas, communal swimming pools and commercial properties, we can arrange a maintenance schedule based on pool size, usage and water volume.</p>
+			</div>
+		</section>
+
+		<section>
+			<div class="wrap">
+				<div class="section-head">
+					<h2>Why Choose Pool Cleaning Cyprus in Paphos?</h2>
+				</div>
+				<div class="why-grid">
+					{why.map(w => (
+						<div class="why-card">
+							<div class="icon-box"><w.icon size={22} color="#072A38" /></div>
+							<h3>{w.title}</h3>
+							<p>{w.text}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="quote" id="quote">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>Get a Free Pool Cleaning Quote in Paphos</h2>
+					<p class="lead">Need a reliable pool cleaner in Paphos? Get in touch with Pool Cleaning Cyprus for a free first visit and a no-obligation quote.</p>
+					<p class="lead">Tell us where your swimming pool is located, its approximate size and its current condition. Our technician will assess the water, inspect the equipment and recommend a suitable pool maintenance plan.</p>
+					<p class="lead">We provide professional swimming pool cleaning and maintenance throughout Paphos, Coral Bay, Peyia and the surrounding areas.</p>
+					<strong class="cta-line">Contact us today to arrange your free pool inspection.</strong>
+				</div>
+				<div class="hero-ctas">
+					<a class="btn btn-sun" href={`tel:${phone}`}>Call us {phone}</a>
+					<a class="btn btn-ghost" href={whatsapp} target="_blank" rel="noopener noreferrer">Ask on WhatsApp</a>
+				</div>
+			</div>
+		</section>
+
+		<div class="tile-strip" aria-hidden="true"></div>
+
+		<footer>
+			<div class="wrap foot">
+				<span>&copy; {new Date().getFullYear()} {site.name}. Pool cleaning and maintenance across Cyprus.</span>
+				<span>
+					<a href="/#services">Services</a>
+					<a href="/pool-cleaning-paphos">Paphos</a>
+					<a href="/#pricing">Pricing</a>
+					<a href="/#quote">Free quote</a>
+				</span>
+			</div>
+		</footer>
+	</body>
+</html>
