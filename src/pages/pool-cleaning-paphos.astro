@@ -1,7 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import { ClientRouter } from 'astro:transitions';
-import { Droplets, FlaskConical, Filter, Leaf, Wrench, Waves, Camera, MapPin, Clock, Gauge, Receipt, ShieldCheck } from '@lucide/astro';
+import { Droplets, FlaskConical, Filter, Leaf, Wrench, Waves, Snowflake, Search, Sparkles, ChevronDown, Camera, MapPin, Clock, Gauge, Receipt, ShieldCheck } from '@lucide/astro';
 import { site, contact } from '../data/content';
 
 const title = 'Pool Cleaning Paphos – Professional Swimming Pool Maintenance | Pool Cleaning Cyprus';
@@ -12,14 +12,17 @@ const whatsapp = 'https://wa.me/35797603083';
 
 const services = [
 	{ icon: Droplets, title: 'Weekly Swimming Pool Cleaning', text: 'Our regular pool cleaning service includes skimming leaves and debris from the water, vacuuming the pool floor, brushing walls and steps, and cleaning the waterline. We also empty the skimmer and pump baskets to maintain proper water circulation. Regular cleaning prevents dirt, dust and organic material from accumulating and helps keep your swimming pool looking its best.' },
-	{ icon: FlaskConical, title: 'Pool Water Testing & Chemical Balancing', text: 'Maintaining the correct water chemistry is essential for a clean and comfortable swimming pool. We test chlorine, pH, total alkalinity and calcium hardness during our scheduled visits. Based on the measured readings, we adjust the chemical balance, taking into account the effects of Cyprus’s hard water and strong sunlight.' },
+	{ icon: FlaskConical, title: 'Pool Water Testing & Chemical Balancing', text: 'Maintaining the correct water chemistry is essential for a clean and comfortable swimming pool. We test chlorine, pH, total alkalinity and calcium hardness and stabiliser (cyanuric acid) during our scheduled visits. Based on the measured readings, we adjust the chemical balance, taking into account the effects of Cyprus’s hard water and strong sunlight. Correct stabiliser levels protect chlorine from the intense Cyprus sun, and we also check phosphate levels when algae keeps coming back.' },
+	{ icon: Sparkles, title: 'Limescale & Pool Tile Cleaning', text: 'Hard water in Paphos leaves white limescale deposits on pool tiles, the waterline and around fittings. We remove scale buildup from tiles and the waterline and keep calcium hardness under control so deposits don’t return as quickly.' },
 	{ icon: Filter, title: 'Pool Filter Cleaning & Maintenance', text: 'Your filtration system plays an important role in keeping swimming pool water clear. We inspect filters, check pressure levels and carry out backwashing and rinsing when required. We also check pump baskets, skimmers and other filtration components to support proper circulation and prevent unnecessary strain on your equipment.' },
 	{ icon: Leaf, title: 'Algae Prevention & Green Pool Treatment', text: 'Warm weather and insufficient chlorine levels can encourage algae growth. Regular maintenance helps prevent algae by monitoring water chemistry, filtration and circulation. If your pool has already turned green, we offer green pool recovery: shock treatment, brushing, filtration and water rebalancing until the pool is clear again.' },
-	{ icon: Wrench, title: 'Pool Pump & Equipment Repairs', text: 'We provide pool equipment inspections and repair services in Paphos, including swimming pool pumps, filters, skimmers, plumbing, leaks, pool lighting and related components. Identifying equipment problems early can help prevent more expensive repairs and interruptions to your regular pool maintenance.' },
+	{ icon: Wrench, title: 'Pool Pump & Equipment Repairs', text: 'We provide pool equipment inspections and repair services in Paphos, including swimming pool pumps, filters, skimmers, plumbing, pool lighting and related components. Identifying equipment problems early can help prevent more expensive repairs and interruptions to your regular pool maintenance. We also service pool heat pumps, solar pool heating, robotic pool cleaners, pool covers and pool automation systems.' },
+	{ icon: Search, title: 'Pool Leak Detection', text: 'Losing more water than evaporation explains? We check for leaks in pipework, fittings, skimmers and the pool shell, and arrange repairs. Where needed, we can also drain and refill the pool.' },
 	{ icon: Waves, title: 'Saltwater Pool Maintenance', text: 'We also maintain saltwater swimming pools. Our service includes salt-level testing, salt cell inspections and water chemistry adjustments. Whether your pool uses a traditional chlorine system or salt chlorination, we can help maintain the correct water balance.' },
+	{ icon: Snowflake, title: 'Winter Pool Maintenance & Seasonal Opening', text: 'Pools in Cyprus still need care in the off-season. Our winter pool maintenance plan keeps the water balanced and the equipment protected with less frequent visits. In spring, we handle pool opening so your pool is clean and ready for the summer season.' },
 ];
 
-const areas = ['Coral Bay', 'Peyia', 'Kissonerga', 'Chloraka', 'Tala', 'Paphos Town', 'Universal', 'Geroskipou', 'Konia', 'Emba', 'Tsada'];
+const areas = ['Coral Bay', 'Peyia', 'Kissonerga', 'Chloraka', 'Tala', 'Paphos Town', 'Universal', 'Geroskipou', 'Konia', 'Emba', 'Tsada', 'Tremithousa', 'Armou', 'Mesogi', 'Kathikas', 'Kouklia', 'Aphrodite Hills', 'Polis', 'Latchi'];
 
 const why = [
 	{ icon: Clock, title: 'Reliable scheduled visits', text: 'Your pool receives regular attention on an agreed schedule. If a visit needs to change, we let you know in advance.' },
@@ -29,6 +32,21 @@ const why = [
 	{ icon: Camera, title: 'Photo reports after every clean', text: 'You can check the work completed and see your pool’s condition, even when you’re not in Cyprus.' },
 	{ icon: ShieldCheck, title: 'Complete pool maintenance', text: 'From regular cleaning and water balancing to equipment repairs and green pool recovery, we provide a complete range of swimming pool services.' },
 ];
+
+const faqs = [
+	{ q: 'How much does pool cleaning cost in Paphos?', a: 'Our weekly pool cleaning plan costs €45 per visit and bi-weekly cleaning starts from €60 per visit, including chemicals. Large pools, communal pools and one-off cleans are priced individually.' },
+	{ q: 'How often should a pool be cleaned in Cyprus?', a: 'In summer, we recommend weekly pool cleaning because heat, sunlight and dust quickly affect water quality. In winter, visits every two to four weeks are usually enough.' },
+	{ q: 'Do you clean pools in winter?', a: 'Yes. We offer winter pool maintenance with less frequent visits to keep the water balanced and protect your equipment until the swimming season.' },
+	{ q: 'Can you clean my pool before my guests arrive?', a: 'Yes. We offer pre-arrival and one-off cleans for holiday rentals and Airbnb properties, with a photo report so you know the pool is ready.' },
+	{ q: 'My pool has turned green. Can you fix it?', a: 'Yes. Our green pool recovery service uses shock treatment, brushing, filtration and water rebalancing to clear the pool, usually within a few visits.' },
+	{ q: 'Do I need to be at home during the visit?', a: 'No. Many of our customers live abroad. We just need access to the pool and equipment, and you receive a photo report after every visit.' },
+];
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })),
+};
 
 const schema = {
 	"@context": "https://schema.org",
@@ -67,6 +85,7 @@ const schema = {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 		<ClientRouter />
 
 		<style>
@@ -160,6 +179,13 @@ const schema = {
 			.why-card h3 { font-size: 1rem; }
 			.why-card p { font-size: .875rem; }
 
+			.faq-list { max-width: 820px; display: grid; gap: 12px; }
+			.faq-item { background: #fff; border: 1px solid #DCEBF0; border-radius: var(--radius); padding: 0 22px; }
+			.faq-item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+			.faq-item summary::-webkit-details-marker { display: none; }
+			.faq-item[open] summary :global(svg) { transform: rotate(180deg); }
+			.faq-item p { color: var(--muted); padding-bottom: 18px; line-height: 1.7; }
+
 			.quote { background: #fff; text-align: center; }
 			.quote .section-head { margin-left: auto; margin-right: auto; }
 			.quote .hero-ctas { justify-content: center; }
@@ -237,6 +263,7 @@ const schema = {
 					<p class="lead">Paphos has many private swimming pools, holiday villas and rental properties that require consistent maintenance throughout the year.</p>
 					<p class="lead">Whether you live in Cyprus permanently or manage a holiday property from abroad, you need a pool cleaning company you can rely on.</p>
 					<p class="lead">We offer scheduled swimming pool maintenance for private residential pools, villa swimming pools, holiday homes, rental properties, apartment complexes and hotels.</p>
+					<p class="lead">We work with Airbnb hosts, holiday villa owners and property managers. We can schedule a pre-arrival clean before guests check in, a one-off clean between bookings, or an emergency visit if a guest reports a problem.</p>
 					<p class="lead">Our regular service includes a photo report after every visit. You can see the condition of your pool and the work completed without needing to be present.</p>
 				</div>
 				<div>
@@ -254,7 +281,7 @@ const schema = {
 			<div class="wrap">
 				<div class="section-head">
 					<h2>Weekly & Bi-Weekly Pool Cleaning Plans</h2>
-					<p>We offer straightforward pool cleaning plans to suit different swimming pools and maintenance requirements.</p>
+					<p>We offer straightforward pool cleaning plans to suit different swimming pools and maintenance requirements. Weekly visits cost less per visit because the pool stays in better condition between cleans.</p>
 				</div>
 				<div class="plan-grid">
 					<div class="plan">
@@ -266,10 +293,11 @@ const schema = {
 					<div class="plan">
 						<span class="tag">Weekly</span>
 						<h3>Platinum</h3>
-						<div class="price">€45 <small>per visit</small></div>
+						<div class="price">€45 <small>per visit (weekly plan)</small></div>
 						<p>Includes chemicals and equipment checks, plus filter backwashing, waterline cleaning and a photo report.</p>
 					</div>
 				</div>
+				<p class="fine">Monthly, winter and one-off pool cleaning are also available. Contact us for a price.</p>
 				<p class="fine">Larger or unusually deep swimming pools may require an individual quote.</p>
 				<p class="fine">For holiday villas, communal swimming pools and commercial properties, we can arrange a maintenance schedule based on pool size, usage and water volume.</p>
 			</div>
@@ -287,6 +315,22 @@ const schema = {
 							<h3>{w.title}</h3>
 							<p>{w.text}</p>
 						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="faq" id="faq">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>Pool Cleaning Paphos – Frequently Asked Questions</h2>
+				</div>
+				<div class="faq-list">
+					{faqs.map(f => (
+						<details class="faq-item">
+							<summary><span>{f.q}</span><ChevronDown size={20} color="#1B7A9E" /></summary>
+							<p>{f.a}</p>
+						</details>
 					))}
 				</div>
 			</div>
@@ -315,7 +359,7 @@ const schema = {
 				<span>&copy; {new Date().getFullYear()} {site.name}. Pool cleaning and maintenance across Cyprus.</span>
 				<span>
 					<a href="/#services">Services</a>
-					<a href="/pool-cleaning-paphos">Paphos</a>
+					<a href="/pool-cleaning-paphos">Pool Cleaning Paphos</a>
 					<a href="/#pricing">Pricing</a>
 					<a href="/#quote">Free quote</a>
 				</span>
