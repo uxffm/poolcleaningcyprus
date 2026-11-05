@@ -1,5 +1,5 @@
 ---
-title: "Pool Cleaning: Summer vs Winter Schedules Explained"
+title: "How Often to Clean Your Pool in Cyprus: Summer vs Winter Schedules"
 description: "Discover how often to clean your pool in Cyprus across seasons. Expert tips to keep your water safe, clear, and cost-efficient all year round."
 pubDate: 2026-08-14
 author: "Pool Cleaning Cyprus"
