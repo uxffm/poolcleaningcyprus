@@ -1,0 +1,260 @@
+---
+import Navbar from '../../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { alternates } from '../../data/i18n';
+import { Droplets, Shield, Clock, Mail } from '@lucide/astro';
+import { site, contact, aboutMeta, about } from '../../data/content.el';
+---
+
+<!DOCTYPE html>
+<html lang="el">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{aboutMeta.title}</title>
+		<meta name="description" content={aboutMeta.description} />
+		<meta name="author" content={site.name} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={`${site.url}/el/about/`} />
+		{alternates('about').map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+		<meta name="geo.region" content="CY" />
+		<meta name="geo.placename" content="Cyprus" />
+		<meta name="geo.position" content="35.1264;33.4299" />
+		<meta name="ICBM" content="35.1264, 33.4299" />
+		<meta property="og:title" content={aboutMeta.title} />
+		<meta property="og:description" content={aboutMeta.description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<style>
+			:root {
+				--deep:  #072A38;
+				--water: #1B7A9E;
+				--aqua:  #6FD4E4;
+				--tile:  #F2F9FB;
+				--sun:   #FFC93C;
+				--ink:   #0A2530;
+				--muted: #3D6272;
+
+				--font-display: "Bricolage Grotesque", sans-serif;
+				--font-body:    "Inter", sans-serif;
+
+				--radius: 14px;
+				--maxw:   1080px;
+			}
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; }
+			html { scroll-behavior: smooth; }
+
+			body {
+				font-family: var(--font-body);
+				color: var(--ink);
+				background: var(--tile);
+				line-height: 1.6;
+			}
+
+			.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+			a { color: inherit; }
+			a:focus-visible, button:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+
+			.tile-strip {
+				height: 14px;
+				background:
+					repeating-linear-gradient(90deg,
+						var(--aqua)  0 22px,
+						var(--tile) 22px 26px,
+						var(--water) 26px 48px,
+						var(--tile) 48px 52px);
+			}
+
+			/* ── page content ── */
+			.page-section {
+				padding: 100px 0 80px;
+			}
+
+			.page-inner {
+				max-width: 720px;
+			}
+
+			.eyebrow {
+				display: inline-block;
+				font-size: .8rem;
+				letter-spacing: .12em;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: var(--water);
+				margin-bottom: 16px;
+			}
+
+			h1 {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: clamp(2.2rem, 5vw, 3.2rem);
+				line-height: 1.1;
+				color: var(--ink);
+				margin-bottom: 24px;
+			}
+
+			.body-text {
+				font-size: 1rem;
+				line-height: 1.75;
+				color: var(--muted);
+				margin-bottom: 20px;
+			}
+
+			.divider {
+				border: none;
+				border-top: 1px solid #DCEBF0;
+				margin: 48px 0;
+			}
+
+			h2 {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: clamp(1.5rem, 3vw, 2rem);
+				line-height: 1.15;
+				color: var(--ink);
+				margin-bottom: 24px;
+			}
+
+			.values-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 20px;
+				margin-bottom: 48px;
+			}
+
+			.value-card {
+				background: #fff;
+				border: 1px solid #DCEBF0;
+				border-radius: var(--radius);
+				padding: 24px 20px;
+			}
+
+			.value-icon {
+				width: 44px;
+				height: 44px;
+				border-radius: 12px;
+				background: var(--aqua);
+				display: grid;
+				place-items: center;
+				margin-bottom: 14px;
+			}
+
+			.value-title {
+				font-family: var(--font-display);
+				font-size: 1rem;
+				font-weight: 700;
+				color: var(--ink);
+				margin-bottom: 6px;
+			}
+
+			.value-desc {
+				font-size: .875rem;
+				color: var(--muted);
+				line-height: 1.55;
+			}
+
+			.cta-button {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 13px 26px;
+				border-radius: 999px;
+				font-size: .95rem;
+				font-weight: 600;
+				text-decoration: none;
+				background: var(--sun);
+				color: var(--ink);
+				box-shadow: 0 4px 14px rgba(255,201,60,.4);
+				transition: transform .15s ease, box-shadow .15s ease;
+				margin-top: 16px;
+			}
+			.cta-button:hover { transform: translateY(-2px); }
+
+			/* ── footer ── */
+			footer {
+				background: var(--deep);
+				color: #9FC6D3;
+				padding: 40px 0;
+				font-size: .9rem;
+			}
+
+			.foot {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 16px;
+			}
+
+			footer a { color: #CFE8F0; text-decoration: none; margin-left: 20px; }
+			footer a:hover { color: var(--sun); }
+
+			@media (max-width: 640px) {
+				.values-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tile-strip" aria-hidden="true"></div>
+		<Navbar />
+
+		<section class="page-section">
+			<div class="wrap">
+				<div class="page-inner">
+					<span class="eyebrow">{about.eyebrow}</span>
+					<h1>{about.heading1}<br/>{about.heading2}</h1>
+
+					{about.paragraphs.map(p => <p class="body-text">{p}</p>)}
+
+					<hr class="divider" />
+
+					<h2>{about.valuesHeading}</h2>
+					<div class="values-grid">
+						<div class="value-card">
+							<div class="value-icon"><Droplets size={22} color="#072A38" /></div>
+							<div class="value-title">{about.values[0].title}</div>
+							<div class="value-desc">{about.values[0].description}</div>
+						</div>
+						<div class="value-card">
+							<div class="value-icon"><Clock size={22} color="#072A38" /></div>
+							<div class="value-title">{about.values[1].title}</div>
+							<div class="value-desc">{about.values[1].description}</div>
+						</div>
+						<div class="value-card">
+							<div class="value-icon"><Shield size={22} color="#072A38" /></div>
+							<div class="value-title">{about.values[2].title}</div>
+							<div class="value-desc">{about.values[2].description}</div>
+						</div>
+					</div>
+
+					{about.closingParagraphs.map(p => <p class="body-text">{p}</p>)}
+
+					<a href={`mailto:${contact.email}`} class="cta-button">
+						<Mail size={16} />
+						{about.cta}
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<div class="tile-strip" aria-hidden="true"></div>
+
+		<footer>
+			<div class="wrap foot">
+				<span>&copy; {new Date().getFullYear()} {site.name}. Καθαρισμός και συντήρηση πισίνας σε όλη την Κύπρο.</span>
+				<span>
+					<a href="/el/#services">Υπηρεσίες</a>
+					<a href="/el/pool-cleaning-paphos">Καθαρισμός Πισίνας Πάφος</a>
+					<a href="/el/#pricing">Τιμές</a>
+					<a href="/el/#quote">Δωρεάν προσφορά</a>
+				</span>
+			</div>
+		</footer>
+	</body>
+</html>

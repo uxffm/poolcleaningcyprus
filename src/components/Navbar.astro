@@ -1,13 +1,41 @@
 ---
-const pathname = Astro.url.pathname;
-const isHome = pathname === '/';
-const isAbout = pathname.startsWith('/about');
-const isBlog = pathname.startsWith('/blog');
-const isPaphos = pathname.startsWith('/pool-cleaning-paphos');
+const rawPath = Astro.url.pathname;
+const loc = rawPath === '/el' || rawPath.startsWith('/el/') ? 'el'
+	: rawPath === '/de' || rawPath.startsWith('/de/') ? 'de' : 'en';
+const pre = loc === 'en' ? '' : `/${loc}`;
+// path without the language prefix and without trailing slash, e.g. "/", "/about", "/blog/my-post"
+let base = loc === 'en' ? rawPath : rawPath.replace(/^\/(el|de)/, '');
+base = base === '' ? '/' : (base.length > 1 ? base.replace(/\/$/, '') : base);
+
+const T = {
+	en: { home: 'Home', about: 'About', paphos: 'Paphos', prices: 'Prices', blog: 'Blog', wa: 'Chat on WhatsApp' },
+	el: { home: 'Αρχική', about: 'Σχετικά', paphos: 'Πάφος', prices: 'Τιμές', blog: 'Blog', wa: 'Συνομιλία στο WhatsApp' },
+	de: { home: 'Start', about: 'Über uns', paphos: 'Paphos', prices: 'Preise', blog: 'Blog', wa: 'Per WhatsApp schreiben' },
+};
+const L = T[loc];
+const homeHref = loc === 'en' ? '/' : `/${loc}/`;
+
+const isHome = base === '/';
+const isAbout = base.startsWith('/about');
+const isBlog = base.startsWith('/blog');
+const isPaphos = base.startsWith('/pool-cleaning-paphos');
+
+// counterpart URL in each language. The blog only exists in English, so on
+// a blog post the other languages link to their (empty) blog overview.
+const target = (l) => {
+	const p = l === 'en' ? '' : `/${l}`;
+	if (base.startsWith('/blog/')) return l === 'en' ? base : `${p}/blog`;
+	return base === '/' ? (l === 'en' ? '/' : `${p}/`) : `${p}${base}`;
+};
+const langs = [
+	{ code: 'en', label: 'English',  href: target('en') },
+	{ code: 'el', label: 'Ελληνικά', href: target('el') },
+	{ code: 'de', label: 'Deutsch',  href: target('de') },
+];
 ---
 
 <nav class="navbar">
-	<a href="/" class="nav-brand" data-astro-prefetch="load">
+	<a href={homeHref} class="nav-brand" data-astro-prefetch="load">
 		<svg class="brand-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<circle cx="14" cy="14" r="13" fill="url(#dropGrad)" opacity="0.15"/>
 			<path d="M14 4C14 4 7 12 7 17a7 7 0 0 0 14 0c0-5-7-13-7-13z" fill="url(#dropGrad)"/>
@@ -22,13 +50,18 @@ const isPaphos = pathname.startsWith('/pool-cleaning-paphos');
 		<span class="brand-text">Pool Cleaning Cyprus</span>
 	</a>
 	<div class="nav-links">
-		<a href="/" class={`nav-item ${isHome ? 'active' : ''}`} data-astro-prefetch="load">Home</a>
-		<a href="/about" class={`nav-item ${isAbout ? 'active' : ''}`} data-astro-prefetch="load">About</a>
-		<a href="/pool-cleaning-paphos" class={`nav-item ${isPaphos ? 'active' : ''}`} data-astro-prefetch="load">Paphos</a>
-		<a href="/#pricing" class="nav-item" data-astro-prefetch="load">Prices</a>
-		<a href="/blog" class={`nav-item ${isBlog ? 'active' : ''}`} data-astro-prefetch="load">Blog</a>
+		<a href={homeHref} class={`nav-item ${isHome ? 'active' : ''}`} data-astro-prefetch="load">{L.home}</a>
+		<a href={`${pre}/about`} class={`nav-item ${isAbout ? 'active' : ''}`} data-astro-prefetch="load">{L.about}</a>
+		<a href={`${pre}/pool-cleaning-paphos`} class={`nav-item ${isPaphos ? 'active' : ''}`} data-astro-prefetch="load">{L.paphos}</a>
+		<a href={`${homeHref}#pricing`} class="nav-item" data-astro-prefetch="load">{L.prices}</a>
+		<a href={`${pre}/blog`} class={`nav-item ${isBlog ? 'active' : ''}`} data-astro-prefetch="load">{L.blog}</a>
 	</div>
-	<a href="https://wa.me/35797603083" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+	<div class="lang-switch" role="group" aria-label="Language">
+		{langs.map((l) => (
+			<a href={l.href} lang={l.code} hreflang={l.code} class={l.code === loc ? 'on' : ''} aria-current={l.code === loc ? 'true' : undefined}>{l.label}</a>
+		))}
+	</div>
+	<a href="https://wa.me/35797603083" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label={L.wa}>
 		<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 	</a>
 </nav>
@@ -114,6 +147,26 @@ const isPaphos = pathname.startsWith('/pool-cleaning-paphos');
 		background: rgba(14, 165, 233, 0.1);
 	}
 
+	.lang-switch {
+		display: flex;
+		border: 1px solid rgba(14, 165, 233, 0.35);
+		border-radius: 999px;
+		overflow: hidden;
+		flex-shrink: 0;
+		margin-left: 8px;
+	}
+	.lang-switch a {
+		padding: 6px 12px;
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		color: rgba(45, 55, 72, 0.7);
+		text-decoration: none;
+		transition: all 0.2s ease;
+	}
+	.lang-switch a:hover { color: #0ea5e9; }
+	.lang-switch a.on { background: #0ea5e9; color: #fff; }
+
 	.whatsapp-btn {
 		display: flex;
 		align-items: center;
@@ -146,6 +199,7 @@ const isPaphos = pathname.startsWith('/pool-cleaning-paphos');
 	}
 
 	@media (max-width: 480px) {
+		.lang-switch a { padding: 5px 8px; font-size: 0.7rem; }
 		.nav-links {
 			gap: 0;
 		}
@@ -160,23 +214,18 @@ const isPaphos = pathname.startsWith('/pool-cleaning-paphos');
 </style>
 
 <script is:inline>
-	(function() {
-		var pathname = window.location.pathname;
-		document.querySelectorAll('.nav-item').forEach(function(item) {
-			var href = item.getAttribute('href');
+	function setActiveNav() {
+		var strip = function (v) { return v.replace(/^\/(el|de)(?=\/|$)/, '') || '/'; };
+		var pathname = strip(window.location.pathname);
+		document.querySelectorAll('.nav-item').forEach(function (item) {
+			var href = strip(item.getAttribute('href').split('#')[0] || '/');
+			var hasHash = item.getAttribute('href').indexOf('#') !== -1;
 			item.classList.remove('active');
+			if (hasHash) return;
 			if (href === '/' && pathname === '/') item.classList.add('active');
 			else if (href !== '/' && pathname.startsWith(href)) item.classList.add('active');
 		});
-	})();
-
-	document.addEventListener('astro:after-swap', function() {
-		var pathname = window.location.pathname;
-		document.querySelectorAll('.nav-item').forEach(function(item) {
-			var href = item.getAttribute('href');
-			item.classList.remove('active');
-			if (href === '/' && pathname === '/') item.classList.add('active');
-			else if (href !== '/' && pathname.startsWith(href)) item.classList.add('active');
-		});
-	});
+	}
+	setActiveNav();
+	document.addEventListener('astro:after-swap', setActiveNav);
 </script>

@@ -8,6 +8,12 @@ export async function GET() {
 		{ url: '/',       priority: '1.0', changefreq: 'weekly',  lastmod: today },
 		{ url: '/about/', priority: '0.7', changefreq: 'monthly', lastmod: today },
 		{ url: '/pool-cleaning-paphos/', priority: '0.9', changefreq: 'monthly', lastmod: today },
+		{ url: '/el/', priority: '0.9', changefreq: 'weekly', lastmod: today },
+		{ url: '/el/about/', priority: '0.6', changefreq: 'monthly', lastmod: today },
+		{ url: '/el/pool-cleaning-paphos/', priority: '0.8', changefreq: 'monthly', lastmod: today },
+		{ url: '/de/', priority: '0.9', changefreq: 'weekly', lastmod: today },
+		{ url: '/de/about/', priority: '0.6', changefreq: 'monthly', lastmod: today },
+		{ url: '/de/pool-cleaning-paphos/', priority: '0.8', changefreq: 'monthly', lastmod: today },
 		{ url: '/blog/',  priority: '0.8', changefreq: 'weekly',  lastmod: today },
 	];
 
@@ -20,6 +26,7 @@ export async function GET() {
 			changefreq: 'monthly',
 			lastmod: post.data.pubDate.toISOString().slice(0, 10),
 		}));
+
 
 	const allPages = [...staticPages, ...blogPages];
 

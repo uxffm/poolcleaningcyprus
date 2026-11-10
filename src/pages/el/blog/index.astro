@@ -1,0 +1,244 @@
+---
+import Navbar from '../../../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+
+const siteTitle = "Blog Φροντίδας Πισίνας | Pool Cleaning Cyprus";
+const siteDescription = "Συμβουλές και οδηγοί φροντίδας πισίνας από την Pool Cleaning Cyprus.";
+const siteUrl = "https://poolcleaningcyprus.com";
+const siteName = "Pool Cleaning Cyprus";
+
+const posts: never[] = []; // blog is English-only for now
+---
+
+<!DOCTYPE html>
+<html lang="el">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{siteTitle}</title>
+		<meta name="description" content={siteDescription} />
+		<meta name="author" content={siteName} />
+		<meta name="robots" content="noindex, follow" />
+		<link rel="canonical" href={`${siteUrl}/el/blog/`} />
+		<meta name="geo.region" content="CY" />
+		<meta name="geo.placename" content="Cyprus" />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={siteDescription} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={`${siteUrl}/blog/`} />
+		<meta property="og:site_name" content={siteName} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<style>
+			:root {
+				--deep:  #072A38;
+				--water: #1B7A9E;
+				--aqua:  #6FD4E4;
+				--tile:  #F2F9FB;
+				--sun:   #FFC93C;
+				--ink:   #0A2530;
+				--muted: #3D6272;
+
+				--font-display: "Bricolage Grotesque", sans-serif;
+				--font-body:    "Inter", sans-serif;
+
+				--radius: 14px;
+				--maxw:   1080px;
+			}
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; }
+			html { scroll-behavior: smooth; }
+
+			body {
+				font-family: var(--font-body);
+				color: var(--ink);
+				background: var(--tile);
+				line-height: 1.6;
+			}
+
+			.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+			a { color: inherit; }
+
+			.tile-strip {
+				height: 14px;
+				background:
+					repeating-linear-gradient(90deg,
+						var(--aqua)  0 22px,
+						var(--tile) 22px 26px,
+						var(--water) 26px 48px,
+						var(--tile) 48px 52px);
+			}
+
+			.page-section {
+				padding: 100px 0 80px;
+			}
+
+			.page-inner {
+				max-width: 720px;
+			}
+
+			.eyebrow {
+				display: inline-block;
+				font-size: .8rem;
+				letter-spacing: .12em;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: var(--water);
+				margin-bottom: 16px;
+			}
+
+			h1 {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: clamp(2rem, 5vw, 3rem);
+				line-height: 1.1;
+				color: var(--ink);
+				margin-bottom: 16px;
+			}
+
+			.intro {
+				font-size: 1rem;
+				line-height: 1.75;
+				color: var(--muted);
+				margin-bottom: 48px;
+			}
+
+			.posts-list {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+
+			.post-card {
+				display: block;
+				padding: 24px 28px;
+				background: #fff;
+				border: 1px solid #DCEBF0;
+				border-radius: var(--radius);
+				text-decoration: none;
+				transition: transform .15s ease, box-shadow .15s ease;
+			}
+
+			.post-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 10px 28px rgba(7,42,56,.08);
+				border-color: var(--water);
+			}
+
+			.post-date {
+				font-size: .78rem;
+				font-weight: 600;
+				color: var(--water);
+				text-transform: uppercase;
+				letter-spacing: .06em;
+				margin-bottom: 8px;
+			}
+
+			.post-title {
+				font-family: var(--font-display);
+				font-size: 1.1rem;
+				font-weight: 700;
+				color: var(--ink);
+				margin-bottom: 8px;
+			}
+
+			.post-desc {
+				font-size: .875rem;
+				color: var(--muted);
+				line-height: 1.6;
+			}
+
+			.empty-state {
+				text-align: center;
+				padding: 64px 24px;
+				background: #fff;
+				border: 1px dashed #DCEBF0;
+				border-radius: var(--radius);
+			}
+
+			.empty-title {
+				font-family: var(--font-display);
+				font-size: 1.1rem;
+				font-weight: 700;
+				color: var(--ink);
+				margin-bottom: 8px;
+			}
+
+			.empty-desc {
+				font-size: .875rem;
+				color: var(--muted);
+				line-height: 1.6;
+			}
+
+			footer {
+				background: var(--deep);
+				color: #9FC6D3;
+				padding: 40px 0;
+				font-size: .9rem;
+			}
+
+			.foot {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 16px;
+			}
+
+			footer a { color: #CFE8F0; text-decoration: none; margin-left: 20px; }
+			footer a:hover { color: var(--sun); }
+		</style>
+	</head>
+	<body>
+		<div class="tile-strip" aria-hidden="true"></div>
+		<Navbar />
+
+		<section class="page-section">
+			<div class="wrap">
+				<div class="page-inner">
+					<span class="eyebrow">Blog</span>
+					<h1>Συμβουλές &amp; Οδηγοί Φροντίδας Πισίνας</h1>
+					<p class="intro">Πρακτικές συμβουλές για να κρατάτε την πισίνα σας σε άριστη κατάσταση.</p>
+
+					{posts.length > 0 ? (
+						<div class="posts-list">
+							{posts.map(post => (
+								<a href={`/blog/${post.slug}`} class="post-card">
+									<div class="post-date">
+										{post.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+									</div>
+									<div class="post-title">{post.data.title}</div>
+									<div class="post-desc">{post.data.description}</div>
+								</a>
+							))}
+						</div>
+					) : (
+						<div class="empty-state">
+							<div class="empty-title">Σύντομα νέα άρθρα</div>
+							<div class="empty-desc">Ετοιμάζουμε χρήσιμους οδηγούς για ιδιοκτήτες πισίνας στην Κύπρο.<br/>Ξαναεπισκεφθείτε μας σύντομα.</div>
+						</div>
+					)}
+				</div>
+			</div>
+		</section>
+
+		<div class="tile-strip" aria-hidden="true"></div>
+
+		<footer>
+			<div class="wrap foot">
+				<span>&copy; {new Date().getFullYear()} Pool Cleaning Cyprus. Καθαρισμός και συντήρηση πισίνας σε όλη την Κύπρο.</span>
+				<span>
+					<a href="/el/#services">Υπηρεσίες</a>
+					<a href="/el/pool-cleaning-paphos">Καθαρισμός Πισίνας Πάφος</a>
+					<a href="/el/#pricing">Τιμές</a>
+					<a href="/el/#quote">Δωρεάν προσφορά</a>
+				</span>
+			</div>
+		</footer>
+	</body>
+</html>

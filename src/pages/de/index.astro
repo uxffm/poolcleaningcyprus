@@ -1,0 +1,901 @@
+---
+import Navbar from '../../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { alternates } from '../../data/i18n';
+import { site, contact, homeMeta, hero, reportCard, services, howItWorks, pricing, whyUs, reviews, areas, commercial, standards, expectations, referrals, quoteSection } from '../../data/content.de';
+
+
+---
+
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<title>{homeMeta.title}</title>
+		<meta name="title" content={homeMeta.title} />
+		<meta name="description" content={homeMeta.description} />
+		<meta name="keywords" content={homeMeta.keywords} />
+		<meta name="author" content={site.name} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={`${site.url}/de/`} />
+		{alternates('home').map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={`${site.url}/de/`} />
+		<meta property="og:title" content={homeMeta.title} />
+		<meta property="og:description" content={homeMeta.description} />
+		<meta property="og:image" content={`${site.url}/og-image.jpg`} />
+		<meta property="og:site_name" content={site.name} />
+		<meta property="og:locale" content="de_DE" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={homeMeta.title} />
+		<meta name="twitter:description" content={homeMeta.description} />
+		<meta name="twitter:image" content={`${site.url}/og-image.jpg`} />
+
+		<meta name="geo.region" content="CY" />
+		<meta name="geo.placename" content="Cyprus" />
+		<meta name="geo.position" content="35.1264;33.4299" />
+		<meta name="ICBM" content="35.1264, 33.4299" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
+
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": site.name,
+			"description": "Professionelle Reinigung und Pflege von Swimmingpools auf ganz Zypern.",
+			"inLanguage": "de",
+			"url": `${site.url}/de/`,
+			"email": contact.email,
+			"address": { "@type": "PostalAddress", "addressLocality": "Coral Bay", "addressRegion": "Paphos", "addressCountry": "CY" },
+			"geo": { "@type": "GeoCoordinates", "latitude": 34.6754, "longitude": 33.0440 },
+			"openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-14:00"],
+			"priceRange": "€€",
+			"areaServed": areas.list,
+			"serviceType": "Poolreinigung und Poolpflege"
+		})} />
+
+		<style>
+			:root {
+				--deep:   #072A38;
+				--water:  #1B7A9E;
+				--aqua:   #6FD4E4;
+				--tile:   #F2F9FB;
+				--sun:    #FFC93C;
+				--ink:    #0A2530;
+				--muted:  #3D6272;
+
+				--font-display: "Bricolage Grotesque", sans-serif;
+				--font-body:    "Inter", sans-serif;
+
+				--radius: 14px;
+				--maxw:   1080px;
+			}
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; }
+			html { scroll-behavior: smooth; }
+
+			@media (prefers-reduced-motion: reduce) {
+				html { scroll-behavior: auto; }
+				*, *::before, *::after { animation: none !important; transition: none !important; }
+			}
+
+			body {
+				font-family: var(--font-body);
+				color: var(--ink);
+				background: var(--tile);
+				line-height: 1.6;
+			}
+
+			.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+			a { color: inherit; }
+			a:focus-visible, button:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+
+			/* ── tile strip ── */
+			.tile-strip {
+				height: 14px;
+				background:
+					repeating-linear-gradient(90deg,
+						var(--aqua)  0 22px,
+						var(--tile) 22px 26px,
+						var(--water) 26px 48px,
+						var(--tile) 48px 52px);
+			}
+
+			/* ── buttons ── */
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				border: none;
+				cursor: pointer;
+				font-family: var(--font-body);
+				font-weight: 600;
+				font-size: 1rem;
+				padding: 13px 26px;
+				border-radius: 999px;
+				text-decoration: none;
+				transition: transform .15s ease, box-shadow .15s ease;
+			}
+			.btn:hover { transform: translateY(-2px); }
+			.btn-sun  { background: var(--sun);   color: var(--ink); box-shadow: 0 4px 14px rgba(255,201,60,.4); }
+			.btn-ghost { background: transparent; color: var(--tile); border: 2px solid rgba(242,249,251,.5); }
+			.btn-ghost:hover { border-color: var(--tile); }
+			.btn-water { background: var(--water); color: #fff; text-align: center; }
+
+			/* ── hero ── */
+			.hero {
+				background: linear-gradient(175deg, var(--water) 0%, var(--deep) 85%);
+				color: var(--tile);
+				position: relative;
+				overflow: hidden;
+				padding-top: 64px; /* navbar offset */
+			}
+
+			.hero-inner {
+				padding: 80px 24px 140px;
+				max-width: var(--maxw);
+				margin: 0 auto;
+				display: grid;
+				grid-template-columns: 1.15fr .85fr;
+				gap: 48px;
+				align-items: center;
+			}
+
+			.eyebrow {
+				display: inline-block;
+				font-size: .8rem;
+				letter-spacing: .12em;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: var(--aqua);
+				margin-bottom: 16px;
+			}
+
+			h1 {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: clamp(2.4rem, 5vw, 3.8rem);
+				line-height: 1.05;
+				margin-bottom: 20px;
+			}
+
+			h1 .accent { color: var(--sun); }
+
+			.hero-desc {
+				font-size: 1.1rem;
+				max-width: 46ch;
+				color: #CFE8F0;
+				margin-bottom: 32px;
+				line-height: 1.7;
+			}
+
+			.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+			/* report card */
+			.report-card {
+				background: var(--tile);
+				color: var(--ink);
+				border-radius: var(--radius);
+				padding: 28px;
+				box-shadow: 0 24px 60px rgba(0,0,0,.35);
+				transform: rotate(2deg);
+			}
+
+			.report-card h3 {
+				font-family: var(--font-display);
+				font-weight: 700;
+				font-size: 1.05rem;
+				margin-bottom: 14px;
+				color: var(--ink);
+			}
+
+			.report-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 10px 0;
+				border-bottom: 1px dashed #D3E5EB;
+				font-size: .92rem;
+				color: var(--ink);
+			}
+
+			.report-row:last-child { border-bottom: none; }
+
+			.pill {
+				font-size: .75rem;
+				font-weight: 600;
+				padding: 3px 10px;
+				border-radius: 999px;
+			}
+
+			.pill.ok  { background: #DCF5E5; color: #176B3A; }
+			.pill.fix { background: #FFF1CC; color: #8A6100; }
+
+			/* wave divider */
+			.wave {
+				position: absolute;
+				bottom: -2px;
+				left: 0;
+				width: 200%;
+				height: 90px;
+				animation: drift 14s linear infinite;
+			}
+
+			@keyframes drift {
+				from { transform: translateX(0); }
+				to   { transform: translateX(-50%); }
+			}
+
+			/* ── shared section ── */
+			section { padding: 88px 0; }
+
+			.section-head { max-width: 56ch; margin-bottom: 48px; }
+
+			h2 {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+				line-height: 1.15;
+				margin-bottom: 12px;
+			}
+
+			.section-head p { color: var(--muted); font-size: 1.05rem; }
+
+			/* ── services ── */
+			.services { background: #fff; }
+
+			.services-top {
+				display: grid;
+				grid-template-columns: 1fr 420px;
+				gap: 0 40px;
+				align-items: start;
+				margin-bottom: 48px;
+			}
+			.services-photo {
+				width: 420px;
+				height: auto;
+				mix-blend-mode: multiply;
+				display: block;
+			}
+			.services-col { display: flex; flex-direction: column; gap: 28px; }
+			.services-bottom {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 28px 40px;
+			}
+			.svc-item h3 {
+				font-family: var(--font-display);
+				font-size: 1rem;
+				font-weight: 700;
+				color: var(--ink);
+				margin-bottom: 5px;
+			}
+			.svc-item p { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+
+			/* ── how it works ── */
+			.how { background: var(--deep); color: var(--tile); }
+			.how h2 { color: var(--tile); }
+			.how .section-head p { color: #9FC6D3; }
+
+			.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+			.step { border-top: 3px solid var(--aqua); padding-top: 20px; }
+
+			.step strong {
+				font-family: var(--font-display);
+				font-weight: 700;
+				font-size: 1.1rem;
+				display: block;
+				margin-bottom: 8px;
+				color: var(--tile);
+			}
+
+			.step p { font-size: .95rem; color: #B7D8E2; }
+
+			/* ── pricing ── */
+			.pricing { background: var(--tile); }
+
+			.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+
+			.plan {
+				background: #fff;
+				border: 1px solid #DCEBF0;
+				border-radius: var(--radius);
+				padding: 32px 28px;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.plan.featured { border: 2px solid var(--water); position: relative; }
+
+			.plan-badge {
+				position: absolute;
+				top: -13px;
+				left: 24px;
+				background: var(--sun);
+				color: var(--ink);
+				font-size: .75rem;
+				font-weight: 700;
+				padding: 3px 12px;
+				border-radius: 999px;
+			}
+
+			.plan h3 {
+				font-family: var(--font-display);
+				font-weight: 700;
+				font-size: 1.2rem;
+				color: var(--ink);
+			}
+
+			.plan-note {
+				font-size: .82rem;
+				color: var(--muted);
+				margin: 6px 0 14px;
+				line-height: 1.5;
+			}
+
+			.price {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: 2.6rem;
+				margin: 10px 0 2px;
+				color: var(--ink);
+				letter-spacing: -0.02em;
+			}
+
+			.price span { font-size: 1rem; font-weight: 500; color: var(--muted); }
+
+			.plan ul { list-style: none; padding: 0; margin: 20px 0 28px; flex: 1; }
+
+			.plan li {
+				padding: 7px 0 7px 26px;
+				position: relative;
+				font-size: .95rem;
+				color: var(--ink);
+			}
+
+			.plan li::before {
+				content: "✓";
+				position: absolute;
+				left: 0;
+				color: var(--water);
+				font-weight: 700;
+			}
+
+			.plans-note {
+				text-align: center;
+				margin-top: 24px;
+				font-size: .9rem;
+				color: var(--muted);
+			}
+
+			.billing-note { margin-top: 10px; color: var(--ink); }
+			.billing-note strong { color: var(--ink); }
+
+			/* ── communal & commercial ── */
+			.commercial {
+				background: linear-gradient(160deg, var(--deep), var(--water));
+				color: var(--tile);
+				text-align: center;
+			}
+
+			.commercial-inner { max-width: 62ch; margin: 0 auto; }
+			.commercial h2 { color: var(--tile); }
+			.commercial-sub { color: var(--aqua); font-weight: 600; margin-bottom: 16px; }
+			.commercial-text { color: #CFE8F0; margin-bottom: 28px; line-height: 1.7; }
+
+			/* ── standards ── */
+			.standards { background: var(--tile); }
+
+			.standards-footnote {
+				margin-top: 32px;
+				font-family: var(--font-display);
+				font-weight: 700;
+				font-size: 1.1rem;
+				color: var(--water);
+			}
+
+			/* ── expectations ── */
+			.expectations { background: #fff; }
+
+			.expect-list { list-style: none; padding: 0; display: grid; gap: 16px; }
+
+			.expect-list li {
+				padding: 18px 22px;
+				border: 1px solid #DCEBF0;
+				border-radius: var(--radius);
+				font-size: .95rem;
+				color: var(--muted);
+				line-height: 1.6;
+			}
+
+			.expect-list li strong { color: var(--ink); }
+
+			/* ── referrals ── */
+			.referrals { background: var(--tile); }
+
+			.referrals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 12px; }
+
+			.referral-item {
+				background: #fff;
+				border: 1px solid #DCEBF0;
+				border-radius: var(--radius);
+				padding: 24px;
+				font-size: .95rem;
+				color: var(--muted);
+				line-height: 1.6;
+			}
+
+			/* ── why us ── */
+			.why { background: #fff; }
+
+			.why-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+			}
+
+			.why-card {
+				border: 1px solid #DCEBF0;
+				border-radius: var(--radius);
+				padding: 28px;
+				border-left: 4px solid var(--aqua);
+			}
+
+			.why-card h3 {
+				font-family: var(--font-display);
+				font-weight: 700;
+				font-size: 1.05rem;
+				margin-bottom: 8px;
+				color: var(--ink);
+			}
+
+			.why-card p { font-size: .95rem; color: var(--muted); line-height: 1.65; }
+
+			/* ── reviews ── */
+			.reviews { background: var(--tile); }
+
+			.reviews-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+			}
+
+			.review {
+				background: #fff;
+				border: 1px solid #DCEBF0;
+				border-radius: var(--radius);
+				padding: 28px;
+			}
+
+			.stars { color: #f59e0b; font-size: 1rem; margin-bottom: 12px; }
+
+			.review blockquote {
+				font-size: .95rem;
+				color: var(--muted);
+				line-height: 1.7;
+				font-style: italic;
+				margin-bottom: 16px;
+			}
+
+			.reviewer {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+			}
+
+			.avatar {
+				width: 38px;
+				height: 38px;
+				border-radius: 50%;
+				background: var(--water);
+				color: #fff;
+				font-family: var(--font-display);
+				font-weight: 700;
+				font-size: .8rem;
+				display: grid;
+				place-items: center;
+				flex-shrink: 0;
+			}
+
+			.reviewer-name { font-weight: 700; font-size: .875rem; color: var(--ink); }
+			.reviewer-city { font-size: .78rem; color: #94a3b8; }
+
+			/* ── areas ── */
+			.areas { background: #fff; }
+
+			.area-chips {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin-bottom: 16px;
+			}
+
+			.area-chip {
+				display: flex;
+				align-items: center;
+				gap: 7px;
+				padding: 9px 20px;
+				background: var(--tile);
+				border: 1.5px solid #DCEBF0;
+				border-radius: 999px;
+				font-size: .875rem;
+				font-weight: 600;
+				color: var(--ink);
+				text-decoration: none;
+				transition: all .15s ease;
+			}
+
+			.area-chip:hover {
+				border-color: var(--water);
+				background: rgba(27,122,158,.06);
+				color: var(--water);
+				transform: translateY(-2px);
+			}
+
+			.area-dot {
+				width: 7px;
+				height: 7px;
+				background: var(--aqua);
+				border-radius: 50%;
+				flex-shrink: 0;
+			}
+
+			.areas-note { font-size: .875rem; color: var(--muted); }
+			.areas-note a { color: var(--water); font-weight: 600; }
+
+			/* ── quote / contact ── */
+			.quote {
+				background: linear-gradient(160deg, var(--water), var(--deep));
+				color: var(--tile);
+			}
+
+			.quote-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 56px;
+				align-items: start;
+			}
+
+			.quote h2 { color: var(--tile); }
+			.quote .lede { color: #CFE8F0; margin-bottom: 20px; font-size: 1.05rem; }
+			.quote .contact-detail { color: #9FC6D3; font-size: .95rem; margin-top: 10px; }
+			.quote .contact-detail strong { color: var(--tile); }
+
+			.quote form {
+				background: var(--tile);
+				border-radius: var(--radius);
+				padding: 32px;
+				display: grid;
+				gap: 16px;
+				color: var(--ink);
+				box-shadow: 0 24px 60px rgba(0,0,0,.3);
+			}
+
+			label {
+				font-size: .85rem;
+				font-weight: 600;
+				display: block;
+				margin-bottom: 6px;
+				color: var(--ink);
+			}
+
+			label span { font-weight: 400; color: var(--muted); }
+
+			input, textarea {
+				width: 100%;
+				padding: 12px 14px;
+				border: 1px solid #C6DEE6;
+				border-radius: 10px;
+				font: inherit;
+				background: #fff;
+				color: var(--ink);
+			}
+
+			input:focus, textarea:focus {
+				outline: 3px solid var(--aqua);
+				border-color: var(--water);
+			}
+
+			textarea { height: 100px; resize: vertical; }
+
+			.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+			/* ── footer ── */
+			footer {
+				background: var(--deep);
+				color: #9FC6D3;
+				padding: 40px 0;
+				font-size: .9rem;
+			}
+
+			.foot {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 16px;
+			}
+
+			footer a { color: #CFE8F0; text-decoration: none; margin-left: 20px; }
+			footer a:hover { color: var(--sun); }
+
+			/* ── responsive ── */
+			@media (max-width: 860px) {
+				.hero-inner { grid-template-columns: 1fr; padding: 60px 24px 120px; }
+				.report-card { transform: none; max-width: 420px; }
+				.services-top { grid-template-columns: 1fr; }
+				.services-photo { width: 220px; margin: 0 auto; }
+				.services-bottom { grid-template-columns: 1fr; }
+				.steps        { grid-template-columns: 1fr; }
+				.plans        { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+				.quote-grid   { grid-template-columns: 1fr; }
+				.why-grid     { grid-template-columns: 1fr; }
+				.reviews-grid { grid-template-columns: 1fr; }
+				.referrals-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="tile-strip" aria-hidden="true"></div>
+		<Navbar />
+
+		<!-- ══ HERO ══ -->
+		<header class="hero">
+			<div class="hero-inner">
+				<div>
+					<span class="eyebrow">{hero.eyebrow}</span>
+					<h1>{hero.heading} <span class="accent">{hero.headingAccent}</span></h1>
+					<p class="hero-desc">{hero.description}</p>
+					<div class="hero-ctas">
+						<a class="btn btn-sun" href={`tel:${hero.phone}`}>{hero.ctaPrimary} {hero.phone.replace('+357', '')}</a>
+						<a class="btn btn-ghost" href={hero.whatsapp} target="_blank" rel="noopener noreferrer">
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:6px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>{hero.ctaSecondary}
+						</a>
+					</div>
+				</div>
+
+				<aside class="report-card" aria-label="Beispiel-Wasserbericht">
+					<h3>{reportCard.title}</h3>
+					{reportCard.rows.map(row => (
+						<div class="report-row"><span>{row.label}</span><span class={`pill ${row.type}`}>{row.value}</span></div>
+					))}
+					<div class="report-row"><span>Nächster Besuch</span><strong>{reportCard.nextVisit}</strong></div>
+				</aside>
+			</div>
+
+			<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+				<path d="M0,45 C120,80 240,10 360,45 C480,80 600,10 720,45 C840,80 960,10 1080,45 C1200,80 1320,10 1440,45 L1440,90 L0,90 Z M1440,45 C1560,80 1680,10 1800,45 C1920,80 2040,10 2160,45 C2280,80 2400,10 2520,45 C2640,80 2760,10 2880,45 L2880,90 L1440,90 Z" fill="#F2F9FB"/>
+			</svg>
+		</header>
+
+		<!-- ══ SERVICES ══ -->
+		<section class="services" id="services">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>{services.heading}</h2>
+					<p>{services.subheading}</p>
+				</div>
+				<div class="services-top">
+					<div class="services-col">
+						{services.left.map(item => (
+							<div class="svc-item">
+								<h3>{item.title}</h3>
+								<p>{item.description}</p>
+							</div>
+						))}
+					</div>
+					<img src="/team-photo.png" alt="Pooltechniker bei der Poolreinigung" class="services-photo" />
+				</div>
+				<div class="services-bottom">
+					{services.right.map(item => (
+						<div class="svc-item">
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- ══ HOW IT WORKS ══ -->
+		<section class="how" id="how">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>{howItWorks.heading}</h2>
+					<p>{howItWorks.subheading}</p>
+				</div>
+				<div class="steps">
+					{howItWorks.steps.map(step => (
+						<div class="step">
+							<strong>{step.title}</strong>
+							<p>{step.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- ══ PRICING ══ -->
+		<section class="pricing" id="pricing">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>{pricing.heading}</h2>
+					<p>{pricing.subheading}</p>
+				</div>
+				<div class="plans">
+					{pricing.plans.map(plan => (
+						<div class={`plan${plan.featured ? " featured" : ""}`}>
+							{plan.featured && <span class="plan-badge">{plan.featuredLabel}</span>}
+							<h3>{plan.name}</h3>
+							<div class="price" style={plan.priceUnit === "" ? "font-size: 1.8rem; padding-top: 4px;" : ""}>
+								{plan.price}{plan.priceUnit && <span>{plan.priceUnit}</span>}
+							</div>
+							<p class="plan-note">{plan.note}</p>
+							<ul>
+								{plan.features.map(f => <li>{f}</li>)}
+							</ul>
+							<a class={`btn btn-${plan.ctaStyle}`} href="#quote">{plan.cta}</a>
+						</div>
+					))}
+				</div>
+				<p class="plans-note">{pricing.note}</p>
+				<p class="plans-note billing-note"><strong>{pricing.billingHeading}</strong> {pricing.billingText}</p>
+			</div>
+		</section>
+
+		<!-- ══ COMMERCIAL ══ -->
+		<section class="commercial" id="commercial">
+			<div class="wrap commercial-inner">
+				<h2>{commercial.heading}</h2>
+				<p class="commercial-sub">{commercial.subheading}</p>
+				<p class="commercial-text">{commercial.text}</p>
+				<a class="btn btn-sun" href="#quote">{commercial.cta}</a>
+			</div>
+		</section>
+
+		<!-- ══ STANDARDS ══ -->
+		<section class="standards" id="standards">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>{standards.heading}</h2>
+					<p>{standards.intro}</p>
+				</div>
+				<div class="why-grid">
+					{standards.items.map(item => (
+						<div class="why-card">
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</div>
+					))}
+				</div>
+				<p class="standards-footnote">{standards.footnote}</p>
+			</div>
+		</section>
+
+		<!-- ══ EXPECTATIONS ══ -->
+		<section class="expectations" id="expectations">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>{expectations.heading}</h2>
+					<p>{expectations.intro}</p>
+				</div>
+				<ul class="expect-list">
+					{expectations.items.map(item => (
+						<li><strong>{item.title}</strong> {item.description}</li>
+					))}
+				</ul>
+			</div>
+		</section>
+
+		<!-- ══ REFERRALS ══ -->
+		<section class="referrals" id="referrals">
+			<div class="wrap">
+				<h2>{referrals.heading}</h2>
+				<div class="referrals-grid">
+					{referrals.items.map(text => (
+						<p class="referral-item">{text}</p>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- ══ WHY US ══ -->
+		<section class="why" id="why">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>{whyUs.heading}</h2>
+					{whyUs.subheading && <p>{whyUs.subheading}</p>}
+				</div>
+				<div class="why-grid">
+					{whyUs.items.map(item => (
+						<div class="why-card">
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+
+		<!-- ══ COVERAGE ══ -->
+		<section class="areas" id="areas">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>{areas.heading}</h2>
+					{areas.subheading && <p>{areas.subheading}</p>}
+				</div>
+				<div class="area-chips">
+					{areas.list.map(name => (
+						<div class="area-chip"><span class="area-dot"></span>{name}</div>
+					))}
+				</div>
+				<p class="areas-note">{areas.note} <a href="#quote">{areas.noteLink}</a>. Wir fahren auf der ganzen Insel.</p>
+			</div>
+		</section>
+
+		<!-- ══ QUOTE / CONTACT ══ -->
+		<section class="quote" id="quote">
+			<div class="wrap quote-grid">
+				<div>
+					<h2>{quoteSection.heading}</h2>
+					<p class="lede">{quoteSection.lede}</p>
+					<p class="contact-detail">Email: <strong>{contact.email}</strong></p>
+					<p class="contact-detail" style="margin-top: 6px;">Standort: <strong>{contact.address}</strong></p>
+					<p class="contact-detail" style="margin-top: 12px;">Wir sitzen an der Coral Bay Avenue, nahe dem Hafen — wenn Sie uns brauchen, sind wir meist innerhalb einer Stunde an Ihrem Pool.</p>
+				</div>
+				<form name="contact" method="POST" action="/de/success/" data-netlify="true" netlify-honeypot="bot-field">
+					<input type="hidden" name="form-name" value="contact" />
+					<p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+					<div class="field-row">
+						<div>
+							<label for="name">Name</label>
+							<input id="name" type="text" name="name" placeholder="Ihr Name" required />
+						</div>
+						<div>
+							<label for="phone">Telefon</label>
+							<input id="phone" type="tel" name="phone" placeholder="XX XXX XXX" />
+						</div>
+					</div>
+					<div>
+						<label for="email">E-Mail</label>
+						<input id="email" type="email" name="email" placeholder="you@example.com" />
+					</div>
+					<div>
+						<label for="message">Zu Ihrem Pool <span>(optional: Größe, Standort, Zustand)</span></label>
+						<textarea id="message" name="message" placeholder="z. B. Villenpool 10×5 m in Limassol, seit 3 Wochen nicht gereinigt..."></textarea>
+					</div>
+					<button class="btn btn-sun" type="submit">Anfrage senden →</button>
+				</form>
+			</div>
+		</section>
+
+		<div class="tile-strip" aria-hidden="true"></div>
+
+		<!-- ══ FOOTER ══ -->
+		<footer>
+			<div class="wrap foot">
+				<span>&copy; {new Date().getFullYear()} {site.name}. Poolreinigung und Poolpflege auf ganz Zypern. Ansässig in Paphos.</span>
+				<span>
+					<a href="#services">Leistungen</a>
+					<a href="/de/pool-cleaning-paphos">Poolreinigung Paphos</a>
+					<a href="#pricing">Preise</a>
+					<a href="#quote">Kostenloses Angebot</a>
+				</span>
+			</div>
+		</footer>
+
+	</body>
+</html>

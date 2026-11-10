@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import { ClientRouter } from 'astro:transitions';
+import { alternates } from '../data/i18n';
 import { Droplets, Shield, Clock, Mail } from '@lucide/astro';
 import { site, contact, aboutMeta, about } from '../data/content';
 ---
@@ -15,8 +16,7 @@ import { site, contact, aboutMeta, about } from '../data/content';
 		<meta name="author" content={site.name} />
 		<meta name="robots" content="index, follow" />
 		<link rel="canonical" href={`${site.url}/about/`} />
-		<link rel="alternate" hreflang="en-CY" href={`${site.url}/about/`} />
-		<link rel="alternate" hreflang="en" href={`${site.url}/about/`} />
+		{alternates('about').map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
 		<meta name="geo.region" content="CY" />
 		<meta name="geo.placename" content="Cyprus" />
 		<meta name="geo.position" content="35.1264;33.4299" />

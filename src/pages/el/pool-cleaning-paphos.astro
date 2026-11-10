@@ -1,0 +1,384 @@
+---
+import Navbar from '../../components/Navbar.astro';
+import { ClientRouter } from 'astro:transitions';
+import { alternates } from '../../data/i18n';
+import { Droplets, FlaskConical, Filter, Leaf, Wrench, Waves, Snowflake, Search, Sparkles, ChevronDown, Camera, MapPin, Clock, Gauge, Receipt, ShieldCheck } from '@lucide/astro';
+import { site } from '../../data/content';
+
+const title = 'Καθαρισμός Πισίνας Πάφος | Συντήρηση Πισίνας Πάφος';
+const description = 'Επαγγελματικός καθαρισμός πισίνας στην Πάφο, Coral Bay, Πέγεια, Κισσόνεργα, Χλώρακα, Τάλα, Γεροσκήπου & γύρω περιοχές. Εβδομαδιαία συντήρηση από €45. Ζητήστε δωρεάν προσφορά!';
+const url = `${site.url}/el/pool-cleaning-paphos/`;
+const enUrl = `${site.url}/pool-cleaning-paphos/`;
+const phone = '+35797603083';
+const whatsapp = 'https://wa.me/35797603083';
+
+const services = [
+	{ icon: Droplets, title: 'Εβδομαδιαίος Καθαρισμός Πισίνας', text: 'Η τακτική υπηρεσία καθαρισμού περιλαμβάνει συλλογή φύλλων και ακαθαρσιών από την επιφάνεια του νερού, καθαρισμό του πυθμένα με ηλεκτρική σκούπα, βούρτσισμα τοιχωμάτων και σκαλοπατιών και καθαρισμό της γραμμής του νερού. Αδειάζουμε επίσης τα καλάθια του skimmer και της αντλίας για σωστή κυκλοφορία του νερού. Ο τακτικός καθαρισμός αποτρέπει τη συσσώρευση σκόνης και οργανικών υλικών και διατηρεί την πισίνα σας όμορφη.' },
+	{ icon: FlaskConical, title: 'Έλεγχος Νερού & Ισορροπία Χημικών', text: 'Η σωστή χημεία του νερού είναι απαραίτητη για μια καθαρή και άνετη πισίνα. Σε κάθε προγραμματισμένη επίσκεψη ελέγχουμε χλώριο, pH, ολική αλκαλικότητα, σκληρότητα ασβεστίου και σταθεροποιητή (κυανουρικό οξύ). Με βάση τις μετρήσεις, προσαρμόζουμε την ισορροπία των χημικών λαμβάνοντας υπόψη το σκληρό νερό και τον έντονο ήλιο της Κύπρου. Τα σωστά επίπεδα σταθεροποιητή προστατεύουν το χλώριο από τον ήλιο, ενώ ελέγχουμε και τα φωσφορικά όταν τα φύκια επανεμφανίζονται.' },
+	{ icon: Sparkles, title: 'Αφαίρεση Αλάτων & Καθαρισμός Πλακιδίων', text: 'Το σκληρό νερό στην Πάφο αφήνει λευκές επικαθίσεις αλάτων στα πλακίδια, στη γραμμή του νερού και γύρω από τα εξαρτήματα. Αφαιρούμε τα άλατα από τα πλακίδια και τη γραμμή του νερού και διατηρούμε τη σκληρότητα ασβεστίου υπό έλεγχο, ώστε οι επικαθίσεις να επανεμφανίζονται πιο αργά.' },
+	{ icon: Filter, title: 'Καθαρισμός & Συντήρηση Φίλτρου Πισίνας', text: 'Το σύστημα φιλτραρίσματος παίζει βασικό ρόλο στη διαύγεια του νερού. Ελέγχουμε τα φίλτρα, τις πιέσεις και πραγματοποιούμε αντίστροφη πλύση (backwash) και έκπλυση όποτε χρειάζεται. Ελέγχουμε επίσης τα καλάθια της αντλίας, τα skimmers και τα υπόλοιπα εξαρτήματα φιλτραρίσματος, ώστε να διατηρείται η σωστή κυκλοφορία και να μην καταπονείται ο εξοπλισμός.' },
+	{ icon: Leaf, title: 'Πρόληψη Φυκιών & Αποκατάσταση Πράσινης Πισίνας', text: 'Ο ζεστός καιρός και τα χαμηλά επίπεδα χλωρίου ευνοούν την ανάπτυξη φυκιών. Η τακτική συντήρηση τα προλαμβάνει παρακολουθώντας τη χημεία, το φιλτράρισμα και την κυκλοφορία του νερού. Αν η πισίνα σας έχει ήδη γίνει πράσινη, προσφέρουμε αποκατάσταση με shock treatment, βούρτσισμα, φιλτράρισμα και εξισορρόπηση του νερού μέχρι να καθαρίσει πλήρως.' },
+	{ icon: Wrench, title: 'Επισκευές Αντλιών & Εξοπλισμού Πισίνας', text: 'Παρέχουμε επιθεώρηση και επισκευή εξοπλισμού πισίνας στην Πάφο, όπως αντλίες, φίλτρα, skimmers, υδραυλικά, φωτισμός και συναφή εξαρτήματα. Ο έγκαιρος εντοπισμός προβλημάτων αποτρέπει ακριβότερες επισκευές και διακοπές στη συντήρηση. Επισκευάζουμε επίσης αντλίες θερμότητας, ηλιακά συστήματα θέρμανσης πισίνας, ρομποτικούς καθαριστές, καλύμματα και συστήματα αυτοματισμού.' },
+	{ icon: Search, title: 'Εντοπισμός Διαρροών Πισίνας', text: 'Χάνετε περισσότερο νερό από όσο δικαιολογεί η εξάτμιση; Ελέγχουμε για διαρροές στους σωλήνες, στα εξαρτήματα, στα skimmers και στο κέλυφος της πισίνας και φροντίζουμε για τις επισκευές. Όπου χρειάζεται, μπορούμε επίσης να αδειάσουμε και να ξαναγεμίσουμε την πισίνα.' },
+	{ icon: Waves, title: 'Συντήρηση Πισίνας Αλατιού', text: 'Συντηρούμε επίσης πισίνες αλατιού. Η υπηρεσία περιλαμβάνει έλεγχο επιπέδου αλατιού, επιθεώρηση του salt cell και προσαρμογές στη χημεία του νερού. Είτε η πισίνα σας λειτουργεί με κλασικό χλώριο είτε με ηλεκτρόλυση αλατιού, μπορούμε να διατηρήσουμε τη σωστή ισορροπία του νερού.' },
+	{ icon: Snowflake, title: 'Χειμερινή Συντήρηση & Άνοιγμα Πισίνας', text: 'Οι πισίνες στην Κύπρο χρειάζονται φροντίδα και εκτός σεζόν. Το πρόγραμμα χειμερινής συντήρησης κρατά το νερό ισορροπημένο και τον εξοπλισμό προστατευμένο με πιο αραιές επισκέψεις. Την άνοιξη αναλαμβάνουμε το άνοιγμα της πισίνας, ώστε να είναι καθαρή και έτοιμη για το καλοκαίρι.' },
+];
+
+const areas = ['Κόραλ Μπέι (Coral Bay)', 'Πέγεια', 'Κισσόνεργα', 'Χλώρακα', 'Τάλα', 'Πάφος (πόλη)', 'Universal', 'Γεροσκήπου', 'Κόνια', 'Έμπα', 'Τσάδα', 'Τρεμιθούσα', 'Άρμου', 'Μεσόγη', 'Κάθηκας', 'Κούκλια', 'Aphrodite Hills', 'Πόλις Χρυσοχούς', 'Λατσί'];
+const areasEn = ['Coral Bay', 'Peyia', 'Kissonerga', 'Chloraka', 'Tala', 'Paphos Town', 'Universal', 'Geroskipou', 'Konia', 'Emba', 'Tsada', 'Tremithousa', 'Armou', 'Mesogi', 'Kathikas', 'Kouklia', 'Aphrodite Hills', 'Polis', 'Latchi'];
+
+const why = [
+	{ icon: Clock, title: 'Αξιόπιστες προγραμματισμένες επισκέψεις', text: 'Η πισίνα σας φροντίζεται τακτικά με συμφωνημένο πρόγραμμα. Αν χρειαστεί να αλλάξει κάποια επίσκεψη, σας ενημερώνουμε εκ των προτέρων.' },
+	{ icon: MapPin, title: 'Τοπική γνώση', text: 'Γνωρίζουμε πώς το σκληρό νερό, οι υψηλές θερμοκρασίες, η σκόνη και ο έντονος ήλιος επηρεάζουν τις πισίνες στην Πάφο.' },
+	{ icon: Gauge, title: 'Μετρημένη χημεία νερού', text: 'Μετράμε τις παραμέτρους του νερού και προσαρμόζουμε τα χημικά με βάση πραγματικές μετρήσεις και όχι εικασίες.' },
+	{ icon: Receipt, title: 'Διαφανείς τιμές', text: 'Λαμβάνετε σαφή τιμή πριν ξεκινήσει η εργασία, χωρίς απρόσμενες χρεώσεις για τις τακτικές επισκέψεις.' },
+	{ icon: Camera, title: 'Φωτογραφική αναφορά μετά από κάθε καθαρισμό', text: 'Μπορείτε να δείτε τις εργασίες που έγιναν και την κατάσταση της πισίνας σας, ακόμα και όταν βρίσκεστε εκτός Κύπρου.' },
+	{ icon: ShieldCheck, title: 'Ολοκληρωμένη συντήρηση πισίνας', text: 'Από τον τακτικό καθαρισμό και την εξισορρόπηση του νερού μέχρι τις επισκευές εξοπλισμού και την αποκατάσταση πράσινης πισίνας, καλύπτουμε όλες τις ανάγκες σας.' },
+];
+
+const faqs = [
+	{ q: 'Πόσο κοστίζει ο καθαρισμός πισίνας στην Πάφο;', a: 'Το εβδομαδιαίο πρόγραμμα κοστίζει €45 ανά επίσκεψη και ο καθαρισμός ανά δύο εβδομάδες ξεκινά από €60 ανά επίσκεψη, με τα χημικά συμπεριλαμβανόμενα. Οι μεγάλες πισίνες, οι κοινόχρηστες πισίνες και οι εφάπαξ καθαρισμοί τιμολογούνται ξεχωριστά.' },
+	{ q: 'Πόσο συχνά πρέπει να καθαρίζεται μια πισίνα στην Κύπρο;', a: 'Το καλοκαίρι προτείνουμε εβδομαδιαίο καθαρισμό, επειδή η ζέστη, ο ήλιος και η σκόνη επηρεάζουν γρήγορα την ποιότητα του νερού. Τον χειμώνα συνήθως αρκούν επισκέψεις κάθε δύο έως τέσσερις εβδομάδες.' },
+	{ q: 'Καθαρίζετε πισίνες και τον χειμώνα;', a: 'Ναι. Προσφέρουμε χειμερινή συντήρηση με πιο αραιές επισκέψεις, ώστε το νερό να παραμένει ισορροπημένο και ο εξοπλισμός προστατευμένος μέχρι την επόμενη σεζόν.' },
+	{ q: 'Μπορείτε να καθαρίσετε την πισίνα πριν φτάσουν οι επισκέπτες μου;', a: 'Ναι. Προσφέρουμε καθαρισμό πριν την άφιξη και εφάπαξ καθαρισμούς για ενοικιαζόμενα καταλύματα και Airbnb, με φωτογραφική αναφορά ώστε να ξέρετε ότι η πισίνα είναι έτοιμη.' },
+	{ q: 'Η πισίνα μου έγινε πράσινη. Μπορείτε να τη διορθώσετε;', a: 'Ναι. Η υπηρεσία αποκατάστασης πράσινης πισίνας περιλαμβάνει shock treatment, βούρτσισμα, φιλτράρισμα και εξισορρόπηση του νερού, συνήθως μέσα σε λίγες επισκέψεις.' },
+	{ q: 'Πρέπει να είμαι σπίτι κατά τη διάρκεια της επίσκεψης;', a: 'Όχι. Πολλοί πελάτες μας ζουν στο εξωτερικό. Χρειαζόμαστε μόνο πρόσβαση στην πισίνα και στον εξοπλισμό και θα λάβετε φωτογραφική αναφορά μετά από κάθε επίσκεψη.' },
+];
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"inLanguage": "el",
+	"mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })),
+};
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	"name": site.name,
+	"url": url,
+	"telephone": phone,
+	"description": description,
+	"address": { "@type": "PostalAddress", "addressLocality": "Coral Bay", "addressRegion": "Paphos", "addressCountry": "CY" },
+	"areaServed": areasEn.map(a => ({ "@type": "City", "name": a })),
+	"serviceType": "Καθαρισμός και συντήρηση πισίνας",
+	"availableLanguage": ["el", "en"],
+};
+---
+
+<!DOCTYPE html>
+<html lang="el">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content={site.name} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={url} />
+		{alternates('paphos').map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+		<meta name="geo.region" content="CY-05" />
+		<meta name="geo.placename" content="Paphos" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="el_GR" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={url} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+		<ClientRouter />
+
+		<style>
+			:root {
+				--deep:  #072A38;
+				--water: #1B7A9E;
+				--aqua:  #6FD4E4;
+				--tile:  #F2F9FB;
+				--sun:   #FFC93C;
+				--ink:   #0A2530;
+				--muted: #3D6272;
+				--font-display: "Bricolage Grotesque", sans-serif;
+				--font-body:    "Inter", sans-serif;
+				--radius: 14px;
+				--maxw:   1080px;
+			}
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; }
+			html { scroll-behavior: smooth; }
+			body { font-family: var(--font-body); color: var(--ink); background: var(--tile); line-height: 1.6; }
+			.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+			a { color: inherit; }
+			a:focus-visible, button:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+
+			.tile-strip {
+				height: 14px;
+				background: repeating-linear-gradient(90deg, var(--aqua) 0 22px, var(--tile) 22px 26px, var(--water) 26px 48px, var(--tile) 48px 52px);
+			}
+
+			.btn {
+				display: inline-flex; align-items: center; border: none; cursor: pointer;
+				font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+				padding: 13px 26px; border-radius: 999px; text-decoration: none;
+				transition: transform .15s ease, box-shadow .15s ease;
+			}
+			.btn:hover { transform: translateY(-2px); }
+			.btn-sun { background: var(--sun); color: var(--ink); box-shadow: 0 4px 14px rgba(255,201,60,.4); }
+			.btn-ghost { background: transparent; color: var(--tile); border: 2px solid rgba(242,249,251,.5); }
+			.btn-ghost:hover { border-color: var(--tile); }
+
+			/* hero */
+			.hero {
+				background: var(--deep);
+				color: var(--tile); position: relative; overflow: hidden; padding-top: 64px;
+			}
+			.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+			.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,42,56,.82) 0%, rgba(7,42,56,.55) 45%, rgba(7,42,56,.12) 100%); }
+			.hero-inner { padding: 80px 24px 140px; max-width: var(--maxw); margin: 0 auto; position: relative; z-index: 1; }
+			.eyebrow { display: inline-block; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--aqua); margin-bottom: 16px; }
+			h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.05; margin-bottom: 20px; max-width: 18ch; }
+			h1 .accent { color: var(--sun); }
+			.hero-desc { font-size: 1.1rem; max-width: 56ch; color: #CFE8F0; margin-bottom: 16px; line-height: 1.7; }
+			.hero-desc strong { color: #fff; }
+			.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+
+			.wave { position: absolute; bottom: -2px; left: 0; width: 200%; height: 90px; animation: drift 14s linear infinite; }
+			@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+			/* sections */
+			section { padding: 88px 0; }
+			.section-head { max-width: 62ch; margin-bottom: 48px; }
+			h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.15; margin-bottom: 12px; }
+			.section-head p, .lead { color: var(--muted); font-size: 1.05rem; line-height: 1.75; }
+			.lead + .lead { margin-top: 16px; }
+
+			.intro-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; }
+			.intro-photo { width: 100%; max-width: 420px; height: auto; mix-blend-mode: multiply; display: block; justify-self: center; }
+			.services { background: #fff; }
+			.svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+			.svc-card { background: var(--tile); border: 1px solid #DCEBF0; border-radius: var(--radius); padding: 28px; }
+			.icon-box { width: 44px; height: 44px; border-radius: 12px; background: var(--aqua); display: grid; place-items: center; margin-bottom: 16px; }
+			.svc-card h3, .why-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-bottom: 8px; color: var(--ink); }
+			.svc-card p, .why-card p { color: var(--muted); font-size: .95rem; line-height: 1.65; }
+
+			.split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+			.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+			.chip { background: #fff; border: 1px solid #DCEBF0; border-radius: 999px; padding: 8px 16px; font-size: .92rem; font-weight: 500; color: var(--ink); display: inline-flex; align-items: center; gap: 6px; }
+			.note { color: var(--muted); font-size: .95rem; }
+
+			.plans { background: linear-gradient(175deg, var(--water) 0%, var(--deep) 100%); color: var(--tile); }
+			.plans h2 { color: #fff; }
+			.plans .section-head p { color: #CFE8F0; }
+			.plan-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin-bottom: 28px; }
+			.plan { background: var(--tile); color: var(--ink); border-radius: var(--radius); padding: 28px; box-shadow: 0 24px 60px rgba(0,0,0,.25); }
+			.plan .tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--water); }
+			.plan h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin: 6px 0 4px; }
+			.plan .price { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; }
+			.plan .price small { font-family: var(--font-body); font-size: .9rem; font-weight: 500; color: var(--muted); }
+			.plan p { color: var(--muted); font-size: .92rem; margin-top: 10px; }
+			.plans .fine { color: #CFE8F0; max-width: 62ch; line-height: 1.7; }
+			.plans .fine + .fine { margin-top: 12px; }
+
+			.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+			.why-card { background: #fff; border: 1px solid #DCEBF0; border-radius: var(--radius); padding: 24px 20px; }
+			.why-card h3 { font-size: 1rem; }
+			.why-card p { font-size: .875rem; }
+
+			.faq-list { max-width: 820px; display: grid; gap: 12px; }
+			.faq-item { background: #fff; border: 1px solid #DCEBF0; border-radius: var(--radius); padding: 0 22px; }
+			.faq-item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+			.faq-item summary::-webkit-details-marker { display: none; }
+			.faq-item[open] summary :global(svg) { transform: rotate(180deg); }
+			.faq-item p { color: var(--muted); padding-bottom: 18px; line-height: 1.7; }
+
+			.quote { background: #fff; text-align: center; }
+			.quote .section-head { margin-left: auto; margin-right: auto; }
+			.quote .hero-ctas { justify-content: center; }
+			.quote .btn-ghost { color: var(--ink); border-color: var(--water); }
+			.quote strong.cta-line { display: block; margin-top: 16px; font-family: var(--font-display); font-size: 1.15rem; }
+
+			footer { background: var(--deep); color: #9FC6D3; padding: 40px 0; font-size: .9rem; }
+			.foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+			footer a { color: #CFE8F0; text-decoration: none; margin-left: 20px; }
+			footer a:hover { color: var(--sun); }
+
+			@media (max-width: 860px) {
+				.svc-grid, .split, .plan-grid, .intro-grid { grid-template-columns: 1fr; }
+				.intro-photo { max-width: 260px; }
+				.split { gap: 32px; }
+				.why-grid { grid-template-columns: 1fr 1fr; }
+			}
+			@media (max-width: 640px) {
+				section { padding: 64px 0; }
+				.hero-inner { padding: 60px 24px 120px; }
+				.why-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tile-strip" aria-hidden="true"></div>
+		<Navbar />
+
+		<header class="hero">
+			<img src="/vrysoudion-street-paphos.webp" alt="Οδός Βρυσουδιών, Πάφος – θέα προς την πόλη και τη θάλασσα" class="hero-bg" width="1000" height="750" fetchpriority="high" />
+			<div class="hero-overlay" aria-hidden="true"></div>
+			<div class="hero-inner">
+				<div class="hero-copy">
+				<span class="eyebrow">Coral Bay · Πέγεια · Πάφος</span>
+				<h1>Καθαρισμός Πισίνας Πάφος – <span class="accent">Επαγγελματική Συντήρηση Πισίνας</span></h1>
+				<p class="hero-desc">Ψάχνετε αξιόπιστο <strong>καθαρισμό πισίνας στην Πάφο</strong>; Η Pool Cleaning Cyprus παρέχει επαγγελματικό καθαρισμό και συντήρηση πισίνας για ιδιωτικές κατοικίες, βίλες, ενοικιαζόμενα καταλύματα και επαγγελματικούς χώρους σε ολόκληρη την περιοχή της Πάφου.</p>
+				<p class="hero-desc">Φροντίζουμε για όλα όσα χρειάζεται η πισίνα σας ώστε να παραμένει καθαρή, διαυγής και ασφαλής. Από τον εβδομαδιαίο καθαρισμό και τον έλεγχο του νερού μέχρι την εξισορρόπηση των χημικών, τη συντήρηση φίλτρων και τον έλεγχο του εξοπλισμού, οι τεχνικοί μας κρατούν την πισίνα σας σε άριστη κατάσταση όλο τον χρόνο.</p>
+				<p class="hero-desc">Με έδρα το Coral Bay, εξυπηρετούμε την Πάφο και τις γύρω περιοχές με αξιόπιστες προγραμματισμένες επισκέψεις, διαφανείς τιμές και φωτογραφική αναφορά μετά από κάθε καθαρισμό.</p>
+				<div class="hero-ctas">
+					<a class="btn btn-sun" href={`tel:${phone}`}>Καλέστε μας {phone.replace('+357', '')}</a>
+					<a class="btn btn-ghost" href={whatsapp} target="_blank" rel="noopener noreferrer">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:6px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Στείλτε μας στο WhatsApp
+					</a>
+				</div>
+				</div>
+			</div>
+			<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+				<path d="M0,45 C120,80 240,10 360,45 C480,80 600,10 720,45 C840,80 960,10 1080,45 C1200,80 1320,10 1440,45 L1440,90 L0,90 Z M1440,45 C1560,80 1680,10 1800,45 C1920,80 2040,10 2160,45 C2280,80 2400,10 2520,45 C2640,80 2760,10 2880,45 L2880,90 L1440,90 Z" fill="#F2F9FB"/>
+			</svg>
+		</header>
+
+		<section>
+			<div class="wrap intro-grid">
+				<div class="section-head" style="margin-bottom:0">
+					<h2>Επαγγελματικές Υπηρεσίες Καθαρισμού Πισίνας στην Πάφο</h2>
+					<p class="lead">Η διατήρηση μιας πισίνας καθαρής στην Κύπρο απαιτεί τακτική φροντίδα. Οι υψηλές θερμοκρασίες του καλοκαιριού, η έντονη υπεριώδης ακτινοβολία, η σκόνη και το σκληρό νερό επηρεάζουν γρήγορα την ποιότητα του νερού και καταπονούν τον εξοπλισμό.</p>
+					<p class="lead">Οι υπηρεσίες συντήρησης πισίνας που προσφέρουμε έχουν σχεδιαστεί με βάση αυτές τις τοπικές συνθήκες. Κάθε επίσκεψη ακολουθεί σταθερή διαδικασία καθαρισμού και συντήρησης, ώστε να προλαμβάνονται τα συνηθισμένα προβλήματα και το νερό να είναι πάντα έτοιμο για κολύμπι.</p>
+				</div>
+				<img src="/team-photo.png" alt="Τεχνικός της Pool Cleaning Cyprus στην Πάφο" class="intro-photo" width="420" height="630" loading="lazy" />
+			</div>
+		</section>
+
+		<section class="services" id="services" style="padding-top:72px">
+			<div class="wrap">
+				<div class="svc-grid">
+					{services.map(s => (
+						<article class="svc-card">
+							<div class="icon-box"><s.icon size={22} color="#072A38" /></div>
+							<h3>{s.title}</h3>
+							<p>{s.text}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="wrap split">
+				<div>
+					<h2>Καθαρισμός Πισίνας για Βίλες, Ιδιωτικές Κατοικίες & Ενοικιαζόμενα στην Πάφο</h2>
+					<p class="lead">Η Πάφος έχει πολλές ιδιωτικές πισίνες, βίλες διακοπών και ενοικιαζόμενα ακίνητα που χρειάζονται σταθερή συντήρηση όλο τον χρόνο.</p>
+					<p class="lead">Είτε ζείτε μόνιμα στην Κύπρο είτε διαχειρίζεστε ένα ακίνητο διακοπών από το εξωτερικό, χρειάζεστε μια εταιρεία καθαρισμού πισίνας που μπορείτε να εμπιστευτείτε.</p>
+					<p class="lead">Προσφέρουμε προγραμματισμένη συντήρηση για ιδιωτικές πισίνες κατοικιών, πισίνες βιλών, εξοχικά, ενοικιαζόμενα ακίνητα, συγκροτήματα διαμερισμάτων και ξενοδοχεία.</p>
+					<p class="lead">Συνεργαζόμαστε με οικοδεσπότες Airbnb, ιδιοκτήτες βιλών διακοπών και διαχειριστές ακινήτων. Μπορούμε να προγραμματίσουμε καθαρισμό πριν την άφιξη των επισκεπτών, εφάπαξ καθαρισμό ανάμεσα σε κρατήσεις ή επείγουσα επίσκεψη αν κάποιος επισκέπτης αναφέρει πρόβλημα.</p>
+					<p class="lead">Η τακτική υπηρεσία περιλαμβάνει φωτογραφική αναφορά μετά από κάθε επίσκεψη. Βλέπετε την κατάσταση της πισίνας και τις εργασίες που έγιναν χωρίς να χρειάζεται να είστε παρόντες.</p>
+				</div>
+				<div>
+					<h2>Συντήρηση Πισίνας σε Ολόκληρη την Πάφο</h2>
+					<p class="lead">Η έδρα μας είναι στο Coral Bay και παρέχουμε καθαρισμό και συντήρηση πισίνας σε όλη την Πάφο και τις γύρω περιοχές. Εξυπηρετούμε μεταξύ άλλων:</p>
+					<ul class="chips" style="list-style:none;padding:0">
+						{areas.map(a => <li class="chip"><MapPin size={14} color="#1B7A9E" />{a}</li>)}
+					</ul>
+					<p class="note">Αν το ακίνητό σας βρίσκεται εκτός αυτών των περιοχών, επικοινωνήστε μαζί μας για να ελέγξουμε τη διαθεσιμότητα.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="plans" id="pricing">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>Εβδομαδιαία & Διεβδομαδιαία Προγράμματα Καθαρισμού</h2>
+					<p>Προσφέρουμε απλά προγράμματα καθαρισμού για κάθε τύπο πισίνας και ανάγκες συντήρησης. Οι εβδομαδιαίες επισκέψεις κοστίζουν λιγότερο ανά επίσκεψη, επειδή η πισίνα διατηρείται σε καλύτερη κατάσταση ανάμεσα στους καθαρισμούς.</p>
+				</div>
+				<div class="plan-grid">
+					<div class="plan">
+						<span class="tag">Ανά 2 εβδομάδες</span>
+						<h3>Silver</h3>
+						<div class="price">από €60 <small>ανά επίσκεψη</small></div>
+						<p>Περιλαμβάνει χημικά και έλεγχο εξοπλισμού.</p>
+					</div>
+					<div class="plan">
+						<span class="tag">Εβδομαδιαίο</span>
+						<h3>Platinum</h3>
+						<div class="price">€45 <small>ανά επίσκεψη (εβδομαδιαίο πρόγραμμα)</small></div>
+						<p>Περιλαμβάνει χημικά και έλεγχο εξοπλισμού, καθώς και backwash φίλτρου, καθαρισμό γραμμής νερού και φωτογραφική αναφορά.</p>
+					</div>
+				</div>
+				<p class="fine">Διατίθενται επίσης μηνιαίος, χειμερινός και εφάπαξ καθαρισμός. Επικοινωνήστε μαζί μας για τιμή.</p>
+				<p class="fine">Για μεγαλύτερες ή ασυνήθιστα βαθιές πισίνες μπορεί να χρειαστεί ξεχωριστή προσφορά.</p>
+				<p class="fine">Για βίλες διακοπών, κοινόχρηστες πισίνες και επαγγελματικούς χώρους, διαμορφώνουμε πρόγραμμα συντήρησης ανάλογα με το μέγεθος, τη χρήση και τον όγκο του νερού.</p>
+			</div>
+		</section>
+
+		<section>
+			<div class="wrap">
+				<div class="section-head">
+					<h2>Γιατί να Επιλέξετε την Pool Cleaning Cyprus στην Πάφο;</h2>
+				</div>
+				<div class="why-grid">
+					{why.map(w => (
+						<div class="why-card">
+							<div class="icon-box"><w.icon size={22} color="#072A38" /></div>
+							<h3>{w.title}</h3>
+							<p>{w.text}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="faq" id="faq">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>Καθαρισμός Πισίνας Πάφος – Συχνές Ερωτήσεις</h2>
+				</div>
+				<div class="faq-list">
+					{faqs.map(f => (
+						<details class="faq-item">
+							<summary><span>{f.q}</span><ChevronDown size={20} color="#1B7A9E" /></summary>
+							<p>{f.a}</p>
+						</details>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="quote" id="quote">
+			<div class="wrap">
+				<div class="section-head">
+					<h2>Ζητήστε Δωρεάν Προσφορά Καθαρισμού Πισίνας στην Πάφο</h2>
+					<p class="lead">Χρειάζεστε αξιόπιστο καθαριστή πισίνας στην Πάφο; Επικοινωνήστε με την Pool Cleaning Cyprus για δωρεάν πρώτη επίσκεψη και προσφορά χωρίς δέσμευση.</p>
+					<p class="lead">Πείτε μας πού βρίσκεται η πισίνα σας, το περίπου μέγεθός της και την τρέχουσα κατάστασή της. Ο τεχνικός μας θα εξετάσει το νερό, θα ελέγξει τον εξοπλισμό και θα προτείνει το κατάλληλο πρόγραμμα συντήρησης.</p>
+					<p class="lead">Παρέχουμε επαγγελματικό καθαρισμό και συντήρηση πισίνας σε όλη την Πάφο, το Coral Bay, την Πέγεια και τις γύρω περιοχές.</p>
+					<strong class="cta-line">Επικοινωνήστε σήμερα για να κλείσετε τη δωρεάν επιθεώρηση της πισίνας σας.</strong>
+				</div>
+				<div class="hero-ctas">
+					<a class="btn btn-sun" href={`tel:${phone}`}>Καλέστε μας {phone.replace('+357', '')}</a>
+					<a class="btn btn-ghost" href={whatsapp} target="_blank" rel="noopener noreferrer">Στείλτε μας στο WhatsApp</a>
+				</div>
+			</div>
+		</section>
+
+		<div class="tile-strip" aria-hidden="true"></div>
+
+		<footer>
+			<div class="wrap foot">
+				<span>&copy; {new Date().getFullYear()} {site.name}. Καθαρισμός και συντήρηση πισίνας σε όλη την Κύπρο.</span>
+				<span>
+					<a href="/#services">Υπηρεσίες</a>
+					<a href="/el/pool-cleaning-paphos">Καθαρισμός Πισίνας Πάφος</a>
+					<a href="#pricing">Τιμές</a>
+					<a href="#quote">Δωρεάν προσφορά</a>
+				</span>
+			</div>
+		</footer>
+	</body>
+</html>
